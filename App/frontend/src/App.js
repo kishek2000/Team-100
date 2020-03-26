@@ -15,6 +15,13 @@ function App() {
       </header>
       <body className="App-media-options">
       </body>
+      <header className="white-header">
+      <p>HI</p> 
+      <div className ="search">
+        <button type="submit" class="searchButton"></button>
+        <input className="searchbar" type="text" placeholder="Search Movies, TV Shows by name..."></input>
+      </div>
+      </header>
     </div>
   );
 }

@@ -15,7 +15,16 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.white-header {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 .myLounge-heading {
   margin: 0;
   display: flex;
@@ -28,4 +37,32 @@
   display: flex;
   font-family: HelveticaNeue-Thin;
   font-size: 39px;
+}
+.search{
+  width: 100%;
+}
+.searchbar{
+   width: 30%;
+  border: 2px solid gray;
+  padding: 5px;
+  height: 20px;
+  border-radius: 10px ;
+  outline: none;
+  color: black;
+  margin-right: none;
+  position: absolute;
+  right: 10px;
+  top: 900px;
+}
+.searchButton {
+  background-image: url(./images/search_button.png);
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  position: absolute;
+  right: 480px;
+  top: 905px;
+  border: 0px;
+  
+  
 }
