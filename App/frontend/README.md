@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Design for App
+
+The design from Figma is available here: https://www.figma.com/file/0gXu7e2xBugmbRMLSrjwRE/myLounge-Designs?node-id=32%3A0
+
 ## Available Scripts
 
 In the project directory, you can run:
