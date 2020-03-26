@@ -7,4 +7,4 @@
 * Jenny Lim (z5205161)
 * Liam Staples (z5254570)
 
-We are creating the Cinefind app, which will allow users to find cheap cinema tickets near them.
+UPDATE - we are now creating an app which allows you to choose between multiple online entertainment options called myLounge: Listen, Watch, Relax!
