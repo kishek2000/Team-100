@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background: rgba(0, 0, 0, 0.45) url("https://source.unsplash.com/1920x1080/?nature");
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.myLounge-heading {
+  margin: 0;
+  display: flex;
+  font-family: HelveticaNeue-Ultralight;
+  font-size: 197px;
+}
+
+.myLounge-subtitle {
+  margin: 0;
+  display: flex;
+  font-family: HelveticaNeue-Thin;
+  font-size: 39px;
+}
