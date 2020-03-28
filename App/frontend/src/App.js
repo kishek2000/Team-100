@@ -26,7 +26,7 @@ function App() {
         <div className="filters-header">
           <div className="media-selection">
             <p className="selection-label">I want to</p>
-            <MediaSelector currentValue={currentMediaSelected} />
+            <MediaSelector currentValue={currentMediaSelected}/>
           </div>
           <SearchBar name="searchbar" inputname="searchinput" imagename="searchbutton" placeholder="Search for Movie or TV Show by name..."/>
         </div>
@@ -54,12 +54,12 @@ function SearchBar (props) {
 
 // This now is our media selection component. This only varies in its list, which you can provide.
 function MediaSelector (props) {
-  return (
-    <div className="selection-dropdown">
-      <div className="main-selection">
-        <input className="media-dropdown" type="button" value={props.currentValue}></input>
-        <img src="https://img.icons8.com/material-sharp/24/000000/give-way--v1.png" className="dropdown-button" alt="main-selector"/>
+    return (
+      <div className="selection-dropdown">
+        <div className="main-selection">
+          <input className="media-dropdown" type="button" value={props.currentValue}></input>
+          <img src="https://img.icons8.com/material-sharp/24/000000/give-way--v1.png" className="dropdown-button" alt="main-selector"/>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
