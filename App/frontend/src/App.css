@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background: rgba(0, 0, 0, 0.45) url("https://source.unsplash.com/1920x1080/?nature");
+  background: rgba(0, 0, 0, 0.65) url("https://source.unsplash.com/1920x1080/?nature");
   background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,58 +11,212 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.white-header {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 .myLounge-heading {
-  margin: 0;
+  margin-top: 255px;
+  margin-bottom: 0px;
   display: flex;
   font-family: HelveticaNeue-Ultralight;
-  font-size: 197px;
+  font-size: 215px;
 }
 
 .myLounge-subtitle {
   margin: 0;
+  padding: 0;
+  margin-bottom: 23px;
   display: flex;
   font-family: HelveticaNeue-Thin;
   font-size: 39px;
 }
-.search{
-  width: 100%;
+
+/* //////////////// */
+/*  Media Options  */
+/* //////////////// */
+
+.App-media-options {
+  background-color: white;
+  min-height: 100vh;
+  margin-left: 80px;
+  margin-right: 80px;
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
-.searchbar{
-   width: 30%;
-  border: 2px solid gray;
-  padding: 5px;
-  height: 20px;
-  border-radius: 10px ;
+
+/* COMPONENTS */
+/* Search Bar */
+
+/*
+In the app, we have two main types of search bar. The main menu, and the actual page. So,
+we will have common features for the class searchbar and searchbar_menu but just different
+in colours.
+*/
+
+.searchbar, .searchbar-menu {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  width: 668px;
+  border-radius: 20px;
+}
+
+.searchbar {
+  height: 50px;
+  border: 2px solid black;
+}
+
+.searchbar-menu {
+  height: 36px;
+  border: 1.3px solid white;
+}
+
+.searchinput, .searchinput-menu {
+  display: flex;
+  background: none;
+  margin-left: 10px;
   outline: none;
-  color: black;
-  margin-right: none;
-  position: absolute;
-  right: 10px;
-  top: 900px;
+  border: none;
+  position: relative;
+  line-height: normal;
+  width: 90%;
 }
-.searchButton {
-  background-image: url(./images/search_button.png);
+
+.searchinput {
+  color: black;
+  font-family: HelveticaNeue-Thin;
+  font-size: 25px;
+}
+
+.searchinput-menu {
+  color: white;
+  font-family: HelveticaNeue-Light;
+  font-size: 18px;
+}
+
+.searchinput::placeholder {
+  font-family: HelveticaNeue-Thin;
+  font-size: 25px;
+  color: black;
+}
+
+.searchinput-menu::placeholder {
+  font-family: HelveticaNeue-Thin;
+  font-size: 18px;
+  color: white;
+}
+
+.searchbutton, .searchbutton-menu {
+  margin-left: 5px;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  border: 0px;
+}
+
+.searchbutton {
   width: 25px;
   height: 25px;
-  background-size: cover;
-  position: absolute;
-  right: 480px;
-  top: 905px;
-  border: 0px;
-  
-  
+}
+
+.searchbutton-menu {
+  width: 18px;
+  height: 18px;
+  -webkit-filter: invert(100%);
+}
+
+/* //////////////////////// */
+/* END OF COMPONENTS STYLES */
+/* //////////////////////// */
+
+/* This below is the styling for the upper header of filters. */
+.filters-header {
+  display: flex;
+  margin-top: 55px;
+  width: 100%;
+  display: flex;
+  align-self: flex-start;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* This below is for the selection of watch or listen */
+.media-selection {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.selection-label {
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  font-family: HelveticaNeue-Thin;
+  font-size: 25px;
+  color: black;
+}
+
+.selection-dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  margin-left: 10px;
+  border: solid 2px black;
+  border-radius: 20px;
+  outline: none;
+  width: 150px;
+  height: 50px;
+}
+
+.main-selection {
+  display: flex;
+  flex-direction: row;
+}
+
+.media-dropdown {
+  width: 105px;
+  height: 100%;
+  font-family: HelveticaNeue-Medium;
+  color: black;
+  font-size: 25px;
+  text-align: left;
+  margin-left: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.media-dropdown:focus {
+  outline: none;
+}
+
+.dropdown-button {
+  display: flex;
+  align-self: center;
+  margin-left: 8px;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+}
+
+.dropdown-button:hover {
+  width: 12px;
+  height: 12px;
+}
+
+/* This below is for the rest of the media options sections */
+.white-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: black;
 }
