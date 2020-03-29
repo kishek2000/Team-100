@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("api/lead")
+    fetch("api/home/image")
       .then(response => {
         if (response.status > 400) {
           return this.setState(() => {
@@ -33,15 +33,11 @@ class App extends Component {
 
   render() {
     return (
-      <ul>
-        {this.state.data.map(contact => {
-          return (
-            <li key={contact.id}>
-              {contact.name} - {contact.email}
-            </li>
-          );
-        })}
-      </ul>
+      <div>
+        <p>Hello World!</p>
+        <img src={this.state.data.home_img_url} />
+      </div>
+      
     );
   }
 }

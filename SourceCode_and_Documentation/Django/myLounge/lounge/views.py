@@ -10,9 +10,9 @@ from rest_framework import generics
 #from django.views.decorators.http import require_GET, require_http_methods
 
 
-def home(request):
+def home_img(request):
     obj = {
-        "home_img_url": "https://unsplash.com/photos/NodtnCsLdTE"
+        "home_img_url": "https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1401&q=80"
     }
 
     return JsonResponse(obj)
