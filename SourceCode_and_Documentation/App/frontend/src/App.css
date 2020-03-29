@@ -3,24 +3,26 @@
 }
 
 .App-header {
-  background: rgba(0, 0, 0, 0.65) url("https://source.unsplash.com/1920x1080/?nature");
+  background: rgb(0, 0, 0, 0.65)
+    url('https://source.unsplash.com/1920x1080/?nature');
   background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
+  width: 100vw;
+  height: calc(30vh + 32.6vw);
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .myLounge-heading {
-  margin-top: 255px;
+  margin-top: calc(130px + 5vw);
   margin-bottom: 0px;
   display: flex;
+  flex-shrink: 1;
   font-family: HelveticaNeue-Ultralight;
-  font-size: 215px;
+  font-size: 10vw;
 }
 
 .myLounge-subtitle {
@@ -28,19 +30,21 @@
   padding: 0;
   margin-bottom: 23px;
   display: flex;
+  flex-shrink: 1;
   font-family: HelveticaNeue-Thin;
-  font-size: 39px;
+  font-size: 2vw;
 }
 
 /* //////////////// */
-/*  Media Options  */
+/*  Media Options   */
 /* //////////////// */
 
 .App-media-options {
   background-color: white;
   min-height: 100vh;
-  margin-left: 80px;
-  margin-right: 80px;
+  padding-left: 3.5vw;
+  padding-right: 3.5vw;
+  padding-bottom: 6.5vw;
   display: flex;
   flex-direction: column;
   color: white;
@@ -55,31 +59,33 @@ we will have common features for the class searchbar and searchbar_menu but just
 in colours.
 */
 
-.searchbar, .searchbar-menu {
+.searchbar,
+.searchbar-menu {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-left: 10px;
-  width: 668px;
+  width: calc(90px + 28vw);
   border-radius: 20px;
 }
 
 .searchbar {
-  height: 50px;
+  height: calc(15px + 1.4vw);
+  padding-left: 2px;
   border: 2px solid black;
 }
 
 .searchbar-menu {
-  height: 36px;
+  height: calc(12px + 1.2vw);
   border: 1.3px solid white;
 }
 
-.searchinput, .searchinput-menu {
+.searchinput,
+.searchinput-menu {
   display: flex;
   background: none;
-  margin-left: 10px;
+  margin-left: 0.6vw;
   outline: none;
   border: none;
   position: relative;
@@ -90,29 +96,32 @@ in colours.
 .searchinput {
   color: black;
   font-family: HelveticaNeue-Thin;
-  font-size: 25px;
+  font-size: calc(12px + 0.6vw);
 }
 
 .searchinput-menu {
   color: white;
   font-family: HelveticaNeue-Light;
-  font-size: 18px;
+  font-size: calc(10px + 0.5vw);
 }
 
 .searchinput::placeholder {
   font-family: HelveticaNeue-Thin;
-  font-size: 25px;
+  font-size: calc(12px + 0.6vw);
+  overflow-x: scroll;
+  padding: 0;
+  margin: 0;
   color: black;
 }
 
 .searchinput-menu::placeholder {
   font-family: HelveticaNeue-Thin;
-  font-size: 18px;
+  font-size: calc(8px + 0.5vw);
   color: white;
 }
 
-.searchbutton, .searchbutton-menu {
-  margin-left: 5px;
+.searchbutton,
+.searchbutton-menu {
   background-size: cover;
   position: relative;
   display: flex;
@@ -120,13 +129,13 @@ in colours.
 }
 
 .searchbutton {
-  width: 25px;
-  height: 25px;
+  width: 1.3vw;
+  height: 1.3vw;
 }
 
 .searchbutton-menu {
-  width: 18px;
-  height: 18px;
+  width: 1vw;
+  height: 1vw;
   -webkit-filter: invert(100%);
 }
 
@@ -137,14 +146,13 @@ in colours.
 /* This below is the styling for the upper header of filters. */
 .filters-header {
   display: flex;
-  margin-top: 55px;
+  margin-top: 3%;
+  position: relative;
   width: 100%;
-  display: flex;
   align-self: flex-start;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
 /* This below is for the selection of watch or listen */
@@ -160,29 +168,32 @@ in colours.
   display: flex;
   align-self: flex-start;
   font-family: HelveticaNeue-Thin;
-  font-size: 25px;
+  font-size: calc(12px + 0.7vw);
   color: black;
 }
 
 .media-button {
   display: flex;
   align-self: center;
-  margin-left: 10px;
+  margin-left: 0.6vw;
   border: solid 2px black;
   border-radius: 20px;
-  width: 110px;
-  height: 50px;
+  width: calc(60px + 2.1vw);
+  height: calc(20px + 1.4vw);
   font-family: HelveticaNeue-Medium;
   color: black;
-  font-size: 25px;
+  font-size: calc(12px + 0.6vw);
   text-align: center;
   cursor: pointer;
 }
 
-.media-button:focus {
+.media-button.selected {
   background-color: black;
   color: white;
-  outline: none;
+}
+
+.media-button:focus {
+  outline: rgb(73, 62, 72);
 }
 
 /* This below is for the rest of the media options sections */
@@ -194,7 +205,7 @@ in colours.
 }
 
 .category-list {
-  margin-top: 55px;
+  margin-top: 2vw;
   display: flex;
   flex-direction: column;
 }
@@ -203,7 +214,7 @@ in colours.
   display: flex;
   margin-bottom: 15px;
   font-family: HelveticaNeue-Light;
-  font-size: 49px;
+  font-size: calc(18px + 1.6vw);
   color: black;
 }
 
@@ -228,41 +239,102 @@ in colours.
   display: flex;
 } */
 
-.media-template-first, .media-template-middle, .media-template-last, .media-genre-template-first, .media-genre-template-middle, .media-genre-template-last {
+.media-template-first,
+.media-template-middle,
+.media-template-last,
+.watch-genre-template-first,
+.watch-genre-template-middle,
+.watch-genre-template-last {
   position: relative;
   display: flex;
   align-self: center;
-  height: 493px;
-  width: 372px;
+  height: 26vw;
+  width: 18.35vw;
   border-radius: 20px;
 }
 
-.media-template-middle, .media-template-last {
-  margin-left: 133px;
+.media-template-middle,
+.media-template-last,
+.genre-set-middle,
+.genre-set-last {
+  margin-left: 6.5vw;
 }
 
-.media-genre-template-first, .media-genre-template-middle, .media-genre-template-last {
+.watch-genre-template-first,
+.watch-genre-template-middle,
+.watch-genre-template-last,
+.listen-genre-template-first,
+.listen-genre-template-middle,
+.listen-genre-template-last {
   filter: brightness(40%);
 }
 
-.genre-set, .genre-set-middle, .genre-set-last {
+.genre-set,
+.genre-set-middle,
+.genre-set-last {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   position: relative;
   text-align: center;
-}
-
-.genre-set-middle, .genre-set-last {
-  margin-left: 133px;
 }
 
 .genre-label {
   position: absolute;
   display: block;
-  top: 319px;
-  left: 117.5px;
-  width: 136.953px;
-  height: 40px;
+  align-items: center;
+  top: 69%;
+  height: 2vw;
   margin: 0;
   color: white;
   font-family: HelveticaNeue-Light;
-  font-size: 33px;
+  font-size: calc(8px + 1vw);
+}
+
+.genre-vector {
+  display: flex;
+  align-self: center;
+  position: absolute;
+  width: 4vw;
+  align-items: center;
+}
+
+.listen-set-first,
+.listen-set-middle,
+.listen-set-last {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  color: black;
+}
+
+.listen-media-first,
+.listen-media-middle,
+.listen-media-last,
+.listen-genre-template-first,
+.listen-genre-template-middle,
+.listen-genre-template-last {
+  position: relative;
+  display: flex;
+  align-self: center;
+  height: 18.35vw;
+  width: 18.35vw;
+  border-radius: 20px;
+}
+
+.listen-set-middle,
+.listen-set-last {
+  margin-left: 6.5vw;
+}
+
+.listen-media-titles {
+  font-family: HelveticaNeue-Light;
+  font-size: calc(15px + 0.5vw);
+  margin-bottom: 0;
+}
+
+.listen-media-subtext {
+  font-family: HelveticaNeue-Light;
+  font-size: calc(7px + 0.4vw);
 }
