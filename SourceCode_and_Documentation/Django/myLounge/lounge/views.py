@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
+from .models import Lead
+from .serializers import LeadSerializer
+from rest_framework import generics
 # Create your views here.
 
 
@@ -13,3 +16,8 @@ def home(request):
     }
 
     return JsonResponse(obj)
+
+
+class LeadListCreate(generics.ListCreateAPIView):
+    queryset = Lead.objects.all()
+    serializer_class = LeadSerializer
