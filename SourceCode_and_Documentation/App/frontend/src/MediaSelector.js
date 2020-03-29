@@ -7,7 +7,9 @@ export function MediaSelector({ isSelected, option, onClick }) {
       className={`media-button ${isSelected && 'selected'}`}
       onClick={() => onClick(option)}
     >
-      {option}
+      <div class="media-button-wrapper">
+        <span class="media-button-text">{option}</span>
+      </div>
     </button>
   )
 }

@@ -84,12 +84,13 @@ in colours.
 .searchinput,
 .searchinput-menu {
   display: flex;
+  align-self: center;
+  justify-content: center;
   background: none;
-  margin-left: 0.6vw;
+  margin-left: 0.4vw;
   outline: none;
   border: none;
   position: relative;
-  line-height: normal;
   width: 90%;
 }
 
@@ -106,11 +107,13 @@ in colours.
 }
 
 .searchinput::placeholder {
+  display: flex;
+  align-self: center;
+  justify-content: center;
   font-family: HelveticaNeue-Thin;
   font-size: calc(12px + 0.6vw);
-  overflow-x: scroll;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   color: black;
 }
 
@@ -126,11 +129,12 @@ in colours.
   position: relative;
   display: flex;
   border: 0px;
+  margin-left: 0.6vw;
 }
 
 .searchbutton {
-  width: 1.3vw;
-  height: 1.3vw;
+  width: calc(2px + 1.1vw);
+  height: calc(2px + 1.1vw);
 }
 
 .searchbutton-menu {
@@ -176,20 +180,30 @@ in colours.
   display: flex;
   align-self: center;
   margin-left: 0.6vw;
+  width: calc(60px + 2.5vw);
+  height: calc(15px + 1.7vw);
   border: solid 2px black;
   border-radius: 20px;
-  width: calc(60px + 2.1vw);
-  height: calc(20px + 1.4vw);
-  font-family: HelveticaNeue-Medium;
-  color: black;
-  font-size: calc(12px + 0.6vw);
-  text-align: center;
   cursor: pointer;
+  padding: 0px;
+}
+
+.media-button-wrapper {
+  display: flex;
+  width: calc(60px + 2.5vw);
+  height: calc(12px + 1.7vw);
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  font-family: HelveticaNeue-Medium;
+  font-size: calc(12px + 0.6vw);
 }
 
 .media-button.selected {
   background-color: black;
   color: white;
+  text-align: center;
 }
 
 .media-button:focus {
