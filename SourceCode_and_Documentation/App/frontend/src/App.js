@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import './App.css'
 
-import { SearchBar } from './SearchBar'
-import { MediaSelector } from './MediaSelector'
-import { OPTIONS, SEARCHTEXT } from './constants'
-import { Experience } from './Experience'
+import { SearchBar } from './components/SearchBar'
+import { MediaSelector } from './components/MediaSelector'
+import { OPTIONS, SEARCHTEXT } from './components/constants'
+import { Experience } from './components/Experience'
 
 function App() {
   const [mediaSelected, setMediaSelected] = useState('WATCH')

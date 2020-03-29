@@ -1,14 +1,14 @@
 import React from 'react'
 
 // The following is all the icons for the many genres that there are.
-import romanceIcon from './images/genre-vectors/romance-vector.png'
-import dramaIcon from './images/genre-vectors/drama-vector.png'
-import comedyIcon from './images/genre-vectors/comedy-vector.png'
-import horrorIcon from './images/genre-vectors/horror-vector.png'
-import popIcon from './images/genre-vectors/pop-vector.png'
-import rnbIcon from './images/genre-vectors/rnb-vector.png'
-import countryIcon from './images/genre-vectors/country-vector.png'
-import workoutIcon from './images/genre-vectors/workout-vector.png'
+import romanceIcon from '../images/genre-vectors/romance-vector.png'
+import dramaIcon from '../images/genre-vectors/drama-vector.png'
+import comedyIcon from '../images/genre-vectors/comedy-vector.png'
+import horrorIcon from '../images/genre-vectors/horror-vector.png'
+import popIcon from '../images/genre-vectors/pop-vector.png'
+import rnbIcon from '../images/genre-vectors/rnb-vector.png'
+import countryIcon from '../images/genre-vectors/country-vector.png'
+import workoutIcon from '../images/genre-vectors/workout-vector.png'
 
 const genreVectors = {
   romance: romanceIcon,
