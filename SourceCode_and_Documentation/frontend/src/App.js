@@ -8,8 +8,6 @@ import { Experience } from "./components/Experience";
 
 export function App({ watchExperienceData, listenExperienceData }) {
   const [mediaSelected, setMediaSelected] = useState("WATCH");
-  console.log(`Here is the data again`);
-  console.table(watchExperienceData);
   return (
     <div className="App">
       <header className="App-header">

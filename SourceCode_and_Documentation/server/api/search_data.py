@@ -36,6 +36,32 @@ def searchFilms(searchTerm, nItems):
         })
     return mediaObjects
 
+# def getWatchGenres()
+def getWatchTrending():
+    parameters = {
+        "api_key": TMDB_API_KEY
+    }
+    res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
+    json = res.json()["results"]
+    mediaObjects = []
+    for result in json:
+        if result['media_type'] == "tv":
+            mediaObjects.append({
+                "name": result["name"],
+                "type": "tv",
+                "first_air_date": result["first_air_date"][0:4],
+                "overview": result["overview"],
+                "imgURL": craftPosterURL(result["poster_path"])
+            })
+        elif result['media_type'] == "movie":
+            mediaObjects.append({
+                "name": result["title"],
+                "type": "movie",
+                "first_air_date": result["release_date"][0:4],
+                "overview": result["overview"],
+                "imgURL": craftPosterURL(result["poster_path"])
+            })
+    return mediaObjects
 
 def searchShows(searchTerm, nItems):
     parameters = {
@@ -62,10 +88,22 @@ def getWatchCategory(media, category, nameKey):
     json = res.json()["results"][0:4]
     mediaObjects = []
     for result in json:
-        mediaObjects.append({
-            "name": result[nameKey],
-            "imgURL": craftPosterURL(result["poster_path"])
-        })
+        if media == "/tv/":
+            mediaObjects.append({
+                "name": result["name"],
+                "type": "tv",
+                "first_air_date": result["first_air_date"][0:4],
+                "overview": result["overview"],
+                "imgURL": craftPosterURL(result["poster_path"])
+            })
+        elif media == "/movie/":
+            mediaObjects.append({
+                "name": result["title"],
+                "type": "movie",
+                "first_air_date": result["release_date"][0:4],
+                "overview": result["overview"],
+                "imgURL": craftPosterURL(result["poster_path"])
+            })
     return mediaObjects
 
 def searchMusic(searchTerm, nItems):

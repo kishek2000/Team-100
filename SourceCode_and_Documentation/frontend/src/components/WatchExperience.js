@@ -5,11 +5,14 @@ import { WATCH_GENRES } from "./constants";
 
 // This function will give us the complete watch experience!
 export function WatchExperience({ data }) {
-  console.log(`In watch experience this is the data: ${data}`);
   if (data !== undefined) {
     return (
       <div className="watch-experience-lists">
-        <MediaCategoryList category="Trending" media="WATCH" />
+        <MediaCategoryList
+          category="Trending Daily"
+          media="WATCH"
+          mediaContent={data[3]["Trending Daily"]}
+        />
         <MediaCategoryList
           category="Top Rated TV Shows"
           media="WATCH"
