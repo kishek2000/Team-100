@@ -40,7 +40,7 @@ def searchShows(searchTerm, nItems):
         "api_key": TMDB_API_KEY,
         "query": searchTerm
     }
-    res = requests.get(TMDB_URL + "/search/movie", params=parameters)
+    res = requests.get(TMDB_URL + "/search/tv", params=parameters)
     json = res.json()["results"][0:nItems]
     mediaObjects = []
     for result in json:
