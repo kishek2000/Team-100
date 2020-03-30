@@ -4,7 +4,7 @@ I know this shouldn't be here eventually but I didn't want to lose it in the mes
 Returns a list of media of all formats specified
 '''
 import requests
-from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
+from .definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
 
 def tmdbToImdb(tmdbID, mediaType):
     '''Converts a tmdb id to an imdb id'''
@@ -17,6 +17,7 @@ def tmdbToImdb(tmdbID, mediaType):
 def craftPosterURL(path):
     '''Crafts a full url for a TMDB poster based on the path'''
     return TMDB_BASE_IMG_URL + "original" + path
+
 
 def searchFilms(searchTerm, nItems):
     parameters = {
@@ -35,6 +36,7 @@ def searchFilms(searchTerm, nItems):
         })
     return mediaObjects
 
+
 def searchShows(searchTerm, nItems):
     parameters = {
         "api_key": TMDB_API_KEY,
@@ -48,6 +50,20 @@ def searchShows(searchTerm, nItems):
             "name": result["name"],
             "type": "show",
             "id": tmdbToImdb(result["id"], "tv"),
+            "imgURL": craftPosterURL(result["poster_path"])
+        })
+    return mediaObjects
+
+def getWatchCategory(media, category, nameKey):
+    parameters = {
+        "api_key": TMDB_API_KEY
+    }
+    res = requests.get(TMDB_URL + media + category, params=parameters)
+    json = res.json()["results"][0:4]
+    mediaObjects = []
+    for result in json:
+        mediaObjects.append({
+            "name": result[nameKey],
             "imgURL": craftPosterURL(result["poster_path"])
         })
     return mediaObjects
