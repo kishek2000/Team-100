@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Liam\\.virtualenvs\\Team-100-WZbRv6OH\\Scripts\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "git.ignoreLimitWarning": true
+=======
+    "python.pythonPath": "/Users/adikishore/.local/share/virtualenvs/Team-100-IB-d8fHU/bin/python"
+>>>>>>> 92e9095928e6a1bc7a95990aa18a45766337eb6b
 }
