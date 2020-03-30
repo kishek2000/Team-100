@@ -10,6 +10,5 @@ requests = "*"
 django = ">=3.0.0"
 djangorestframework = "*"
 
-
 [requires]
-python_version >= "3.6"
+python_version = "3.6"
