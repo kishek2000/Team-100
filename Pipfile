@@ -8,10 +8,8 @@ verify_ssl = true
 [packages]
 requests = "*"
 django = ">=3.0.0"
-<<<<<<< HEAD
-=======
 djangorestframework = "*"
->>>>>>> stack_tests
+
 
 [requires]
-python_version = "3.6"
+python_version >= "3.6"
