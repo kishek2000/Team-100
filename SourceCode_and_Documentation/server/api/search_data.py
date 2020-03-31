@@ -5,6 +5,7 @@ Returns a list of media of all formats specified
 import requests
 from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
 from definitions import tmdbToImdb, genreIdsToString, craftPosterURL
+from definitions import SPOTIFY_TOKEN
 
 def searchFilms(searchTerm, nItems):
     parameters = {
@@ -44,7 +45,26 @@ def searchShows(searchTerm, nItems):
     return mediaObjects
 
 def searchMusic(searchTerm, nItems):
-    return []
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "q": searchTerm,
+        "type": "artist",
+        "limit": nItems
+    }
+    res = requests.get("https://api.spotify.com/v1/search", headers=header, params=parameters)
+    json = res.json()
+    mediaObjects = []
+    for result in json["artists"]["items"]:
+        mediaObjects.append({
+            "name": result["name"],
+            "type": "music_artist",
+            "id": result["id"],
+            "imgURL": result["images"][0]["url"],
+            "genres": ", ".join(result["genres"])
+        })
+    return mediaObjects
 
 def searchPodcasts(searchTerm, nItems):
     return []
@@ -63,6 +83,7 @@ def search(searchTerm, formats, nItems):
         results['movies'] = searchFilms(searchTerm, nItems)
     if "shows" in formats:
         results['shows'] = searchShows(searchTerm, nItems)
+    searchTerm.replace(" ", "%20OR%20")
     if "music" in formats:
         results['music'] = searchMusic(searchTerm, nItems)
     if "podcasts" in formats:
