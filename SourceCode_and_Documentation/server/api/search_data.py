@@ -3,9 +3,9 @@ Starting to write some backend code to fulfill the search endpoint.
 Returns a list of media of all formats specified
 '''
 import requests
-from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
-from definitions import tmdbToImdb, genreIdsToString, craftPosterURL
-from definitions import SPOTIFY_TOKEN
+from .definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
+from .definitions import tmdbToImdb, genreIdsToString, craftPosterURL
+from .definitions import SPOTIFY_TOKEN
 
 def searchFilms(searchTerm, nItems):
     parameters = {
