@@ -9,6 +9,14 @@ config = requests.get(TMDB_URL + "/configuration", params=parameters)
 
 TMDB_BASE_IMG_URL = config.json()["images"]["secure_base_url"]
 
+headers = {
+    'Authorization': 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU=',
+}
+data = {
+  'grant_type': 'client_credentials'
+}
+RESPONSE = requests.post('https://accounts.spotify.com/api/token', headers=headers, data=data)
+
 def tmdbToImdb(tmdbID, mediaType):
     '''Converts a tmdb id to an imdb id'''
     parameters = {
