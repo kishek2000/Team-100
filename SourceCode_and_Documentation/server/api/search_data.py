@@ -44,6 +44,57 @@ def searchShows(searchTerm, nItems):
         })
     return mediaObjects
 
+def getWatchCategory(media, category, keyname):
+    parameters = {
+    "api_key": TMDB_API_KEY,
+    }
+    res = requests.get(TMDB_URL + media + category, params=parameters)
+    json = res.json()["results"][0:4]
+    mediaObjects = []
+    for result in json:
+        genreString = ""
+        if media == '/tv/':
+            mediaObjects.append({
+                "name": result["name"],
+                "imgURL": craftPosterURL(result["poster_path"]),
+                "overview": result["overview"],
+                "first_air_date": result["first_air_date"][0:4],
+                "genres": genreIdsToString(result["genre_ids"], "tv")
+            })
+        elif media == '/movie/':
+            mediaObjects.append({
+                "name": result["title"],
+                "imgURL": craftPosterURL(result["poster_path"]),
+                "overview": result["overview"],
+                "first_air_date": result["release_date"][0:4],
+                "genres": genreIdsToString(result["genre_ids"], "tv")
+            })
+    return mediaObjects
+
+def getWatchTrending():
+    parameters = {
+        "api_key": TMDB_API_KEY,
+    }
+    res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
+    json = res.json()["results"][0:4]
+    mediaObjects = []
+    for result in json:
+        if result['media_type'] == 'tv':
+            mediaObjects.append({
+                "name": result["name"],
+                "imgURL": craftPosterURL(result["poster_path"]),
+                "overview": result["overview"],
+                "first_air_date": result["first_air_date"][0:4]
+            })
+        elif result['media_type'] == 'movie':
+            mediaObjects.append({
+                "name": result["title"],
+                "imgURL": craftPosterURL(result["poster_path"]),
+                "overview": result["overview"],
+                "first_air_date": result["release_date"][0:4]
+            })
+    return mediaObjects
+
 def searchMusic(searchTerm, nItems):
     header = {
         "Authorization": SPOTIFY_TOKEN
