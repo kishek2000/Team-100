@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import requests
 
-from .search_data import getWatchCategory, craftPosterURL, getWatchTrending
+from .search_data import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
 from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
@@ -16,6 +16,9 @@ def home_url(request):
     movieTopRated = getWatchCategory('/movie/', 'top_rated', 'title')
     trendingDaily = getWatchTrending()
 
+    newReleases = newMusicReleases(10)
+
+
     watchData = [
         {"Now Airing TV Shows": tvOnAir},
         {"Top Rated TV Shows": tvTopRated},
@@ -24,9 +27,13 @@ def home_url(request):
         # {"Genres": GenreData}
     ]
 
+    listenData = [
+        {"New Releases": newReleases}
+    ]
+
     obj={
         "watch_data": watchData,
-        "listen_data": {}
+        "listen_data": listenData
     }
     return JsonResponse(obj)
 

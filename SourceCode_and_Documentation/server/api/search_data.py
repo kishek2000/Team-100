@@ -84,14 +84,16 @@ def getWatchTrending():
                 "name": result["name"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
-                "first_air_date": result["first_air_date"][0:4]
+                "first_air_date": result["first_air_date"][0:4],
+                "genres": genreIdsToString(result["genre_ids"], "tv")
             })
         elif result['media_type'] == 'movie':
             mediaObjects.append({
                 "name": result["title"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
-                "first_air_date": result["release_date"][0:4]
+                "first_air_date": result["release_date"][0:4],
+                "genres": genreIdsToString(result["genre_ids"], "movie")
             })
     return mediaObjects
 
@@ -114,6 +116,28 @@ def searchMusic(searchTerm, nItems):
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
             "genres": ", ".join(result["genres"])
+        })
+    return mediaObjects
+
+def newMusicReleases(nItems):
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "limit": nItems
+    }
+    res = requests.get("https://api.spotify.com/v1/browse/new-releases", headers=header, params=parameters)
+    json = res.json()
+    mediaObjects = []
+    for result in json["albums"]["items"]:
+        mediaObjects.append({
+            "music_name": result["name"],
+            "artist_name": result["artists"][0]["name"],
+            "artist_link": result["artists"][0]["external_urls"]["spotify"],
+            "type": result["type"].title(),
+            "id": result["id"],
+            "imgURL": result["images"][0]["url"],
+            "music_link": result["external_urls"]["spotify"]
         })
     return mediaObjects
 

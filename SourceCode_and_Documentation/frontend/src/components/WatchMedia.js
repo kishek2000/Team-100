@@ -10,6 +10,9 @@ function handleOverlay(index, content) {
       "overlay-title"
     ).innerText = `${content[index]["name"]}`;
     document.getElementById(
+      "overlay-genres"
+    ).innerText = `${content[index]["genres"]}`;
+    document.getElementById(
       "overlay-date"
     ).innerText = `(${content[index]["first_air_date"]})`;
     document.getElementById(

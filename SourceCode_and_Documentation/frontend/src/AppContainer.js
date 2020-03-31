@@ -37,6 +37,10 @@ class AppContainer extends Component {
   }
 
   render() {
+    console.log("this is the watch data:");
+    console.table(this.state.data.watch_data);
+    console.log("this is the listen data:");
+    console.table(this.state.data.listen_data);
     return (
       <div>
         <App

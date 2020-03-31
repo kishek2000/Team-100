@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 // This is the search bar component. Provide it specified class names for one
 // of the two main styles. Either menu, or normal.
@@ -17,5 +17,5 @@ export function SearchBar(props) {
         // onChange={evt => console.log(evt.currentTarget.value)}
       ></input>
     </div>
-  )
+  );
 }
