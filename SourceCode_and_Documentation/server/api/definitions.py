@@ -16,6 +16,8 @@ data = {
   'grant_type': 'client_credentials'
 }
 RESPONSE = requests.post('https://accounts.spotify.com/api/token', headers=headers, data=data)
+SPOTIFY_TOKEN =  RESPONSE.json()["token_type"] + RESPONSE.json()["access_token"]
+# ADD A TIME FUNCTION
 
 def tmdbToImdb(tmdbID, mediaType):
     '''Converts a tmdb id to an imdb id'''
