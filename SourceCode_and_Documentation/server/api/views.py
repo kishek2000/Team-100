@@ -10,34 +10,6 @@ from rest_framework import generics
 
 #from django.views.decorators.http import require_GET, require_http_method
 
-#OLD endpoint do not use
-def home_url(request):
-    tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name')
-    tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name')
-    movieTopRated = getWatchCategory('/movie/', 'top_rated', 'title')
-    trendingDaily = getWatchTrending()
-
-    watchData = [
-        {"Now Airing TV Shows": tvOnAir},
-        {"Top Rated TV Shows": tvTopRated},
-        {"Top Rated Movies": movieTopRated},
-        {"Trending Daily": trendingDaily}
-        # {"Genres": GenreData}
-    ]
-
-    newReleases = newMusicReleases(10)
-
-    listenData = [
-        {"New Releases": newReleases}
-    ]
-
-
-    obj={
-        "watch_data": watchData,
-        "listen_data": listenData
-    }
-    return JsonResponse(obj)
-
 def home_url_watch(request):
     tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name')
     tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name')
