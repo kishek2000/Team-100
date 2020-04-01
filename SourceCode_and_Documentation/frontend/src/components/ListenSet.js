@@ -2,7 +2,7 @@ import React from "react";
 export function ListenSet(props) {
   return (
     <div className={props.setClass}>
-      <a href={props.music_link} target="_blank">
+      <a href={props.music_link} target="_blank" rel="noopener noreferrer">
         <img
           src={props.imageSource}
           className={props.mediaClass}
@@ -15,6 +15,7 @@ export function ListenSet(props) {
           href={props.music_link}
           target="_blank"
           className="listen-media-titles"
+          rel="noopener noreferrer"
         >
           {props.title}
         </a>
@@ -25,6 +26,7 @@ export function ListenSet(props) {
           href={props.artist_link}
           className="listen-artist-link"
           target="_blank"
+          rel="noopener noreferrer"
         >
           {props.artist}
         </a>

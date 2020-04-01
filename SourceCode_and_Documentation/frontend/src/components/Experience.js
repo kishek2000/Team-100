@@ -2,9 +2,9 @@ import React from "react";
 import { WatchExperience } from "./WatchExperience";
 import { ListenExperience } from "./ListenExperience";
 
-export function Experience({ currentExperience, watchData, listenData }) {
+export function Experience({ currentExperience }) {
   if (currentExperience === "WATCH") {
-    return <WatchExperience data={watchData} />;
+    return <WatchExperience />;
   }
-  return <ListenExperience data={listenData} />;
+  return <ListenExperience />;
 }

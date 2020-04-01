@@ -6,7 +6,7 @@ import { MediaSelector } from "./components/MediaSelector";
 import { OPTIONS, SEARCHTEXT } from "./components/constants";
 import { Experience } from "./components/Experience";
 
-export function App({ watchExperienceData, listenExperienceData }) {
+function App() {
   const [mediaSelected, setMediaSelected] = useState("WATCH");
   return (
     <div className="App">
@@ -42,12 +42,10 @@ export function App({ watchExperienceData, listenExperienceData }) {
             placeholder={SEARCHTEXT[mediaSelected]}
           />
         </div>
-        <Experience
-          currentExperience={mediaSelected}
-          watchData={watchExperienceData}
-          listenData={listenExperienceData}
-        />
+        <Experience currentExperience={mediaSelected} />
       </section>
     </div>
   );
 }
+
+export default App;

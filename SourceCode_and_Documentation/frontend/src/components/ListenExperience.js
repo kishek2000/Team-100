@@ -2,9 +2,11 @@ import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
 import { MediaGenreList } from "./MediaGenreList";
 import { LISTEN_GENRES } from "./constants";
+import { GetListenData } from "./DataPaths";
 
 // This function will give us the complete Listen experience!
-export function ListenExperience({ data }) {
+export function ListenExperience() {
+  const data = GetListenData();
   return (
     <div className="listen-experience-lists">
       <MediaCategoryList
