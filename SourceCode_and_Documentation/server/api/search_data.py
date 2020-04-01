@@ -1,11 +1,12 @@
 '''
 Starting to write some backend code to fulfill the search endpoint.
 Returns a list of media of all formats specified
+Must be in same folder as definitions.py
 '''
 import requests
-from .definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
-from .definitions import tmdbToImdb, genreIdsToString, craftPosterURL
-from .definitions import SPOTIFY_TOKEN
+from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
+from definitions import SPOTIFY_TOKEN
+from definitions import genreIdsToString, craftPosterURL, findStreamingServices
 
 def searchFilms(searchTerm, nItems):
     parameters = {
@@ -19,9 +20,10 @@ def searchFilms(searchTerm, nItems):
         mediaObjects.append({
             "name": result["title"],
             "type": "movie",
-            "id": tmdbToImdb(result["id"], "movie"),
+            "id": result["id"],
             "imgURL": craftPosterURL(result["poster_path"]),
-            "genres": genreIdsToString(result["genre_ids"], "movie")
+            "genres": genreIdsToString(result["genre_ids"], "movie"),
+            "location": findStreamingServices(result["id"])
         })
     return mediaObjects
 
@@ -34,13 +36,13 @@ def searchShows(searchTerm, nItems):
     json = res.json()["results"][0:nItems]
     mediaObjects = []
     for result in json:
-        genreString = ""
         mediaObjects.append({
             "name": result["name"],
-            "type": "show",
-            "id": tmdbToImdb(result["id"], "tv"),
+            "type": "tv",
+            "id": result["id"],
             "imgURL": craftPosterURL(result["poster_path"]),
-            "genres": genreIdsToString(result["genre_ids"], "tv")
+            "genres": genreIdsToString(result["genre_ids"], "tv"),
+            "location": findStreamingServices(result["id"])
         })
     return mediaObjects
 
@@ -115,7 +117,8 @@ def searchMusic(searchTerm, nItems):
             "type": "music_artist",
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
-            "genres": ", ".join(result["genres"])
+            "genres": ", ".join(result["genres"]),
+            "location": result["external_urls"]["spotify"]
         })
     return mediaObjects
 
@@ -150,14 +153,14 @@ def search(searchTerm, formats, nItems):
     '''
     results = {
         'movies': [],
-        'shows': [],
+        'tv': [],
         'music': [],
         'podcasts': []
     }
     if "movies" in formats:
         results['movies'] = searchFilms(searchTerm, nItems)
-    if "shows" in formats:
-        results['shows'] = searchShows(searchTerm, nItems)
+    if "tv" in formats:
+        results['tv'] = searchShows(searchTerm, nItems)
     searchTerm.replace(" ", "%20OR%20")
     if "music" in formats:
         results['music'] = searchMusic(searchTerm, nItems)

@@ -17,15 +17,27 @@ data = {
 }
 RESPONSE = requests.post('https://accounts.spotify.com/api/token', headers=headers, data=data)
 SPOTIFY_TOKEN =  RESPONSE.json()["token_type"] + " " + RESPONSE.json()["access_token"]
-# ADD A TIME FUNCTION
+# ADD A TIMER FUNCTION
 
-def tmdbToImdb(tmdbID, mediaType):
-    '''Converts a tmdb id to an imdb id'''
-    parameters = {
-        "api_key": TMDB_API_KEY,
+def findStreamingServices(id):
+    url = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup"
+    querystring = {
+        "country":"AU", #Change if we add a select region option
+        "source_id": id,
+        "source":"tmdb"
     }
-    res = requests.get(TMDB_URL + "/" + mediaType + "/" + str(tmdbID) + "/external_ids", params=parameters)
-    return res.json()["imdb_id"]
+    headers = {
+        'x-rapidapi-host': "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+        'x-rapidapi-key': "c87c08a68cmsh30214da0a2d0d9ap1175f8jsna8ba42f012e2"
+    }
+    res = requests.get(url, headers=headers, params=querystring)
+    services = []
+    for location in res.json()["collection"]["locations"]:
+        services.append({
+            "name": location['display_name'],
+            "link": location['url']
+        })
+    return services
 
 def genreIdsToString(genreIDs, mediaType):
     parameters = {
@@ -43,3 +55,13 @@ def genreIdsToString(genreIDs, mediaType):
 def craftPosterURL(path):
     '''Crafts a full url for a TMDB poster based on the path'''
     return TMDB_BASE_IMG_URL + "original" + path
+
+'''
+Defunct - kept here in case we do need it after all
+def tmdbToImdb(tmdbID, mediaType):
+    parameters = {
+        "api_key": TMDB_API_KEY,
+    }
+    res = requests.get(TMDB_URL + "/" + mediaType + "/" + str(tmdbID) + "/external_ids", params=parameters)
+    return res.json()["imdb_id"]
+'''
