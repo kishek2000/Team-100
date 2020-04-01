@@ -18,6 +18,25 @@ function handleOverlay(index, content) {
     document.getElementById(
       "overlay-description"
     ).innerText = `${content[index]["overview"]}`;
+    const array = content[index]["location"];
+
+    if (array.length === 0) {
+      document.getElementById("overlay-streaming-options").innerText =
+        "No streaming options are available right now! Come back soon to check again :)";
+    } else {
+      var str = "<div class='overlay-services'>";
+      console.table(array);
+      array.forEach(function(array) {
+        str +=
+          '<a class="link-text" target="_blank" rel="noopener noreferrer" href="' +
+          array["link"] +
+          '">' +
+          array["name"] +
+          "</a>";
+      });
+      str += "</div>";
+      document.getElementById("overlay-streaming-options").innerHTML = str;
+    }
   }
 }
 
