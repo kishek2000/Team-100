@@ -6,7 +6,7 @@ import { GetListenData } from "./DataPaths";
 
 // This function will give us the complete Listen experience!
 export function ListenExperience() {
-  const data = GetListenData();
+  const data = GetListenData(true);
   return (
     <div className="listen-experience-lists">
       <MediaCategoryList

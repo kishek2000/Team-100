@@ -8,6 +8,19 @@ import { Experience } from "./components/Experience";
 
 function App() {
   const [mediaSelected, setMediaSelected] = useState("WATCH");
+
+  /*
+    if (searchQuery is populated in SearchAll):
+      <Header />
+      <SearchResults query=searchQuery media=all/>
+    if (searchQuery is populated in SearchMedia):
+      <Header />
+      <SearchResults query=searchQuery media=mediaSelected/>
+    if (searchQuery is not populated):
+      <Header />
+      <Experience currentExperience = mediaSelected />
+  */
+
   return (
     <div className="App">
       <header className="App-header">
