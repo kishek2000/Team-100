@@ -72,7 +72,28 @@ def searchMusic(searchTerm, nItems):
     return mediaObjects
 
 def searchPodcasts(searchTerm, nItems):
-    return []
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "q": searchTerm,
+        "type": "show",
+        "limit": nItems
+    }
+    res = requests.get("https://api.spotify.com/v1/search", headers=header, params=parameters)
+    json = res.json()
+    print(json)
+    mediaObjects = []
+    for result in json["shows"]["items"]:
+        mediaObjects.append({
+            "name": result["name"],
+            "type": "podcast",
+            "id": result["id"],
+            "imgURL": result["images"][0]["url"],
+            "genres": "N/A",
+            "location": result["external_urls"]["spotify"]
+        })
+    return mediaObjects
 
 def search(searchTerm, formats, nItems):
     '''
