@@ -4,9 +4,18 @@ Returns a list of media of all formats specified
 Must be in same folder as definitions.py
 '''
 import requests
-from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
-from definitions import SPOTIFY_TOKEN
-from definitions import genreIdsToString, craftPosterURL, findStreamingServices
+
+if __name__ == "__main__":
+    from definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
+    from definitions import SPOTIFY_TOKEN
+    from definitions import genreIdsToString, craftPosterURL, findStreamingServices
+
+else:
+    from .definitions import TMDB_API_KEY, TMDB_URL, TMDB_BASE_IMG_URL
+    from .definitions import SPOTIFY_TOKEN
+    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
+
+
 
 def searchFilms(searchTerm, nItems):
     parameters = {
