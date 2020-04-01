@@ -24,10 +24,11 @@ def searchFilms(searchTerm, nItems):
         mediaObjects.append({
             "name": result["title"],
             "type": "movie",
-            "id": result["id"],
             "imgURL": craftPosterURL(result["poster_path"]),
             "genres": genreIdsToString(result["genre_ids"], "movie"),
-            "location": findStreamingServices(result["id"])
+            "location": findStreamingServices(result["id"]),
+            "overview": result["overview"],
+            "first_air_date": result["release_date"][0:4]
         })
     return mediaObjects
 
@@ -45,10 +46,11 @@ def searchShows(searchTerm, nItems):
         mediaObjects.append({
             "name": result["name"],
             "type": "tv",
-            "id": result["id"],
             "imgURL": craftPosterURL(result["poster_path"]),
             "genres": genreIdsToString(result["genre_ids"], "tv"),
-            "location": findStreamingServices(result["id"])
+            "location": findStreamingServices(result["id"]),
+            "overview": result["overview"],
+            "first_air_date": result["first_air_date"][0:4]
         })
     return mediaObjects
 
@@ -73,7 +75,10 @@ def searchMusic(searchTerm, nItems):
             "id": result["id"],
             "imgURL": craftAlbumURL(result["images"]),
             "genres": ", ".join(result["genres"]),
-            "location": result["external_urls"]["spotify"]
+            "location": result["external_urls"]["spotify"],
+            "artist_link": result["artists"][0]["external_urls"]["spotify"],
+            "music_link": result["external_urls"]["spotify"]
+
         })
     return mediaObjects
 

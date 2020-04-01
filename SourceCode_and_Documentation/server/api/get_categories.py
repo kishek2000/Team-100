@@ -5,8 +5,8 @@ E.G. I want to WATCH and I want to LISTEN  categories
 
 import requests
 if __name__ == "__main__":
-    from definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from definitions import genreIdsToString, craftPosterURL, findStreamingServices
+    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
@@ -16,7 +16,7 @@ def getWatchCategory(media, category, keyname):
     "api_key": TMDB_API_KEY,
     }
     res = requests.get(TMDB_URL + media + category, params=parameters)
-    json = res.json()["results"][0:4]
+    json = res.json()["results"][0:8]
     mediaObjects = []
     for result in json:
         genreString = ""
@@ -45,7 +45,7 @@ def getWatchTrending():
         "api_key": TMDB_API_KEY,
     }
     res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
-    json = res.json()["results"][0:4]
+    json = res.json()["results"][0:8]
     mediaObjects = []
     for result in json:
         if result['media_type'] == 'tv':
