@@ -76,7 +76,7 @@ def searchMusic(searchTerm, nItems):
             "imgURL": craftAlbumURL(result["images"]),
             "genres": ", ".join(result["genres"]),
             "location": result["external_urls"]["spotify"],
-            "artist_link": result["artists"][0]["external_urls"]["spotify"],
+            "artist_link": result["external_urls"]["spotify"],
             "music_link": result["external_urls"]["spotify"]
 
         })
