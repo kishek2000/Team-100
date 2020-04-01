@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import requests
 
-from .search_data import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
 from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
