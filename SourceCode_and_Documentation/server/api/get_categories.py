@@ -26,7 +26,8 @@ def getWatchCategory(media, category, keyname):
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
                 "first_air_date": result["first_air_date"][0:4],
-                "genres": genreIdsToString(result["genre_ids"], "tv")
+                "genres": genreIdsToString(result["genre_ids"], "tv"),
+                "location": findStreamingServices(result["id"])
             })
         elif media == '/movie/':
             mediaObjects.append({
@@ -34,7 +35,8 @@ def getWatchCategory(media, category, keyname):
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
-                "genres": genreIdsToString(result["genre_ids"], "tv")
+                "genres": genreIdsToString(result["genre_ids"], "tv"),
+                "location": findStreamingServices(result["id"])
             })
     return mediaObjects
 
@@ -52,7 +54,8 @@ def getWatchTrending():
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
                 "first_air_date": result["first_air_date"][0:4],
-                "genres": genreIdsToString(result["genre_ids"], "tv")
+                "genres": genreIdsToString(result["genre_ids"], "tv"),
+                "location": findStreamingServices(result["id"])
             })
         elif result['media_type'] == 'movie':
             mediaObjects.append({
@@ -60,7 +63,8 @@ def getWatchTrending():
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
-                "genres": genreIdsToString(result["genre_ids"], "movie")
+                "genres": genreIdsToString(result["genre_ids"], "movie"),
+                "location": findStreamingServices(result["id"])
             })
     return mediaObjects
 

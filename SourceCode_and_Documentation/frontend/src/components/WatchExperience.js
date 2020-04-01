@@ -7,6 +7,7 @@ import { GetWatchData } from "./DataPaths";
 // This function will give us the complete watch experience!
 export function WatchExperience() {
   const data = GetWatchData();
+  console.table(data);
   return (
     <div className="watch-experience-lists">
       <MediaCategoryList
