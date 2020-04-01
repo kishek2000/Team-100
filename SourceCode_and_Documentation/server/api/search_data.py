@@ -5,10 +5,10 @@ Returns a list of media in all formats specified
 import requests
 if __name__ == "__main__":
     from definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from definitions import genreIdsToString, craftPosterURL, findStreamingServices
+    from definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
+    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
 
 def searchFilms(searchTerm, nItems):
     parameters = {
@@ -19,6 +19,8 @@ def searchFilms(searchTerm, nItems):
     json = res.json()["results"][0:nItems]
     mediaObjects = []
     for result in json:
+        if result is None:
+            break
         mediaObjects.append({
             "name": result["title"],
             "type": "movie",
@@ -38,6 +40,8 @@ def searchShows(searchTerm, nItems):
     json = res.json()["results"][0:nItems]
     mediaObjects = []
     for result in json:
+        if result is None:
+            break
         mediaObjects.append({
             "name": result["name"],
             "type": "tv",
@@ -61,11 +65,13 @@ def searchMusic(searchTerm, nItems):
     json = res.json()
     mediaObjects = []
     for result in json["artists"]["items"]:
+        if result is None:
+            break
         mediaObjects.append({
             "name": result["name"],
             "type": "music_artist",
             "id": result["id"],
-            "imgURL": result["images"][0]["url"],
+            "imgURL": craftAlbumURL(result["images"]),
             "genres": ", ".join(result["genres"]),
             "location": result["external_urls"]["spotify"]
         })
@@ -82,14 +88,15 @@ def searchPodcasts(searchTerm, nItems):
     }
     res = requests.get("https://api.spotify.com/v1/search", headers=header, params=parameters)
     json = res.json()
-    print(json)
     mediaObjects = []
     for result in json["shows"]["items"]:
+        if result is None:
+            break
         mediaObjects.append({
             "name": result["name"],
             "type": "podcast",
             "id": result["id"],
-            "imgURL": result["images"][0]["url"],
+            "imgURL": craftAlbumURL(result["images"]),
             "genres": "N/A",
             "location": result["external_urls"]["spotify"]
         })
@@ -112,6 +119,8 @@ def search(searchTerm, formats, nItems):
     searchTerm.replace(" ", "%20OR%20")
     if "music" in formats:
         results['music'] = searchMusic(searchTerm, nItems)
+    '''
     if "podcasts" in formats:
         results['podcasts'] = searchPodcasts(searchTerm, nItems)
+    '''
     return results
