@@ -354,7 +354,7 @@
   flex-direction: row;
   overflow: hidden;
   overflow-x: scroll;
-  height: 30vw;
+  height: inherit;
   width: 100%;
   padding-left: 1vw;
   padding-top: 1vw;
@@ -368,6 +368,10 @@
   margin-left: 0;
 }
 
+.category-media .listen-set {
+  height: 25vw;
+}
+
 .category-media .media-template {
   position: relative;
   display: flex;
@@ -378,6 +382,7 @@
   cursor: pointer;
   box-shadow: 4px 5px 20px black;
   margin-left: 5.9vw;
+  margin-bottom: 2vw;
 }
 /* .next-button, .prev-button {
     align-self: center;

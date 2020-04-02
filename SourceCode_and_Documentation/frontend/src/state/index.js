@@ -26,9 +26,14 @@ export function AppContainer({ children }) {
           setWatchData(data);
           setSearchQuery(query);
         });
+      } else if (experience === "LISTEN") {
+        client.getListenSearchResults(query).then(data => {
+          setListenData(data);
+          setSearchQuery(query);
+        });
       }
     },
-    [searchQuery, watchData]
+    [setSearchQuery, setWatchData, setListenData]
   );
 
   useEffect(() => {

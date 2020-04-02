@@ -52,9 +52,30 @@ def genreIdsToString(genreIDs, mediaType):
         genreString = genreString[:-2]
     return genreString
 
+def genreIdsToString(genreIDs, mediaType):
+    parameters = {
+        "api_key": TMDB_API_KEY,
+    }
+    res = requests.get(TMDB_URL + "/genre/" + mediaType + "/list", params=parameters)
+    genreString = ""
+    for genre in res.json()["genres"]:
+        if genre["id"] in genreIDs:
+            genreString += genre["name"] + ", "
+    if genreString != "":
+        genreString = genreString[:-2]
+    return genreString
+
 def craftPosterURL(path):
     '''Crafts a full url for a TMDB poster based on the path'''
+    if path is None:
+        return None
     return TMDB_BASE_IMG_URL + "original" + path
+
+def craftAlbumURL(images):
+    if images == []:
+        return "No Image"
+    else:
+        return images[0]["url"]
 
 '''
 Defunct - kept here in case we do need it after all

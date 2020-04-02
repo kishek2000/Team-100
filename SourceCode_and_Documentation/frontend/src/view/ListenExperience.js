@@ -1,11 +1,11 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-import { MediaGenreList } from "./MediaGenreList";
-import { LISTEN_GENRES } from "../constants";
+// import { MediaGenreList } from "./MediaGenreList";
+// import { LISTEN_GENRES } from "../constants";
 
 // This function will give us the complete Listen experience!
 export function ListenExperience({ listen }) {
-  const { data, fetch } = listen;
+  const { data } = listen;
   console.table(data);
   if (data !== undefined) {
     return (
@@ -25,7 +25,7 @@ export function ListenExperience({ listen }) {
           media="LISTEN"
           // mediaContent={data}
         />
-        <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} />
+        {/* <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} /> */}
       </div>
     );
   }

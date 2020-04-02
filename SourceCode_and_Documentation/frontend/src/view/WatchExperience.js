@@ -1,7 +1,7 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-import { MediaGenreList } from "./MediaGenreList";
-import { WATCH_GENRES } from "../constants";
+// import { MediaGenreList } from "./MediaGenreList";
+// import { WATCH_GENRES } from "../constants";
 
 // This function will give us the complete watch experience!
 export function WatchExperience({ watch, searchQuery }) {
@@ -53,7 +53,7 @@ export function WatchExperience({ watch, searchQuery }) {
             media="WATCH"
             mediaContent={data["Top Rated Movies"]}
           />
-          <MediaGenreList media="WATCH" genres={WATCH_GENRES} />
+          {/* <MediaGenreList media="WATCH" genres={WATCH_GENRES} /> */}
         </div>
       );
     }
