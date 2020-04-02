@@ -54,15 +54,8 @@ def genreIdsToString(genreIDs, mediaType):
 
 def craftPosterURL(path):
     '''Crafts a full url for a TMDB poster based on the path'''
-    if path is None:
-        return None
     return TMDB_BASE_IMG_URL + "original" + path
 
-def craftAlbumURL(images):
-    if images == []:
-        return "No Image"
-    else:
-        return images[0]["url"]
 '''
 Defunct - kept here in case we do need it after all
 def tmdbToImdb(tmdbID, mediaType):
