@@ -78,6 +78,7 @@ def newMusicReleases(nItems):
     res = requests.get("https://api.spotify.com/v1/browse/new-releases", headers=header, params=parameters)
     json = res.json()
     mediaObjects = []
+    print(json)
     for result in json["albums"]["items"]:
         mediaObjects.append({
             "music_name": result["name"],

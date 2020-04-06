@@ -12,6 +12,25 @@
   color: white;
 }
 
+.dark-mode .App {
+  background: black;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  background: rgb(59, 59, 59);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(134, 134, 134);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(172, 172, 172);
+}
+
 #overlay {
   position: fixed;
   display: none;
@@ -157,14 +176,14 @@
 /* //////////////// */
 
 .App-media-options {
-  background-color: white;
+  background-color: inherit;
   min-height: 100vh;
   padding-left: 3.5vw;
   padding-right: 3.5vw;
   padding-bottom: 6.5vw;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: inherit;
 }
 
 /* COMPONENTS */
@@ -190,7 +209,8 @@
 .searchbar {
   height: calc(15px + 1.4vw);
   padding-left: 2px;
-  border: 2px solid black;
+  border: 2px solid;
+  border-color: inherit;
 }
 
 .searchbar-menu {
@@ -212,7 +232,7 @@
 }
 
 .searchinput {
-  color: black;
+  color: inherit;
   font-family: HelveticaNeue-Thin;
   font-size: calc(12px + 0.6vw);
 }
@@ -231,7 +251,7 @@
   font-size: calc(12px + 0.6vw);
   padding: 0px;
   margin: 0px;
-  color: black;
+  color: inherit;
 }
 
 .searchinput-menu::placeholder {
@@ -254,6 +274,10 @@
   height: calc(2px + 1.1vw);
 }
 
+.dark-mode .searchbutton {
+  -webkit-filter: invert(100%);
+}
+
 .searchbutton-menu {
   width: 1vw;
   height: 1vw;
@@ -264,10 +288,47 @@
 /* END OF COMPONENTS STYLES */
 /* //////////////////////// */
 
+.color-mode {
+  display: flex;
+  width: 4.3vw;
+  font-family: HelveticaNeue-Light;
+  margin-top: 0.8vw;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.color-mode:focus {
+  outline: none;
+}
+
+.color-mode:hover {
+  background-color: black;
+  color: white;
+}
+
+.dark-mode .color-mode {
+  border: 1px solid white;
+  color: white;
+}
+
+.dark-mode .color-mode:hover {
+  color: black;
+  background-color: white;
+}
+
+#color-mode-text {
+  font-size: calc(2px + 0.6vw);
+}
+
 /* This below is the styling for the upper header of filters. */
 .filters-header {
   display: flex;
-  margin-top: 3%;
+  margin-top: 0.6vw;
   position: relative;
   width: 100%;
   align-self: flex-start;
@@ -290,7 +351,7 @@
   align-self: flex-start;
   font-family: HelveticaNeue-Thin;
   font-size: calc(12px + 0.7vw);
-  color: black;
+  color: inherit;
 }
 
 .media-button {
@@ -299,7 +360,7 @@
   margin-left: 0.6vw;
   width: calc(60px + 2.5vw);
   height: calc(15px + 1.7vw);
-  border: solid 2px black;
+  border: solid 2px inherit;
   border-radius: 20px;
   cursor: pointer;
   padding: 0px;
@@ -321,6 +382,17 @@
   background-color: black;
   color: white;
   text-align: center;
+}
+
+.dark-mode .media-button.selected {
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+
+.dark-mode .media-button {
+  background-color: black;
+  color: white;
 }
 
 .media-button:focus {
@@ -346,7 +418,7 @@
   margin-bottom: 15px;
   font-family: HelveticaNeue-Light;
   font-size: calc(18px + 1.6vw);
-  color: black;
+  color: inherit;
 }
 
 .category-media {
@@ -384,6 +456,7 @@
   margin-left: 5.9vw;
   margin-bottom: 2vw;
 }
+
 /* .next-button, .prev-button {
     align-self: center;
     width: 35px;
@@ -398,30 +471,7 @@
   .prev-button {
     -webkit-transform: scaleX(-1);
     display: flex;
-  } */
-
-.media-template-first,
-.media-template-middle,
-.media-template-last,
-.watch-genre-template-first,
-.watch-genre-template-middle,
-.watch-genre-template-last {
-  position: relative;
-  display: flex;
-  align-self: center;
-  height: 26vw;
-  width: 18.35vw;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: 4px 5px 20px black;
-}
-
-.media-template-middle,
-.media-template-last,
-.genre-set-middle,
-.genre-set-last {
-  margin-left: 6.5vw;
-}
+  } 
 
 .watch-genre-template-first,
 .watch-genre-template-middle,
@@ -462,12 +512,14 @@
   align-items: center;
 }
 
+*/
+
 .listen-set {
   display: flex;
   flex-direction: column;
   justify-content: left;
   text-align: left;
-  color: black;
+  color: inherit;
   margin-left: 6.5vw;
 }
 
@@ -514,6 +566,14 @@
   font-family: HelveticaNeue-Light;
   margin-top: 2vw;
   margin-bottom: 0px;
-  color: black;
-  font-size: 4vw;
+  color: inherit;
+  font-size: 5vw;
+}
+
+.search-watch-lists .category-list:first-child {
+  margin-top: 1.5vw;
+}
+
+.search-watch-lists .category-list:first-child .category-title {
+  margin-top: 0;
 }
