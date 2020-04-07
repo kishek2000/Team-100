@@ -26,7 +26,7 @@ function handleOverlay(index, content) {
     } else {
       var str = "<div class='overlay-services'>";
       console.table(array);
-      array.forEach(function(array) {
+      array.forEach(function (array) {
         str +=
           '<a class="link-text" target="_blank" rel="noopener noreferrer" href="' +
           array["link"] +

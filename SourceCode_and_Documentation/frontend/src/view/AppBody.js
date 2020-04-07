@@ -52,10 +52,11 @@ export const AppBody = ({
         imagename="searchbutton"
         placeholder={SEARCHTEXT[mediaSelected]}
         onSearchQuery={onSearchQuery}
-        experience="WATCH"
         original={watch}
         getWatchData={getWatchData}
+        getListenData={getListenData}
         setSearchQuery={setSearchQuery}
+        mediaSelected={mediaSelected}
       />
     </div>
     <Experience

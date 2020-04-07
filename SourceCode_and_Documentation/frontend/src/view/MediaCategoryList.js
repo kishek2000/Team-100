@@ -9,5 +9,11 @@ export function MediaCategoryList(props) {
       <WatchMedia category={props.category} content={props.mediaContent} />
     );
   }
-  return <ListenMedia category={props.category} content={props.mediaContent} />;
+  return (
+    <ListenMedia
+      category={props.category}
+      content={props.mediaContent}
+      type={props.type}
+    />
+  );
 }

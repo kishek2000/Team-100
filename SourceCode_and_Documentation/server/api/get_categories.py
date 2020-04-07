@@ -11,9 +11,10 @@ else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
 
+
 def getWatchCategory(media, category, keyname):
     parameters = {
-    "api_key": TMDB_API_KEY,
+        "api_key": TMDB_API_KEY,
     }
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"][0:8]
@@ -39,6 +40,7 @@ def getWatchCategory(media, category, keyname):
                 "location": findStreamingServices(result["id"])
             })
     return mediaObjects
+
 
 def getWatchTrending():
     parameters = {
@@ -68,6 +70,7 @@ def getWatchTrending():
             })
     return mediaObjects
 
+
 def newMusicReleases(nItems):
     header = {
         "Authorization": SPOTIFY_TOKEN
@@ -75,10 +78,10 @@ def newMusicReleases(nItems):
     parameters = {
         "limit": nItems
     }
-    res = requests.get("https://api.spotify.com/v1/browse/new-releases", headers=header, params=parameters)
+    res = requests.get("https://api.spotify.com/v1/browse/new-releases",
+                       headers=header, params=parameters)
     json = res.json()
     mediaObjects = []
-    print(json)
     for result in json["albums"]["items"]:
         mediaObjects.append({
             "music_name": result["name"],

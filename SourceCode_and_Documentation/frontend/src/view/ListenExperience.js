@@ -4,31 +4,65 @@ import { MediaCategoryList } from "./MediaCategoryList";
 // import { LISTEN_GENRES } from "../constants";
 
 // This function will give us the complete Listen experience!
-export function ListenExperience({ listen }) {
+export function ListenExperience({ listen, searchQuery }) {
   const { data } = listen;
   console.table(data);
   if (data !== undefined) {
-    return (
-      <div className="listen-experience-lists">
-        <MediaCategoryList
-          category="New Releases"
-          media="LISTEN"
-          mediaContent={data["New Releases"]}
-        />
-        <MediaCategoryList
-          category="Top Rated Albums"
-          media="LISTEN"
-          // mediaContent={data}
-        />
-        <MediaCategoryList
-          category="Top Rated Podcasts"
-          media="LISTEN"
-          // mediaContent={data}
-        />
-        {/* <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} /> */}
-      </div>
-    );
+    if (searchQuery.length > 0 && data["Search Results"]) {
+      const album_matches = data["Search Results"]["Album Results"];
+      const track_matches = data["Search Results"]["Track Results"];
+      const podcast_matches = data["Search Results"]["Podcast Results"];
+      return (
+        <div className="search-results">
+          <div className="search-results-title">
+            Search Results for {searchQuery}
+          </div>
+          <div className="search-listen-lists">
+            <MediaCategoryList
+              category="All Album Results"
+              media="LISTEN"
+              type="Track"
+              mediaContent={album_matches}
+            />
+            <MediaCategoryList
+              category="All Track Results"
+              media="LISTEN"
+              type="Album"
+              mediaContent={track_matches}
+            />
+            <MediaCategoryList
+              category="All Podcast Results"
+              type="Podcast"
+              media="LISTEN"
+              mediaContent={podcast_matches}
+            />
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="listen-experience-lists">
+          <MediaCategoryList
+            category="New Releases"
+            media="LISTEN"
+            mediaContent={data["New Releases"]}
+          />
+          <MediaCategoryList
+            category="Top Rated Albums"
+            media="LISTEN"
+            // mediaContent={data}
+          />
+          <MediaCategoryList
+            category="Top Rated Podcasts"
+            media="LISTEN"
+            // mediaContent={data}
+          />
+          {/* <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} /> */}
+        </div>
+      );
+    }
+  } else {
+    return <div className="loading-text">LOADING LISTEN DATA</div>;
   }
   // TODO: add loading state
-  return null;
 }

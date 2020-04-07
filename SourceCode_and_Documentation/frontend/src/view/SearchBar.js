@@ -14,13 +14,17 @@ export class SearchBar extends React.Component {
   handleChange(event) {
     this.setState({ value: event.target.value });
     if (event.target.value === "") {
-      this.props.getWatchData();
+      if (this.props.mediaSelected === "WATCH") {
+        this.props.getWatchData();
+      } else {
+        this.props.getListenData();
+      }
     }
   }
 
   handleSubmit(event) {
     console.log("you submitted: " + this.state.value);
-    this.props.onSearchQuery(this.state.value, this.props.experience);
+    this.props.onSearchQuery(this.state.value, this.props.mediaSelected);
     this.props.setSearchQuery(this.state.value);
     event.preventDefault();
   }

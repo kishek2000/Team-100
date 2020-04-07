@@ -5,7 +5,7 @@ export class Client {
 
   async api(endpoint) {
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
     if (!response.ok) {
       throw Error(response.text);
@@ -26,6 +26,11 @@ export class Client {
 
   async getWatchSearchResults(query) {
     const data = await this.api(`/api/search/watch/${query}`);
+    return data;
+  }
+
+  async getListenSearchResults(query) {
+    const data = await this.api(`/api/search/listen/${query}`);
     return data;
   }
 }

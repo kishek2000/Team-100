@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests
+import pprint
 
 from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
 from .search_data import search
@@ -10,6 +11,7 @@ from rest_framework import generics
 # Create your views here.
 
 #from django.views.decorators.http import require_GET, require_http_method
+
 
 def home_watch(request):
     tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name')
@@ -25,26 +27,38 @@ def home_watch(request):
     }
     return JsonResponse(obj)
 
+
 def home_listen(request):
     newReleases = newMusicReleases(10)
 
-    obj={
+    obj = {
         "New Releases": newReleases,
     }
     return JsonResponse(obj)
 
+
 def search_watch(request, query):
     data = search(query, ['tv', 'movies'], 4)
-    obj={
+    obj = {
         "Search Results": {"TV Results": data['tv'], "Movie Results": data['movies']}
     }
     return JsonResponse(obj)
 
-# def search_listen(request, query):
-#     data = search(query, ['music'], 4)
-#     obj={
-#         "Search Results": {"All Music Results": data['music']}
-#     }
+
+def search_listen(request, query):
+    data = search(query, ['music', 'podcasts'], 10)
+    if (data['podcasts']['Podcast Results']):
+        obj = {
+            "Search Results": data['music'].update(data['podcasts'])
+        }
+    else:
+        obj = {
+            "Search Results": data['music']
+        }
+
+    pprint.pprint(data)
+    return JsonResponse(obj)
+
 
 def bootstrap(request):
     return ''

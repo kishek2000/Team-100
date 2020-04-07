@@ -12,22 +12,22 @@ export function AppContainer({ children }) {
   const [searchQuery, setSearchQuery] = useState({});
 
   const getWatchData = useCallback(() => {
-    client.getWatchData().then(data => setWatchData(data));
+    client.getWatchData().then((data) => setWatchData(data));
   }, [setWatchData]);
 
   const getListenData = useCallback(() => {
-    client.getListenData().then(data => setListenData(data));
+    client.getListenData().then((data) => setListenData(data));
   }, [setListenData]);
 
   const onSearchQuery = useCallback(
     (query, experience) => {
       if (experience === "WATCH") {
-        client.getWatchSearchResults(query).then(data => {
+        client.getWatchSearchResults(query).then((data) => {
           setWatchData(data);
           setSearchQuery(query);
         });
       } else if (experience === "LISTEN") {
-        client.getListenSearchResults(query).then(data => {
+        client.getListenSearchResults(query).then((data) => {
           setListenData(data);
           setSearchQuery(query);
         });
@@ -53,6 +53,6 @@ export function AppContainer({ children }) {
     watch: { data: watchData, fetch: getWatchData },
     listen: { data: listenData, fetch: getListenData },
     setSearchQuery: setSearchQuery,
-    searchQuery: searchQuery
+    searchQuery: searchQuery,
   });
 }
