@@ -14,6 +14,7 @@ export class SearchBar extends React.Component {
   handleChange(event) {
     this.setState({ value: event.target.value });
     if (event.target.value === "") {
+      this.props.setSearchQuery(event.target.value);
       if (this.props.mediaSelected === "WATCH") {
         this.props.getWatchData();
       } else {

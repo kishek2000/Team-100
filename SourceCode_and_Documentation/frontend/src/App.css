@@ -178,9 +178,9 @@
 .App-media-options {
   background-color: inherit;
   min-height: 100vh;
-  padding-left: 3.5vw;
-  padding-right: 3.5vw;
-  padding-bottom: 6.5vw;
+  margin-left: 3.5vw;
+  margin-right: 3.5vw;
+  margin-bottom: 6.5vw;
   display: flex;
   flex-direction: column;
   color: inherit;
@@ -576,4 +576,46 @@
 
 .search-watch-lists .category-list:first-child .category-title {
   margin-top: 0;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-top: 3.7vw;
+}
+
+.loading-text {
+  font-size: calc(18px + 4.6vw);
+  color: inherit;
+  font-family: HelveticaNeue-Ultralight;
+  display: flex;
+  margin-right: 1.2vw;
+  margin-left: 0;
+  padding: 0;
+}
+
+.loader {
+  border: 0.4vw solid rgb(207, 207, 207);
+  border-top: 0.4vw solid rgb(59, 59, 59);
+  border-radius: 50%;
+  width: 1.8vw;
+  height: 1.8vw;
+  animation: spin 2s linear infinite;
+}
+
+.dark-mode .loader {
+  border: 0.4vw solid rgb(59, 59, 59);
+  border-top: 0.4vw solid rgb(207, 207, 207);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

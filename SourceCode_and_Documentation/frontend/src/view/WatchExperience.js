@@ -6,11 +6,17 @@ import { MediaCategoryList } from "./MediaCategoryList";
 // This function will give us the complete watch experience!
 export function WatchExperience({ watch, searchQuery }) {
   const { data } = watch;
-  if (data !== undefined) {
-    if (searchQuery.length > 0 && data[`Search Results`]) {
+  if (Object.keys(data).length) {
+    if (searchQuery.length > 0 && !data["Search Results"]) {
+      return (
+        <div className="loading-screen">
+          <div className="loading-text">LOADING SEARCH DATA</div>
+          <div className="loader"></div>
+        </div>
+      );
+    } else if (searchQuery.length > 0 && data[`Search Results`]) {
       const tv_results = data[`Search Results`]["TV Results"];
       const movie_results = data[`Search Results`]["Movie Results"];
-      console.table(tv_results[0]);
       return (
         <div className="search-results">
           <div className="search-results-title">
@@ -57,7 +63,13 @@ export function WatchExperience({ watch, searchQuery }) {
         </div>
       );
     }
+  } else {
+    // TODO: add loading state
+    return (
+      <div className="loading-screen">
+        <div className="loading-text">LOADING WATCH DATA</div>
+        <div className="loader"></div>
+      </div>
+    );
   }
-  // TODO: add loading state
-  return null;
 }

@@ -17,10 +17,16 @@ function App() {
         getWatchData,
         getListenData,
         setSearchQuery,
-        searchQuery
+        searchQuery,
       }) => (
         <div className="App">
-          <AppHeader />
+          <AppHeader
+            mediaSelected={mediaSelected}
+            onSearchQuery={onSearchQuery}
+            getWatchData={getWatchData}
+            getListenData={getListenData}
+            setSearchQuery={setSearchQuery}
+          />
           <AppBody
             mediaSelected={mediaSelected}
             onMediaChange={onMediaChange}

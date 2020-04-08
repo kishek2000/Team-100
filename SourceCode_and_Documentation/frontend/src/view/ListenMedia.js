@@ -2,8 +2,6 @@ import React from "react";
 import { ListenSet } from "./ListenSet";
 
 export function ListenMedia({ category, content, type }) {
-  console.log("hello");
-  console.table(content);
   if (content !== undefined) {
     const contentStart = content;
     if (type === "Podcast") {

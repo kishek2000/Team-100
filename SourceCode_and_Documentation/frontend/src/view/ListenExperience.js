@@ -6,9 +6,15 @@ import { MediaCategoryList } from "./MediaCategoryList";
 // This function will give us the complete Listen experience!
 export function ListenExperience({ listen, searchQuery }) {
   const { data } = listen;
-  console.table(data);
-  if (data !== undefined) {
-    if (searchQuery.length > 0 && data["Search Results"]) {
+  if (Object.keys(data).length > 0) {
+    if (searchQuery.length > 0 && !data["Search Results"]) {
+      return (
+        <div className="loading-screen">
+          <div className="loading-text">LOADING SEARCH DATA</div>
+          <div className="loader"></div>
+        </div>
+      );
+    } else if (searchQuery.length > 0 && data["Search Results"]) {
       const album_matches = data["Search Results"]["Album Results"];
       const track_matches = data["Search Results"]["Track Results"];
       const podcast_matches = data["Search Results"]["Podcast Results"];
@@ -62,7 +68,12 @@ export function ListenExperience({ listen, searchQuery }) {
       );
     }
   } else {
-    return <div className="loading-text">LOADING LISTEN DATA</div>;
+    // TODO: add loading state
+    return (
+      <div className="loading-screen">
+        <div className="loading-text">LOADING LISTEN DATA</div>
+        <div className="loader"></div>
+      </div>
+    );
   }
-  // TODO: add loading state
 }
