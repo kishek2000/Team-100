@@ -27,7 +27,7 @@ def searchFilms(searchTerm, nItems):
             "type": "movie",
             "imgURL": craftPosterURL(result["poster_path"]),
             "genres": genreIdsToString(result["genre_ids"], "movie"),
-            "location": findStreamingServices(result["id"]),
+            # "location": findStreamingServices(result["id"]),
             "overview": result["overview"],
             "first_air_date": result["release_date"][0:4]
         })
@@ -50,7 +50,7 @@ def searchShows(searchTerm, nItems):
             "type": "tv",
             "imgURL": craftPosterURL(result["poster_path"]),
             "genres": genreIdsToString(result["genre_ids"], "tv"),
-            "location": findStreamingServices(result["id"]),
+            # "location": findStreamingServices(result["id"]),
             "overview": result["overview"],
             "first_air_date": result["first_air_date"][0:4]
         })
