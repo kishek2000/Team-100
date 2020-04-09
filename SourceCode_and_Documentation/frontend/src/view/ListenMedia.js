@@ -3,7 +3,7 @@ import { ListenSet } from "./ListenSet";
 
 export function ListenMedia({ category, content, type }) {
   if (content !== undefined) {
-    const contentStart = content;
+    const contentStart = content.slice(0, 5);
     if (type === "Podcast") {
       return (
         <div className="category-list">

@@ -42,21 +42,23 @@ function handleOverlay(index, content) {
 
 export function WatchMedia({ category, content }) {
   if (content !== undefined) {
-    const contentStart = content;
+    const contentStart = content.slice(0, 5);
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
         <div className="category-media">
           {contentStart.map((item, index) => (
-            <img
-              index={index}
-              src={item["imgURL"]}
-              className="media-template"
-              alt="media"
-              onClick={() => {
-                handleOverlay(index, content);
-              }}
-            />
+            <div className="media-template">
+              <img
+                index={index}
+                src={item["imgURL"]}
+                className="media-image"
+                alt="media"
+                onClick={() => {
+                  handleOverlay(index, content);
+                }}
+              />
+            </div>
           ))}
         </div>
       </div>
