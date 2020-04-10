@@ -11,10 +11,11 @@ else:
     from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
 
 
-def searchFilms(searchTerm, nItems):
+def searchFilms(searchTerm, nItems, country):
     parameters = {
         "api_key": TMDB_API_KEY,
-        "query": searchTerm
+        "query": searchTerm,
+        "region": country
     }
     res = requests.get(TMDB_URL + "/search/movie", params=parameters)
     json = res.json()["results"][0:nItems]
@@ -34,10 +35,11 @@ def searchFilms(searchTerm, nItems):
     return mediaObjects
 
 
-def searchShows(searchTerm, nItems):
+def searchShows(searchTerm, nItems, country):
     parameters = {
         "api_key": TMDB_API_KEY,
-        "query": searchTerm
+        "query": searchTerm,
+        "region": country,
     }
     res = requests.get(TMDB_URL + "/search/tv", params=parameters)
     json = res.json()["results"][0:nItems]
@@ -57,14 +59,15 @@ def searchShows(searchTerm, nItems):
     return mediaObjects
 
 
-def searchTracks(searchTerm, nItems):
+def searchTracks(searchTerm, nItems, country):
     header = {
         "Authorization": SPOTIFY_TOKEN
     }
     parameters = {
         "q": searchTerm,
         "type": "track",
-        "limit": nItems
+        "limit": nItems,
+        "market": country
     }
     res = requests.get("https://api.spotify.com/v1/search",
                        headers=header, params=parameters)
@@ -85,14 +88,15 @@ def searchTracks(searchTerm, nItems):
     return mediaObjects
 
 
-def searchAlbums(searchTerm, nItems):
+def searchAlbums(searchTerm, nItems, country):
     header = {
         "Authorization": SPOTIFY_TOKEN
     }
     parameters = {
         "q": searchTerm,
         "type": "album",
-        "limit": nItems
+        "limit": nItems,
+        "market": country
     }
     res = requests.get("https://api.spotify.com/v1/search",
                        headers=header, params=parameters)
@@ -113,17 +117,15 @@ def searchAlbums(searchTerm, nItems):
     return mediaObjects
 
 
-def searchPodcasts(searchTerm, nItems):
+def searchPodcasts(searchTerm, nItems, country):
     header = {
-        "Authorization": SPOTIFY_TOKEN,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        "Authorization": SPOTIFY_TOKEN
     }
     parameters = {
         "q": searchTerm,
         "type": "show",
         "limit": nItems,
-        "market": "AU"
+        "market": country
     }
     res = requests.get("https://api.spotify.com/v1/search",
                        headers=header, params=parameters)
@@ -143,7 +145,7 @@ def searchPodcasts(searchTerm, nItems):
     return mediaObjects
 
 
-def search(searchTerm, formats, nItems):
+def search(searchTerm, formats, nItems, country="AU"):
     '''
     Search for every category
     '''
@@ -155,15 +157,15 @@ def search(searchTerm, formats, nItems):
     }
     str(searchTerm).replace("%20", " ")
     if "movies" in formats:
-        results['movies'] = searchFilms(searchTerm, nItems)
+        results['movies'] = searchFilms(searchTerm, nItems, country)
     if "tv" in formats:
-        results['tv'] = searchShows(searchTerm, nItems)
+        results['tv'] = searchShows(searchTerm, nItems, country)
     searchTerm.replace(" ", "%20OR%20")
     if "music" in formats:
         results['music'] = {"Track Results": searchTracks(
-            searchTerm, nItems), "Album Results": searchAlbums(searchTerm, nItems)}
+            searchTerm, nItems, country), "Album Results": searchAlbums(searchTerm, nItems, country)}
     if "podcasts" in formats:
         results['podcasts'] = {
-            "Podcast Results": searchPodcasts(searchTerm, nItems)}
+            "Podcast Results": searchPodcasts(searchTerm, nItems, country)}
 
     return results
