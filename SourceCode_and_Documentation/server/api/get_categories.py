@@ -12,9 +12,10 @@ else:
     from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
 
 
-def getWatchCategory(media, category, keyname):
+def getWatchCategory(media, category, keyname, country="AU"):
     parameters = {
         "api_key": TMDB_API_KEY,
+        "region": country
     }
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"][0:8]
@@ -75,12 +76,13 @@ def getWatchTrending():
     return mediaObjects
 
 
-def newMusicReleases(nItems):
+def newMusicReleases(nItems, country="AU"):
     header = {
         "Authorization": SPOTIFY_TOKEN
     }
     parameters = {
-        "limit": nItems
+        "limit": nItems,
+        "market": country
     }
     res = requests.get("https://api.spotify.com/v1/browse/new-releases",
                        headers=header, params=parameters)
