@@ -4,6 +4,7 @@ import "../App.css";
 import { AppHeader } from "./AppHeader";
 import { AppBody } from "./AppBody";
 import { AppContainer } from "../state";
+import { Overlay } from "./Overlay";
 
 function App() {
   return (
@@ -18,8 +19,20 @@ function App() {
         getListenData,
         setSearchQuery,
         searchQuery,
+        openOverlayID,
+        setOpenOverlayID,
+        openOverlayCategory,
+        setOpenOverlayCategory,
       }) => (
         <div className="App">
+          <Overlay
+            media_id={openOverlayID}
+            setOpenOverlayID={setOpenOverlayID}
+            media_category={openOverlayCategory}
+            experience={mediaSelected}
+            watchData={watch}
+            listenData={listen}
+          />
           <AppHeader
             mediaSelected={mediaSelected}
             onSearchQuery={onSearchQuery}
@@ -37,6 +50,8 @@ function App() {
             listen={listen}
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
+            setOpenOverlayID={setOpenOverlayID}
+            setOpenOverlayCategory={setOpenOverlayCategory}
           />
         </div>
       )}

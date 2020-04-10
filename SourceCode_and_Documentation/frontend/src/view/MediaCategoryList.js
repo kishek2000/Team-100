@@ -6,7 +6,12 @@ import { WatchMedia } from "./WatchMedia";
 export function MediaCategoryList(props) {
   if (props.media === "WATCH") {
     return (
-      <WatchMedia category={props.category} content={props.mediaContent} />
+      <WatchMedia
+        category={props.category}
+        content={props.mediaContent}
+        setOpenOverlayID={props.setOpenOverlayID}
+        setOpenOverlayCategory={props.setOpenOverlayCategory}
+      />
     );
   }
   return (
@@ -14,6 +19,8 @@ export function MediaCategoryList(props) {
       category={props.category}
       content={props.mediaContent}
       type={props.type}
+      setOpenOverlayID={props.setOpenOverlayID}
+      setOpenOverlayCategory={props.setOpenOverlayCategory}
     />
   );
 }
