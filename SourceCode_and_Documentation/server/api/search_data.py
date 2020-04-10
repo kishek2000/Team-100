@@ -4,8 +4,8 @@ Returns a list of media in all formats specified
 '''
 import requests
 if __name__ == "__main__":
-    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
+    from definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
@@ -115,19 +115,19 @@ def searchAlbums(searchTerm, nItems):
 
 def searchPodcasts(searchTerm, nItems):
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": SPOTIFY_TOKEN,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     }
     parameters = {
         "q": searchTerm,
-        "type": "album,show",
-        "limit": nItems
+        "type": "show",
+        "limit": nItems,
+        "market": "AU"
     }
     res = requests.get("https://api.spotify.com/v1/search",
                        headers=header, params=parameters)
     json = res.json()
-    print("------------------------------------------")
-    print(json)
-    print("------------------------------------------")
     mediaObjects = []
     for result in json["shows"]["items"]:
         if result is None:
