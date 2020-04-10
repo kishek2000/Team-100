@@ -10,6 +10,8 @@ export function AppContainer({ children }) {
   const [watchData, setWatchData] = useState({});
   const [listenData, setListenData] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
+  const [openOverlayID, setOpenOverlayID] = useState(-1);
+  const [openOverlayCategory, setOpenOverlayCategory] = useState("");
 
   const getWatchData = useCallback(() => {
     client.getWatchData().then((data) => setWatchData(data));
@@ -54,5 +56,9 @@ export function AppContainer({ children }) {
     listen: { data: listenData, fetch: getListenData },
     setSearchQuery: setSearchQuery,
     searchQuery: searchQuery,
+    openOverlayID: openOverlayID,
+    setOpenOverlayID: setOpenOverlayID,
+    openOverlayCategory: openOverlayCategory,
+    setOpenOverlayCategory: setOpenOverlayCategory,
   });
 }

@@ -4,7 +4,7 @@ import { MediaCategoryList } from "./MediaCategoryList";
 // import { WATCH_GENRES } from "../constants";
 
 // This function will give us the complete watch experience!
-export function WatchExperience({ watch, searchQuery }) {
+export function WatchExperience({ watch, searchQuery, setOpenOverlayID, setOpenOverlayCategory }) {
   const { data } = watch;
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
@@ -27,11 +27,15 @@ export function WatchExperience({ watch, searchQuery }) {
               category="TV Results"
               media="WATCH"
               mediaContent={tv_results}
-            />
+              setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
+        />
             <MediaCategoryList
               category="Movie Results"
               media="WATCH"
               mediaContent={movie_results}
+              setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
             />
           </div>
         </div>
@@ -43,21 +47,29 @@ export function WatchExperience({ watch, searchQuery }) {
             category="Trending Daily"
             media="WATCH"
             mediaContent={data["Trending Daily"]}
+            setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Top Rated TV Shows"
             media="WATCH"
             mediaContent={data["Top Rated TV Shows"]}
+            setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Now Airing TV Shows"
             media="WATCH"
             mediaContent={data["Now Airing TV Shows"]}
+            setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Top Rated Movies"
             media="WATCH"
             mediaContent={data["Top Rated Movies"]}
+            setOpenOverlayID={setOpenOverlayID}
+        setOpenOverlayCategory={setOpenOverlayCategory}
           />
           {/* <MediaGenreList media="WATCH" genres={WATCH_GENRES} /> */}
         </div>

@@ -35,127 +35,6 @@
   background: rgb(172, 172, 172);
 }
 
-#overlay {
-  position: fixed;
-  display: none;
-  padding-top: 8vw;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: white;
-  z-index: 2;
-  cursor: pointer;
-}
-
-#overlay-contents {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10vw;
-  flex-wrap: wrap;
-  width: 60vw;
-}
-
-#overlay-date {
-  display: flex;
-  font-family: HelveticaNeue-Light;
-  font-size: 2vw;
-  color: white;
-}
-
-#overlay-header {
-  display: flex;
-  flex-direction: row;
-  margin: 0px;
-  padding: 0px;
-  align-items: center;
-}
-
-#overlay-poster {
-  width: 20vw;
-  height: 30vw;
-  margin-left: 5vw;
-  border-radius: 20px;
-}
-
-#overlay-title {
-  display: flex;
-  padding: 0px;
-  /* margin-left: 50vw; */
-  font-family: HelveticaNeue-Thin;
-  margin-right: 1.6vw;
-  font-size: 5vw;
-  color: white;
-}
-
-#overlay-description {
-  display: flex;
-  font-family: HelveticaNeue-Light;
-  font-size: 1vw;
-  color: white;
-  padding-left: 0.15vw;
-}
-
-#overlay-description-title,
-#overlay-streaming-title {
-  display: flex;
-  font-family: HelveticaNeue-Bold;
-  font-size: 1vw;
-  color: white;
-  padding-left: 0.15vw;
-}
-
-#overlay-streaming-title {
-  margin-top: 1.7vw;
-  margin-bottom: 0.5vw;
-}
-
-#overlay-genres {
-  display: flex;
-  font-family: HelveticaNeue-Thin;
-  font-size: 1.5vw;
-  margin-left: 0.2vw;
-  margin-bottom: 0.6vw;
-}
-
-.overlay-services {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0.15vw;
-  font-size: 1vw;
-}
-
-#overlay-streaming-options {
-  display: flex;
-  padding-left: 0.15vw;
-  font-size: 1vw;
-}
-
-.link-text:hover {
-  color: black;
-  background-color: white;
-}
-
-.link-text {
-  border: solid 0.5px white;
-  border-radius: 10px;
-  padding-right: 0.6vw;
-  padding-left: 0.6vw;
-  justify-content: center;
-  height: 1.5vw;
-  display: flex;
-  margin-right: 1.3vw;
-  text-align: center;
-  font-size: inherit;
-  color: white;
-  font-family: HelveticaNeue-Light;
-  text-decoration: none;
-}
-
 .myLounge-heading {
   margin-top: calc(190px + 5vw);
   margin-bottom: 0px;
@@ -188,6 +67,7 @@
   display: flex;
   flex-direction: column;
   color: inherit;
+  z-index: -1;
 }
 
 /* COMPONENTS */
@@ -630,4 +510,106 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-start;
+  padding-top: 5.8vw;
+  padding-left: 5vw;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 1;
+}
+
+.overlay-poster-wrapper {
+  margin-right: 2vw;
+}
+
+.overlay-poster {
+  border-radius: 1vw;
+  width: 24vw;
+  height: 36vw;
+}
+
+.overlay-information {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  width: 64vw;
+}
+
+.overlay-information-header {
+  display: flex;
+  flex-direction: row;
+  color: inherit;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.overlay-information-header div:last-child {
+  margin-left: auto;
+}
+
+.overlay-title {
+  max-width: 44vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 6vw;
+  font-family: HelveticaNeue-Thin;
+  text-align: left;
+  margin-bottom: 0.7vw;
+  color: inherit;
+  line-height: 0.9em;
+}
+
+.overlay-year {
+  font-size: 2.4vw;
+  font-family: HelveticaNeue-Ultralight;
+  color: inherit;
+  margin-left: 1.4vw;
+}
+
+.close-text {
+  text-align: right;
+  align-self: flex-start;
+  font-size: 1.2vw;
+  font-family: HelveticaNeue-Light;
+  cursor: pointer;
+  color: white;
+}
+
+.close-text:hover {
+  font-size: 1.5vw;
+}
+
+.overlay-genres {
+  color: inherit;
+  font-family: HelveticaNeue-Ultralight;
+  font-size: 2.5vw;
+}
+
+.overlay-description {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  margin-top: 1.2vw;
+}
+
+.overlay-description-title {
+  color: inherit;
+  font-family: HelveticaNeue-Bold;
+  font-size: 1vw;
+}
+
+.overlay-description-text {
+  color: inherit;
+  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
 }

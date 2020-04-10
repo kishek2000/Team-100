@@ -17,6 +17,8 @@ export const AppBody = ({
   getListenData,
   setSearchQuery,
   searchQuery,
+  setOpenOverlayID,
+  setOpenOverlayCategory,
 }) => (
   <section className="App-media-options">
     <button
@@ -64,6 +66,8 @@ export const AppBody = ({
       watch={watch}
       listen={listen}
       searchQuery={searchQuery}
+      setOpenOverlayID={setOpenOverlayID}
+      setOpenOverlayCategory={setOpenOverlayCategory}
     />
   </section>
 );
