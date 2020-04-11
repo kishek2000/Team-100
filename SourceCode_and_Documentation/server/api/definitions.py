@@ -1,14 +1,28 @@
+'''
+A set of function and constant definitions common between several files,
+mainly search_data and get_categories.
+Also responsible for generating the TMDB image URL and spotify token
+File contains sensitive data (API keys, Spotify Client Secret) which aren't really protected
+
+findStreamingServices(id) (DEFUNCT)
+genreIdsToString(genreIDs, mediaType)
+craftPosterURL(path)
+craftAlbumURL(images)
+tmdbToImdb(tmdbID, mediaType) (Deprecated)
+'''
+
 import requests
 TMDB_API_KEY = "6a347f3f994cdb8434d8698152dc44a8"
 TMDB_URL = "https://api.themoviedb.org/3"
 
+# Find the img URL used by TMDB
 parameters = {
     "api_key": TMDB_API_KEY,
 }
 config = requests.get(TMDB_URL + "/configuration", params=parameters)
-
 TMDB_BASE_IMG_URL = config.json()["images"]["secure_base_url"]
 
+# Create a spotify Token (Client-Client Authorization only)
 headers = {
     'Authorization': 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU=',
 }
@@ -21,8 +35,11 @@ SPOTIFY_TOKEN = RESPONSE.json()["token_type"] + \
     " " + RESPONSE.json()["access_token"]
 # ADD A TIMER FUNCTION
 
-
+'''
 def findStreamingServices(id):
+    '''
+    UTELLY ALERT
+    '''
     url = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup"
     querystring = {
         "country": "AU",  # Change if we add a select region option
@@ -41,9 +58,12 @@ def findStreamingServices(id):
             "link": location['url']
         })
     return services
-
+'''
 
 def genreIdsToString(genreIDs, mediaType):
+    '''
+    Turns tmdb genre ids into the names of those genres as a single string
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
     }
@@ -56,31 +76,20 @@ def genreIdsToString(genreIDs, mediaType):
     if genreString != "":
         genreString = genreString[:-2]
     return genreString
-
-
-def genreIdsToString(genreIDs, mediaType):
-    parameters = {
-        "api_key": TMDB_API_KEY,
-    }
-    res = requests.get(TMDB_URL + "/genre/" + mediaType +
-                       "/list", params=parameters)
-    genreString = ""
-    for genre in res.json()["genres"]:
-        if genre["id"] in genreIDs:
-            genreString += genre["name"] + ", "
-    if genreString != "":
-        genreString = genreString[:-2]
-    return genreString
-
 
 def craftPosterURL(path):
-    '''Crafts a full url for a TMDB poster based on the path'''
+    '''
+    Crafts a full url for a TMDB poster based on the path
+    '''
     if path is None:
         return None
     return TMDB_BASE_IMG_URL + "original" + path
 
 
 def craftAlbumURL(images):
+    '''
+    Crafts a full url for a spotify album cover based on the images list
+    '''
     if images == []:
         return "No Image"
     else:

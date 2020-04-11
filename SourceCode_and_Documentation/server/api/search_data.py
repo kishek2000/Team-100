@@ -1,6 +1,11 @@
 '''
 A set of functions that combine to produce searchbar functionality
-Returns a list of media in all formats specified
+Returns a list of media in all formats specified (movies, tv, music, podcasts)
+
+searchFilms(searchTerm, nItems, country)
+searchShows(searchTerm, nItems, country)
+spotifySearch(searchTerm, nItems, country, types)
+search(searchTerm, formats, nItems, country="AU")
 '''
 import requests
 if __name__ == "__main__":
@@ -12,6 +17,9 @@ else:
 
 
 def searchFilms(searchTerm, nItems, country):
+    '''
+    Keyword search for movies (through tmdb)
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "query": searchTerm,
@@ -36,6 +44,9 @@ def searchFilms(searchTerm, nItems, country):
 
 
 def searchShows(searchTerm, nItems, country):
+    '''
+    Keyword search for TV shows (through tmdb)
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "query": searchTerm,
@@ -59,6 +70,11 @@ def searchShows(searchTerm, nItems, country):
     return mediaObjects
 
 def spotifySearch(searchTerm, nItems, country, types):
+    '''
+    Keyword search through Spotify's API (in a single call)
+    currently types can include tracks, albums and shows (podcasts)
+    in a comma separated string
+    '''
     header = {
         "Authorization": SPOTIFY_TOKEN
     }
@@ -78,6 +94,7 @@ def spotifySearch(searchTerm, nItems, country, types):
         }
         "podcasts": []
     }
+    # Extracts albums from results
     if "albums" in json:
         for result in json["albums"]["items"]:
             if result is None:
@@ -91,6 +108,7 @@ def spotifySearch(searchTerm, nItems, country, types):
             "imgURL": craftAlbumURL(result["images"]),
             "music_link": result["external_urls"]["spotify"]
         })
+    # Extracts tracks from results
     if "tracks" in json:
         for result in json["tracks"]["items"]:
             if result is None:
@@ -104,6 +122,7 @@ def spotifySearch(searchTerm, nItems, country, types):
                 "imgURL": craftAlbumURL(result["album"]["images"]),
                 "music_link": result["external_urls"]["spotify"]
             })
+    # Extracts podcasts (called shows in Spotify)
     if "shows" in json:
         for result in json["shows"]["items"]:
             if result is None:
@@ -120,7 +139,7 @@ def spotifySearch(searchTerm, nItems, country, types):
 
 def search(searchTerm, formats, nItems, country="AU"):
     '''
-    Search for every category
+    Main search function. Currently returns the format seen in results below
     '''
     results = {
         'movies': [],
