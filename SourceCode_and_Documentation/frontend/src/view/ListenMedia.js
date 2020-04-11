@@ -3,8 +3,8 @@ import { ListenSet } from "./ListenSet";
 
 export function ListenMedia({ category, content, type }) {
   if (content !== undefined) {
-    const contentStart = content.slice(0, 5);
-    if (type === "Podcast") {
+    const contentStart = content.slice(0, 50);
+    if (type === "Podcast" || type === "Playlist") {
       return (
         <div className="category-list">
           <p className="category-title">{category}</p>
@@ -50,7 +50,7 @@ export function ListenMedia({ category, content, type }) {
 function PodcastSet(props) {
   return (
     <div className="listen-set">
-      <a href={props.music_link} target="_blank" rel="noopener noreferrer">
+      <a href={props.show_link} target="_blank" rel="noopener noreferrer">
         <img
           src={props.imageSource}
           className={props.mediaClass}

@@ -93,9 +93,39 @@ def newMusicReleases(nItems, country="AU"):
             "music_name": result["name"],
             "artist_name": result["artists"][0]["name"],
             "artist_link": result["artists"][0]["external_urls"]["spotify"],
-            "type": result["type"].title(),
+            "type": result["album_type"].title(),
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
             "music_link": result["external_urls"]["spotify"]
+        })
+    return mediaObjects
+
+
+def featuredPlaylists(nItems, country="AU"):
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "limit": nItems,
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/browse/featured-playlists",
+                       headers=header, params=parameters)
+    json = res.json()
+    mediaObjects = []
+    for result in json["playlists"]["items"]:
+        if 'Cover' not in result["description"] and '<a' in result["description"]:
+            final = result["description"].partition('>')[2].partition(
+                '<')[0] + result["description"].partition('>')[2].partition('>')[2]
+        else:
+            print(result["description"])
+            final = result["description"].partition('Cover:')[0]
+        mediaObjects.append({
+            "show_name": result["name"],
+            "type": "Playlist",
+            "description": final,
+            "id": result["id"],
+            "imgURL": result["images"][0]["url"],
+            "show_link": result["external_urls"]["spotify"]
         })
     return mediaObjects

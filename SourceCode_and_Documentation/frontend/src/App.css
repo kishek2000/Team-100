@@ -1,15 +1,39 @@
 .App-header {
   background: rgb(0, 0, 0, 0.65)
-    url("https://source.unsplash.com/1080x920/?livingroom");
+    url("https://source.unsplash.com/1920x1080/?livingroom");
   background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
+  width: 99.4vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+}
+
+.header-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: auto;
+  margin-top: calc(100px + 5vw);
+}
+
+.time {
+  font-family: HelveticaNeue-Bold;
+  font-size: 1.8vw;
+  margin-right: auto;
+  margin-top: 0.8vw;
+  margin-left: 0.8vw;
+}
+
+.date-text {
+  font-family: HelveticaNeue-Thin;
+  font-size: 0.7vw;
+  margin-right: auto;
+  margin-left: 1.1vw;
 }
 
 .dark-mode {
@@ -36,18 +60,19 @@
 }
 
 .myLounge-heading {
-  margin-top: calc(190px + 5vw);
-  margin-bottom: 0px;
   display: flex;
   flex-shrink: 1;
   font-family: HelveticaNeue-Ultralight;
   font-size: 10vw;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .myLounge-subtitle {
   margin: 0;
   padding: 0;
-  margin-bottom: 23px;
+  margin-bottom: 2.8vw;
+  line-height: 0;
   display: flex;
   flex-shrink: 1;
   font-family: HelveticaNeue-Thin;
@@ -95,6 +120,7 @@
   padding-left: 2px;
   border: 2px solid;
   border-color: inherit;
+  margin-left: auto;
 }
 
 .searchbar-menu {
@@ -223,17 +249,23 @@
 
 /* This below is for the selection of watch or listen */
 .media-selection {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-right: 25vw;
 }
 
 .selection-label {
-  position: relative;
   display: flex;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   font-family: HelveticaNeue-Thin;
+  font-size: calc(12px + 0.7vw);
+  color: inherit;
+}
+
+.region-selector {
+  display: flex;
+  font-family: HelveticaNeue-Light;
   font-size: calc(12px + 0.7vw);
   color: inherit;
 }
@@ -349,70 +381,14 @@
   border-radius: inherit;
 }
 
-/* .next-button, .prev-button {
-    align-self: center;
-    width: 35px;
-    height: 35px;
-    display: flex;
-  }
-
-  .next-button {
-    justify-content: end;
-  }
-
-  .prev-button {
-    -webkit-transform: scaleX(-1);
-    display: flex;
-  } 
-
-.watch-genre-template-first,
-.watch-genre-template-middle,
-.watch-genre-template-last,
-.listen-genre-template-first,
-.listen-genre-template-middle,
-.listen-genre-template-last {
-  filter: brightness(40%);
-}
-
-.genre-set,
-.genre-set-middle,
-.genre-set-last {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-}
-
-.genre-label {
-  position: absolute;
-  display: block;
-  align-items: center;
-  top: 69%;
-  height: 2vw;
-  margin: 0;
-  color: white;
-  font-family: HelveticaNeue-Light;
-  font-size: calc(8px + 1vw);
-}
-
-.genre-vector {
-  display: flex;
-  align-self: center;
-  position: absolute;
-  width: 4vw;
-  align-items: center;
-}
-
-*/
-
 .listen-set {
   display: flex;
   flex-direction: column;
   justify-content: left;
   text-align: left;
   color: inherit;
-  margin-left: 6.5vw;
+  margin-left: 2.95vw;
+  margin-right: 2.95vw;
 }
 
 .listen-media,
@@ -431,6 +407,13 @@
 .listen-media-subtext {
   font-family: HelveticaNeue-Light;
   font-size: calc(7px + 0.4vw);
+  height: 1.8vw;
+  width: 18.35vw;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
 }
 
 .listen-artist-link,
@@ -442,6 +425,10 @@
 .listen-media-titles {
   font-family: HelveticaNeue-Light;
   font-size: calc(15px + 0.5vw);
+  width: 18.35vw;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   margin-bottom: 0;
 }
 
@@ -566,7 +553,7 @@
   text-align: left;
   margin-bottom: 0.7vw;
   color: inherit;
-  line-height: 0.9em;
+  line-height: 1.4;
 }
 
 .overlay-year {

@@ -48,6 +48,7 @@ export const AppBody = ({
           />
         ))}
       </div>
+      <div className="region-selector">Region: AU</div>
       <SearchBar
         name="searchbar"
         inputname="searchinput"
