@@ -1,6 +1,10 @@
 '''
 A set of functions that will provide main page icons
 E.G. I want to WATCH and I want to LISTEN  categories
+
+getWatchCategory(media, category, keyname, country="AU")
+getWatchTrending()
+newMusicReleases(nItems, country="AU")
 '''
 
 import requests
@@ -13,6 +17,9 @@ else:
 
 
 def getWatchCategory(media, category, keyname, country="AU"):
+    '''
+    Based on media type and category name returns a list of media in that category
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "region": country
@@ -46,6 +53,9 @@ def getWatchCategory(media, category, keyname, country="AU"):
 
 
 def getWatchTrending():
+    '''
+    Gets all the trending movies/tv shows for the day
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
     }
@@ -77,6 +87,9 @@ def getWatchTrending():
 
 
 def newMusicReleases(nItems, country="AU"):
+    '''
+    Returns Spotifys new music
+    '''
     header = {
         "Authorization": SPOTIFY_TOKEN
     }
