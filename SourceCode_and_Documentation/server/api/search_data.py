@@ -144,6 +144,65 @@ def searchPodcasts(searchTerm, nItems, country):
         })
     return mediaObjects
 
+def spotifySearch(searchTerm, nItems, country, types):
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "q": searchTerm,
+        "type": types,
+        "limit": nItems,
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/search",
+                       headers=header, params=parameters)
+    json = res.json()
+    mediaObjects = {
+        "music": {
+            "Album Results":[],
+            "Track Results": []
+        }
+        "podcasts": []
+    }
+    if "albums" in json:
+        for result in json["albums"]["items"]:
+            if result is None:
+                break
+            mediaObjects["music"]["Album Results"].append({
+            "music_name": result["name"],
+            "artist_name": result["artists"][0]["name"],
+            "artist_link": result["artists"][0]["external_urls"]["spotify"],
+            "type": result["type"].title(),
+            "id": result["id"],
+            "imgURL": craftAlbumURL(result["images"]),
+            "music_link": result["external_urls"]["spotify"]
+        })
+    if "tracks" in json:
+        for result in json["tracks"]["items"]:
+            if result is None:
+                break
+            mediaObjects["music"]["Track Results"].append({
+                "music_name": result["name"],
+                "artist_name": result["artists"][0]["name"],
+                "artist_link": result["artists"][0]["external_urls"]["spotify"],
+                "type": result["type"].title(),
+                "id": result["id"],
+                "imgURL": craftAlbumURL(result["album"]["images"]),
+                "music_link": result["external_urls"]["spotify"]
+            })
+    if "shows" in json:
+        for result in json["shows"]["items"]:
+            if result is None:
+                break
+            mediaObjects["shows"].append({
+                "show_name": result["name"],
+                "description": result["description"],
+                "type": result["type"].title(),
+                "id": result["id"],
+                "imgURL": craftAlbumURL(result["images"]),
+                "show_link": result["external_urls"]["spotify"]
+            })
+    return mediaObjects
 
 def search(searchTerm, formats, nItems, country="AU"):
     '''
@@ -152,20 +211,28 @@ def search(searchTerm, formats, nItems, country="AU"):
     results = {
         'movies': [],
         'tv': [],
-        'music': [],
+        'music': {
+            "Album Results": [],
+            "Track Results": []
+        },
         'podcasts': []
     }
+
     str(searchTerm).replace("%20", " ")
     if "movies" in formats:
         results['movies'] = searchFilms(searchTerm, nItems, country)
     if "tv" in formats:
         results['tv'] = searchShows(searchTerm, nItems, country)
-    searchTerm.replace(" ", "%20OR%20")
-    if "music" in formats:
-        results['music'] = {"Track Results": searchTracks(
-            searchTerm, nItems, country), "Album Results": searchAlbums(searchTerm, nItems, country)}
-    if "podcasts" in formats:
-        results['podcasts'] = {
-            "Podcast Results": searchPodcasts(searchTerm, nItems, country)}
 
+    searchTerm.replace(" ", "%20OR%20")
+    types = ""
+    if "music" in formats:
+        types += "albums,tracks,"
+    if "podcasts" in formats:
+        types += "podcasts,"
+    if types != "":
+        types = types[:-1]
+        spotifyObjects = spotifySearch(searchTerm, nItems, country, types)
+        results["music"] = spotifyObjects["music"]
+        results["podcasts"] = spotifyObjects["podcasts"]
     return results
