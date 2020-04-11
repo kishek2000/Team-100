@@ -13,6 +13,7 @@ export function ListenExperience({
   const { data } = listen;
   if (Object.keys(data).length > 0) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
+      console.table(data);
       return (
         <div className="loading-screen">
           <div className="loading-text">LOADING SEARCH DATA</div>
@@ -30,7 +31,7 @@ export function ListenExperience({
           </div>
           <div className="search-listen-lists">
             <MediaCategoryList
-              category="All Album Results"
+              category="Album, Single and Compilation Results"
               media="LISTEN"
               type="Track"
               mediaContent={album_matches}
@@ -38,7 +39,7 @@ export function ListenExperience({
               setOpenOverlayCategory={setOpenOverlayCategory}
             />
             <MediaCategoryList
-              category="All Track Results"
+              category="Track Results"
               media="LISTEN"
               type="Album"
               mediaContent={track_matches}
@@ -46,7 +47,7 @@ export function ListenExperience({
               setOpenOverlayCategory={setOpenOverlayCategory}
             />
             <MediaCategoryList
-              category="All Podcast Results"
+              category="Podcast Results"
               type="Podcast"
               media="LISTEN"
               mediaContent={podcast_matches}
@@ -67,11 +68,12 @@ export function ListenExperience({
             setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
-            category="Top Rated Albums"
+            category="Featured Playlists"
             media="LISTEN"
-            // mediaContent={data}
-            // setOpenOverlayID={setOpenOverlayID}
-            // setOpenOverlayCategory={setOpenOverlayCategory}
+            type="Playlist"
+            mediaContent={data["Featured Playlists"]}
+            setOpenOverlayID={setOpenOverlayID}
+            setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Top Rated Podcasts"

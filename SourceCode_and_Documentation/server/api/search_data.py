@@ -9,11 +9,11 @@ search(searchTerm, formats, nItems, country="AU")
 '''
 import requests
 if __name__ == "__main__":
-    from definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
+    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
+    from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 
 def searchFilms(searchTerm, nItems, country):
     '''
@@ -37,7 +37,8 @@ def searchFilms(searchTerm, nItems, country):
             "genres": genreIdsToString(result["genre_ids"], "movie"),
             # "location": findStreamingServices(result["id"]),
             "overview": result["overview"],
-            "first_air_date": result["release_date"][0:4]
+            "first_air_date": result["release_date"][0:4],
+            "id": result["id"]
         })
     return mediaObjects
 
@@ -64,9 +65,11 @@ def searchShows(searchTerm, nItems, country):
             "genres": genreIdsToString(result["genre_ids"], "tv"),
             # "location": findStreamingServices(result["id"]),
             "overview": result["overview"],
-            "first_air_date": result["first_air_date"][0:4]
+            "first_air_date": result["first_air_date"][0:4],
+            "id": result["id"]
         })
     return mediaObjects
+
 
 def spotifySearch(searchTerm, nItems, country, types):
     '''
@@ -88,10 +91,12 @@ def spotifySearch(searchTerm, nItems, country, types):
     json = res.json()
     mediaObjects = {
         "music": {
-            "Album Results":[],
+            "Album Results": [],
             "Track Results": []
+        },
+        "podcasts": {
+            "Podcast Results": []
         }
-        "podcasts": []
     }
     # Extracts albums from results
     if "albums" in json:
@@ -99,15 +104,14 @@ def spotifySearch(searchTerm, nItems, country, types):
             if result is None:
                 break
             mediaObjects["music"]["Album Results"].append({
-            "music_name": result["name"],
-            "artist_name": result["artists"][0]["name"],
-            "artist_link": result["artists"][0]["external_urls"]["spotify"],
-            "type": result["type"].title(),
-            "id": result["id"],
-            "imgURL": craftAlbumURL(result["images"]),
-            "music_link": result["external_urls"]["spotify"]
-        })
-    # Extracts tracks from results
+                "music_name": result["name"],
+                "artist_name": result["artists"][0]["name"],
+                "artist_link": result["artists"][0]["external_urls"]["spotify"],
+                "type": result["album_type"].title(),
+                "id": result["id"],
+                "imgURL": craftAlbumURL(result["images"]),
+                "music_link": result["external_urls"]["spotify"]
+            })
     if "tracks" in json:
         for result in json["tracks"]["items"]:
             if result is None:
@@ -126,7 +130,7 @@ def spotifySearch(searchTerm, nItems, country, types):
         for result in json["shows"]["items"]:
             if result is None:
                 break
-            mediaObjects["shows"].append({
+            mediaObjects["podcasts"]["Podcast Results"].append({
                 "show_name": result["name"],
                 "description": result["description"],
                 "type": result["type"].title(),
@@ -135,6 +139,7 @@ def spotifySearch(searchTerm, nItems, country, types):
                 "show_link": result["external_urls"]["spotify"]
             })
     return mediaObjects
+
 
 def search(searchTerm, formats, nItems, country="AU"):
     '''
@@ -159,11 +164,11 @@ def search(searchTerm, formats, nItems, country="AU"):
     searchTerm.replace(" ", "%20OR%20")
     types = ""
     if "music" in formats:
-        types += "albums,tracks,"
+        types += "album,track,"
     if "podcasts" in formats:
-        types += "podcasts,"
+        types += "show"
     if types != "":
-        types = types[:-1]
+        # types = types[:-1]
         spotifyObjects = spotifySearch(searchTerm, nItems, country, types)
         results["music"] = spotifyObjects["music"]
         results["podcasts"] = spotifyObjects["podcasts"]

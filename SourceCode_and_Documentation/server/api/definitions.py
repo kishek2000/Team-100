@@ -38,8 +38,8 @@ SPOTIFY_TOKEN = RESPONSE.json()["token_type"] + \
 '''
 def findStreamingServices(id):
     '''
-    UTELLY ALERT
-    '''
+# UTELLY ALERT
+'''
     url = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup"
     querystring = {
         "country": "AU",  # Change if we add a select region option
@@ -60,6 +60,7 @@ def findStreamingServices(id):
     return services
 '''
 
+
 def genreIdsToString(genreIDs, mediaType):
     '''
     Turns tmdb genre ids into the names of those genres as a single string
@@ -76,6 +77,7 @@ def genreIdsToString(genreIDs, mediaType):
     if genreString != "":
         genreString = genreString[:-2]
     return genreString
+
 
 def craftPosterURL(path):
     '''

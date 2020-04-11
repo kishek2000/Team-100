@@ -3,7 +3,7 @@ from django.http import JsonResponse
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists
 from .search_data import search
 from .models import Lead
 from .serializers import LeadSerializer
@@ -29,10 +29,12 @@ def home_watch(request):
 
 
 def home_listen(request):
-    newReleases = newMusicReleases(10)
+    newReleases = newMusicReleases(50)
+    playlists = featuredPlaylists(20)
 
     obj = {
         "New Releases": newReleases,
+        "Featured Playlists": playlists
     }
     return JsonResponse(obj)
 
@@ -46,17 +48,11 @@ def search_watch(request, query):
 
 
 def search_listen(request, query):
-    data = search(query, ['music', 'podcasts'], 10)
-    if (data['podcasts']['Podcast Results']):
-        obj = {
-            "Search Results": data['music'].update(data['podcasts'])
-        }
-    else:
-        obj = {
-            "Search Results": data['music']
-        }
-
-    pprint.pprint(data)
+    data = search(query, ['music', 'podcasts'], 20)
+    data['music'].update(data['podcasts'])
+    obj = {
+        "Search Results": data['music']
+    }
     return JsonResponse(obj)
 
 
