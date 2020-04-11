@@ -10,10 +10,10 @@ search(searchTerm, formats, nItems, country="AU")
 import requests
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
+    from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices, craftAlbumURL
+    from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 
 
 def searchFilms(searchTerm, nItems, country):

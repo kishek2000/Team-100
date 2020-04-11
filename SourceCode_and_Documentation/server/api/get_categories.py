@@ -10,10 +10,10 @@ newMusicReleases(nItems, country="AU")
 import requests
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
+    from .definitions import genreIdsToString, craftPosterURL
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
-    from .definitions import genreIdsToString, craftPosterURL, findStreamingServices
+    from .definitions import genreIdsToString, craftPosterURL
 
 
 def getWatchCategory(media, category, keyname, country="AU"):
@@ -28,7 +28,6 @@ def getWatchCategory(media, category, keyname, country="AU"):
     json = res.json()["results"][0:8]
     mediaObjects = []
     for result in json:
-        genreString = ""
         if media == '/tv/':
             mediaObjects.append({
                 "name": result["name"],
