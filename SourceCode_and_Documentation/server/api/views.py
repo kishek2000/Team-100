@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests
+import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists
+from .search_data import search
 from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
@@ -10,32 +12,48 @@ from rest_framework import generics
 
 #from django.views.decorators.http import require_GET, require_http_method
 
-def home_url_watch(request):
+
+def home_watch(request):
     tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name')
     tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name')
     movieTopRated = getWatchCategory('/movie/', 'top_rated', 'title')
     trendingDaily = getWatchTrending()
 
-    watchData = {
+    obj = {
         "Now Airing TV Shows": tvOnAir,
         "Top Rated TV Shows": tvTopRated,
         "Top Rated Movies": movieTopRated,
         "Trending Daily": trendingDaily
-        # {"Genres": GenreData}
     }
-    
-    return JsonResponse(watchData)
+    return JsonResponse(obj)
 
-def home_url_listen(request):
-    newReleases = newMusicReleases(10)
 
-    listenData = {
-        "New Releases": newReleases
+def home_listen(request):
+    newReleases = newMusicReleases(50)
+    playlists = featuredPlaylists(20)
+
+    obj = {
+        "New Releases": newReleases,
+        "Featured Playlists": playlists
     }
+    return JsonResponse(obj)
 
-    return JsonResponse(listenData)
+
+def search_watch(request, query):
+    data = search(query, ['tv', 'movies'], 4)
+    obj = {
+        "Search Results": {"TV Results": data['tv'], "Movie Results": data['movies']}
+    }
+    return JsonResponse(obj)
 
 
+def search_listen(request, query):
+    data = search(query, ['music', 'podcasts'], 20)
+    data['music'].update(data['podcasts'])
+    obj = {
+        "Search Results": data['music']
+    }
+    return JsonResponse(obj)
 
 
 def bootstrap(request):
