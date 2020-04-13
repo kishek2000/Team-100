@@ -1,29 +1,61 @@
 #Run this file directly to generate shows.p
 # (neccessary for reviews functionality)
 
+import os
 import requests
 import gzip
 import csv
 import pickle
 import json
-import os
 import time
+
+try:
+    from .definitions import tmdbToImdb
+except ModuleNotFoundError:
+    from definitions import tmdbToImdb
 
 #Debug Options
 KEEP_SOURCE_FILES = False #Delete source files after when false
 FORCE_RENEW_SOURCE_FILES = True #MUST BE TRUE unless you already have reviews.tsv and episodes.tsv
 
+def relPath(filename):
+    return os.path.join(os.path.split(__file__)[0], filename)
+
 #Constants
-REVIEW_FILE = 'reviews.tsv'
-EPISODE_FILE = 'episodes.tsv'
-SHOWS_FILE = 'shows.p'
+REVIEW_FILE = relPath('reviews.tsv')
+EPISODE_FILE = relPath('episodes.tsv')
+SHOWS_FILE = relPath('episode_collections.p')
+TITLES_FILE = relPath('titles.p')
 MISSING_RATING = -1
 
-#Returns episodes and ratings for a show
-def tv_collection_ratings(ttID):
+#Returns episode ratings for a shows tmdb id
+def tv_collection_ratings(tmdbID):
+    #returned obj will be of format [episodeObject, episodeObject, ...]
+    #episodeObject is of format {
+    #   'ttID': str
+    #   'season': int
+    #   'ep': int
+    #   'rating': int
+    # }
+    ttID = tmdbToImdb(tmdbID, 'tv')
     shows = pickle.load(open(SHOWS_FILE, "rb"))
-    return shows[ttID]
+    try:
+        return shows[ttID]
+    except KeyError:
+        return None
 
+#Returns imdb rating for given tmdb ID
+def title_rating(tmdbID):
+    try:
+        ttID = tmdbToImdb(tmdbID, 'tv')
+    except:
+        ttID = tmdbToImdb(tmdbID, 'movie')
+    
+    titles = pickle.load(open(TITLES_FILE, "rb"))
+    try:
+        return titles[ttID]
+    except KeyError:
+        return None
 
 #Downloads url, unzips and writes to out
 def get_tsv(url, out):
@@ -69,7 +101,6 @@ def generate_shows():
                     reviewID = '0'
                     reviewsLeft = False
                     break
-                
             
             #Create episode object
             try:
@@ -101,7 +132,19 @@ def generate_shows():
         print("#reviews found:", reviewsFound)
     return shows
 
+#Generates a hash map (dict) from imdb ID to rating
+def generate_titles():
+    #Open review file, compile titles
+    with open(REVIEW_FILE) as f:
+        titles = {}
+        reader = csv.DictReader(f, dialect='excel-tab')
 
+        for row in reader:
+            titles[row['tconst']] = float(row['averageRating'])
+    
+    return titles
+
+#This setup should only be needed once
 if __name__ == "__main__":
     if FORCE_RENEW_SOURCE_FILES:
         #Refreshes ratings and episode database
@@ -117,17 +160,19 @@ if __name__ == "__main__":
     #Pre-processes the whole lot into show groups
     shows = generate_shows()
     print(len(shows.keys()), "shows compiled")
+    #Dump to pickle
+    print("Pickling...")
+    pickle.dump(shows, open(SHOWS_FILE, "wb" ))
+
+    #Generate overall ratings for shows, reviews for movies
+    print("Generating title rating lookup, this may take a minute...")
+    titles = generate_titles()
+    pickle.dump(titles, open(TITLES_FILE, "wb"))
 
     if not KEEP_SOURCE_FILES:
         os.remove(REVIEW_FILE)
         os.remove(EPISODE_FILE)
 
-    #Dump to pickle
-    print("Pickling...")
-    pickle.dump(shows, open(SHOWS_FILE, "wb" ))
-
-
-    t1 = time.time()
     #Example usage
-    print(tv_collection_ratings('tt0369179')) # two and a half men
-    print("retrieval time:", 1000* (time.time() - t1), "ms")
+    #print(tv_collection_ratings('tt0369179')) # two and a half men
+    #print(title_rating('tt0369179'))
