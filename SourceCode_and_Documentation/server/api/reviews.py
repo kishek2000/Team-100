@@ -19,7 +19,8 @@ KEEP_SOURCE_FILES = False #Delete source files after when false
 FORCE_RENEW_SOURCE_FILES = True #MUST BE TRUE unless you already have reviews.tsv and episodes.tsv
 
 def relPath(filename):
-    return os.path.join(os.path.split(__file__)[0], filename)
+    data = os.path.join(os.path.split(__file__)[0], "data")
+    return os.path.join(data, filename)
 
 #Constants
 REVIEW_FILE = relPath('reviews.tsv')
