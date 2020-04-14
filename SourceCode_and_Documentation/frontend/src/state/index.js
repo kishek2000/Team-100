@@ -11,7 +11,7 @@ export function AppContainer({ children }) {
   const [listenData, setListenData] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
   const [openOverlayID, setOpenOverlayID] = useState(-1);
-  const [openOverlayCategory, setOpenOverlayCategory] = useState("");
+  const [overlayData, setOverlayData] = useState({});
 
   const getWatchData = useCallback(() => {
     client.getWatchData().then((data) => setWatchData(data));
@@ -38,6 +38,16 @@ export function AppContainer({ children }) {
     [setSearchQuery, setWatchData, setListenData]
   );
 
+  const getOverlayData = useCallback(
+    (mediaId, mediaType) => {
+      setOpenOverlayID(mediaId);
+      client.getMediaOverlayData(mediaId, mediaType).then((data) => {
+        setOverlayData(data);
+      });
+    },
+    [setOverlayData]
+  );
+
   useEffect(() => {
     if (mediaSelected === "WATCH") {
       getWatchData();
@@ -52,13 +62,14 @@ export function AppContainer({ children }) {
     onSearchQuery: onSearchQuery,
     getWatchData: getWatchData,
     getListenData: getListenData,
+    getOverlayData: getOverlayData,
     watch: { data: watchData, fetch: getWatchData },
     listen: { data: listenData, fetch: getListenData },
+    overlay: { data: overlayData },
+    setOverlayData: setOverlayData,
     setSearchQuery: setSearchQuery,
     searchQuery: searchQuery,
     openOverlayID: openOverlayID,
     setOpenOverlayID: setOpenOverlayID,
-    openOverlayCategory: openOverlayCategory,
-    setOpenOverlayCategory: setOpenOverlayCategory,
   });
 }

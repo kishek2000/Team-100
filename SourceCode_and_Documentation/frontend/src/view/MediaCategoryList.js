@@ -9,8 +9,7 @@ export function MediaCategoryList(props) {
       <WatchMedia
         category={props.category}
         content={props.mediaContent}
-        setOpenOverlayID={props.setOpenOverlayID}
-        setOpenOverlayCategory={props.setOpenOverlayCategory}
+        getOverlayData={props.getOverlayData}
       />
     );
   }
@@ -19,8 +18,7 @@ export function MediaCategoryList(props) {
       category={props.category}
       content={props.mediaContent}
       type={props.type}
-      setOpenOverlayID={props.setOpenOverlayID}
-      setOpenOverlayCategory={props.setOpenOverlayCategory}
+      getOverlayData={props.getOverlayData}
     />
   );
 }

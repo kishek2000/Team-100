@@ -4,12 +4,7 @@ import { MediaCategoryList } from "./MediaCategoryList";
 // import { LISTEN_GENRES } from "../constants";
 
 // This function will give us the complete Listen experience!
-export function ListenExperience({
-  listen,
-  searchQuery,
-  setOpenOverlayID,
-  setOpenOverlayCategory,
-}) {
+export function ListenExperience({ listen, searchQuery, setOpenOverlayID }) {
   const { data } = listen;
   if (Object.keys(data).length > 0) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
@@ -36,7 +31,6 @@ export function ListenExperience({
               type="Track"
               mediaContent={album_matches}
               setOpenOverlayID={setOpenOverlayID}
-              setOpenOverlayCategory={setOpenOverlayCategory}
             />
             <MediaCategoryList
               category="Track Results"
@@ -44,7 +38,6 @@ export function ListenExperience({
               type="Album"
               mediaContent={track_matches}
               setOpenOverlayID={setOpenOverlayID}
-              setOpenOverlayCategory={setOpenOverlayCategory}
             />
             <MediaCategoryList
               category="Podcast Results"
@@ -52,7 +45,6 @@ export function ListenExperience({
               media="LISTEN"
               mediaContent={podcast_matches}
               setOpenOverlayID={setOpenOverlayID}
-              setOpenOverlayCategory={setOpenOverlayCategory}
             />
           </div>
         </div>
@@ -65,7 +57,6 @@ export function ListenExperience({
             media="LISTEN"
             mediaContent={data["New Releases"]}
             setOpenOverlayID={setOpenOverlayID}
-            setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Featured Playlists"
@@ -73,14 +64,12 @@ export function ListenExperience({
             type="Playlist"
             mediaContent={data["Featured Playlists"]}
             setOpenOverlayID={setOpenOverlayID}
-            setOpenOverlayCategory={setOpenOverlayCategory}
           />
           <MediaCategoryList
             category="Top Rated Podcasts"
             media="LISTEN"
             // mediaContent={data}
             // setOpenOverlayID={setOpenOverlayID}
-            // setOpenOverlayCategory={setOpenOverlayCategory}
           />
           {/* <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} /> */}
         </div>

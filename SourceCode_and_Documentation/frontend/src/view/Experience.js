@@ -7,16 +7,14 @@ export function Experience({
   watch,
   listen,
   searchQuery,
-  setOpenOverlayID,
-  setOpenOverlayCategory,
+  getOverlayData,
 }) {
   if (currentExperience === "WATCH") {
     return (
       <WatchExperience
         watch={watch}
         searchQuery={searchQuery}
-        setOpenOverlayID={setOpenOverlayID}
-        setOpenOverlayCategory={setOpenOverlayCategory}
+        getOverlayData={getOverlayData}
       />
     );
   } else {
@@ -24,8 +22,7 @@ export function Experience({
       <ListenExperience
         listen={listen}
         searchQuery={searchQuery}
-        setOpenOverlayID={setOpenOverlayID}
-        setOpenOverlayCategory={setOpenOverlayCategory}
+        getOverlayData={getOverlayData}
       />
     );
   }

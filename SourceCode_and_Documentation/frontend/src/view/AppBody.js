@@ -4,6 +4,7 @@ import { Experience } from "./Experience";
 import { SearchBar } from "./SearchBar";
 import { MediaSelector } from "./MediaSelector";
 import { OPTIONS, SEARCHTEXT } from "../constants";
+import BackToTop from "react-back-to-top-button";
 
 var isDark = false;
 
@@ -17,8 +18,7 @@ export const AppBody = ({
   getListenData,
   setSearchQuery,
   searchQuery,
-  setOpenOverlayID,
-  setOpenOverlayCategory,
+  getOverlayData,
 }) => (
   <section className="App-media-options">
     <button
@@ -73,8 +73,19 @@ export const AppBody = ({
       watch={watch}
       listen={listen}
       searchQuery={searchQuery}
-      setOpenOverlayID={setOpenOverlayID}
-      setOpenOverlayCategory={setOpenOverlayCategory}
+      getOverlayData={getOverlayData}
+    />
+    <BackToTop
+      showAt={100}
+      speed={1000}
+      easing="easeInOutSine"
+      children={
+        <img
+          src="https://img.icons8.com/ios/96/000000/up.png"
+          alt="top"
+          className="top-arrow"
+        />
+      }
     />
   </section>
 );

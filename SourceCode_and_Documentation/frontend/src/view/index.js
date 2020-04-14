@@ -14,6 +14,7 @@ function App() {
         onMediaChange,
         watch,
         listen,
+        overlay,
         onSearchQuery,
         getWatchData,
         getListenData,
@@ -21,17 +22,16 @@ function App() {
         searchQuery,
         openOverlayID,
         setOpenOverlayID,
-        openOverlayCategory,
-        setOpenOverlayCategory,
+        getOverlayData,
+        setOverlayData,
       }) => (
         <div className="App">
           <Overlay
-            media_id={openOverlayID}
-            setOpenOverlayID={setOpenOverlayID}
-            media_category={openOverlayCategory}
+            data={overlay}
             experience={mediaSelected}
-            watchData={watch}
-            listenData={listen}
+            setOpenOverlayID={setOpenOverlayID}
+            media_id={openOverlayID}
+            setOverlayData={setOverlayData}
           />
           <AppHeader
             mediaSelected={mediaSelected}
@@ -50,8 +50,7 @@ function App() {
             listen={listen}
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
-            setOpenOverlayID={setOpenOverlayID}
-            setOpenOverlayCategory={setOpenOverlayCategory}
+            getOverlayData={getOverlayData}
           />
         </div>
       )}

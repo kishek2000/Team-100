@@ -61,6 +61,36 @@ def findStreamingServices(id):
 '''
 
 
+def getTVContentRating(mediaID, region="AU, US"):
+    '''
+    Returns the content rating for a particular region, for a given watch id
+    '''
+    parameters = {
+        "api_key": TMDB_API_KEY,
+        "tv_id": mediaID
+    }
+    res = requests.get(TMDB_URL + "/tv/" + "{}".format(mediaID) +
+                       "/content_ratings", params=parameters)
+    for content_ratings in res.json()["results"]:
+        if content_ratings["iso_3166_1"] in region:
+            return content_ratings["rating"]
+
+
+def getMovieContentRating(mediaID, region="AU, US"):
+    '''
+    Returns the content rating for a particular region, for a given watch id
+    '''
+    parameters = {
+        "api_key": TMDB_API_KEY,
+        "movie_id": mediaID
+    }
+    res = requests.get(TMDB_URL + "/movie/" + "{}".format(mediaID) +
+                       "/release_dates", params=parameters)
+    for content_ratings in res.json()["results"]:
+        if content_ratings["iso_3166_1"] in region:
+            return content_ratings["release_dates"][0]["certification"]
+
+
 def genreIdsToString(genreIDs, mediaType):
     '''
     Turns tmdb genre ids into the names of those genres as a single string

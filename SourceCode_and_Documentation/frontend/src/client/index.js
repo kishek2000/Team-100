@@ -33,4 +33,9 @@ export class Client {
     const data = await this.api(`/api/search/listen/${query}`);
     return data;
   }
+
+  async getMediaOverlayData(mediaId, mediaType) {
+    const data = await this.api(`/api/details/${mediaType}/${mediaId}`);
+    return data.data;
+  }
 }

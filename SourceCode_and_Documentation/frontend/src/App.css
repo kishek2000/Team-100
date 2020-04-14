@@ -1,10 +1,10 @@
 .App-header {
   background: rgb(0, 0, 0, 0.55)
-    url("https://source.unsplash.com/1920x400/?livingroom");
+    url("https://images.unsplash.com/photo-1551516594-56cb78394645?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&h=400");
   background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 33vh;
+  height: 16.2vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -167,7 +167,7 @@ in colours.
   cursor: pointer;
   z-index: 3;
   right: 1.3vw;
-  top: 45.5vw;
+  bottom: 1.3vw;
 }
 
 .color-mode:focus {
@@ -241,7 +241,7 @@ in colours.
   flex-direction: row;
   width: 99.4vw;
   margin-bottom: 1vw;
-  margin-top: 0.7vw;
+  margin-top: 0.4vw;
   height: 3vw;
   align-items: center;
   justify-content: space-between;
@@ -343,11 +343,28 @@ in colours.
   padding-top: 1vw;
 }
 
-.CircularProgressbar {
-  width: 3vw;
-  height: 3vw;
+.media-user-score {
+  display: flex;
   position: absolute;
-  z-index: 3;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7vw;
+  width: 2vw;
+  height: 2vw;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgb(144, 144, 144);
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+}
+
+.user-score-text {
+  text-align: center;
+  width: 2vw;
 }
 
 .category-media .media-template:first-child {
@@ -355,7 +372,8 @@ in colours.
 }
 
 .category-media .media-template:last-child {
-  margin-right: 0;
+  margin-right: 0vw;
+  padding-right: 1.4vw;
 }
 
 .listen-category-media .listen-set:first-child {
@@ -366,7 +384,7 @@ in colours.
   display: flex;
   flex-direction: column;
   height: inherit;
-  width: 10.5vw;
+  width: 10.45vw;
   margin-left: 1vw;
   margin-right: 1vw;
   border-radius: 8px;
@@ -382,16 +400,32 @@ in colours.
 }
 
 .media-image-wrapper {
-  width: 11.5vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 10.8vw;
+  /* align-items: center; */
 }
 
 .media-template .watch-title {
-  display: flex;
-  font-family: HelveticaNeue-Light;
-  font-size: 1vw;
+  font-family: HelveticaNeue-Bold;
+  font-size: 0.9vw;
   width: 11vw;
   text-align: left;
   color: inherit;
+  margin-top: 1vw;
+  margin-bottom: 0;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.media-template .watch-metadata {
+  font-size: 0.7vw;
+  margin: 0.5vw 0vw;
+  font-family: HelveticaNeue-Light;
 }
 
 .listen-category-media .listen-set {
@@ -422,6 +456,7 @@ in colours.
   -webkit-box-orient: vertical;
   display: -webkit-box;
   text-overflow: ellipsis;
+  margin: 0.5vw 0vw 0.8vw 0vw;
 }
 
 .listen-artist-link,
@@ -431,19 +466,23 @@ in colours.
 }
 
 .listen-media-titles {
-  display: flex;
   font-family: HelveticaNeue-Bold;
   font-size: calc(5px + 0.8vw);
   width: 10.5vw;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
   margin-bottom: 0;
 }
 
-.listen-artist-link:hover,
-.listen-media-titles:hover {
+.listen-artist-link:hover {
   font-family: HelveticaNeue-Bold;
+}
+
+.listen-media-titles:hover {
+  color: rgb(112, 112, 112);
 }
 
 .hide-this {
@@ -451,11 +490,12 @@ in colours.
 }
 
 .search-results-title {
-  font-family: HelveticaNeue-Light;
+  font-family: HelveticaNeue-Bold;
   margin-top: 2vw;
   margin-bottom: 0px;
   color: inherit;
-  font-size: 5vw;
+  font-size: 1.8vw;
+  margin-left: 1.5vw;
 }
 
 .search-watch-lists .category-list:first-child {
@@ -469,10 +509,10 @@ in colours.
 .loading-screen {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
   padding: 0;
-  margin-top: 3.7vw;
+  margin-top: 2vw;
+  width: 100%;
 }
 
 .loading-text {
@@ -614,4 +654,27 @@ in colours.
   font-family: HelveticaNeue-Light;
   font-size: 0.8vw;
   width: 55vw;
+}
+
+.fWohKN {
+  position: absolute;
+  font-size: 1vw !important;
+  right: 1.3vw;
+  bottom: 3.2vw !important;
+  align-content: center;
+}
+
+.top-arrow {
+  width: 2.1vw;
+  height: 2.1vw;
+  align-content: center;
+}
+
+.top-arrow:hover {
+  width: 2.15vw;
+  height: 2.15vw;
+}
+
+.dark-mode .top-arrow {
+  -webkit-filter: invert(100%);
 }

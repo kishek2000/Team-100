@@ -1,16 +1,17 @@
 import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+
+function WatchMediaMetadata({ airDate, language, rating }) {
+  return [airDate, language, rating].filter((item) => !!item).join(" | ");
+}
 
 export function WatchMedia({
   category,
   content,
-  setOpenOverlayID,
+  getOverlayData,
   setOpenOverlayCategory,
 }) {
   if (content !== undefined) {
-    const contentStart = content.slice(0, 10);
-    console.table(contentStart);
+    const contentStart = content.slice(0, 14);
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
@@ -18,24 +19,29 @@ export function WatchMedia({
           {contentStart.map((item, index) => (
             <div className="media-template">
               <div className="media-image-wrapper">
-                {/* <CircularProgressbar
-                  value={item["score"]}
-                  maxValue={1}
-                  text={item["score"] * 10}
-                /> */}
+                <div className="media-user-score">
+                  <span className="user-score-text">
+                    {Math.round(item["score"] * 1000) / 10}%
+                  </span>
+                </div>
                 <img
                   index={index}
                   src={item["imgURL"]}
                   className="media-image"
                   alt="media"
                   onClick={() => {
-                    setOpenOverlayID(item["id"]);
-                    setOpenOverlayCategory({ category });
+                    getOverlayData(item["id"], item["type"]);
                   }}
-                  // onMouseOver={() => {}}
                 />
               </div>
               <p className="watch-title">{item["name"]}</p>
+              <div className="watch-metadata">
+                <WatchMediaMetadata
+                  airDate={item["first_air_date"]}
+                  language={item["lang"]}
+                  rating={item["content_rating"]}
+                />
+              </div>
             </div>
           ))}
         </div>

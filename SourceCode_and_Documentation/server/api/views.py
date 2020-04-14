@@ -3,7 +3,7 @@ from django.http import JsonResponse
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData
 from .search_data import search
 from .models import Lead
 from .serializers import LeadSerializer
@@ -52,6 +52,23 @@ def search_listen(request, query):
     data['music'].update(data['podcasts'])
     obj = {
         "Search Results": data['music']
+    }
+    return JsonResponse(obj)
+
+
+def details_tv(request, id):
+    print(id)
+    data = getTVData(int(id))
+    obj = {
+        "data": data
+    }
+    return JsonResponse(obj)
+
+
+def details_movie(request, id):
+    data = getMovieData(id)
+    obj = {
+        "data": data
     }
     return JsonResponse(obj)
 
