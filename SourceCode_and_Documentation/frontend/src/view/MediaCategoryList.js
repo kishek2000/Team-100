@@ -10,6 +10,7 @@ export function MediaCategoryList(props) {
         category={props.category}
         content={props.mediaContent}
         getOverlayData={props.getOverlayData}
+        num={props.num}
       />
     );
   }
@@ -19,6 +20,7 @@ export function MediaCategoryList(props) {
       content={props.mediaContent}
       type={props.type}
       getOverlayData={props.getOverlayData}
+      num={props.num}
     />
   );
 }

@@ -57,6 +57,7 @@ export function ListenExperience({ listen, searchQuery, setOpenOverlayID }) {
             media="LISTEN"
             mediaContent={data["New Releases"]}
             setOpenOverlayID={setOpenOverlayID}
+            num='0'
           />
           <MediaCategoryList
             category="Featured Playlists"
@@ -64,10 +65,12 @@ export function ListenExperience({ listen, searchQuery, setOpenOverlayID }) {
             type="Playlist"
             mediaContent={data["Featured Playlists"]}
             setOpenOverlayID={setOpenOverlayID}
+            num='1'
           />
           <MediaCategoryList
             category="Top Rated Podcasts"
             media="LISTEN"
+            num='2'
             // mediaContent={data}
             // setOpenOverlayID={setOpenOverlayID}
           />
