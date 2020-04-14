@@ -128,12 +128,11 @@ def craftAlbumURL(images):
         return images[0]["url"]
 
 
-
 def tmdbToImdb(tmdbID, mediaType=None):
     parameters = {
         "api_key": TMDB_API_KEY,
     }
 
-    res = requests.get(TMDB_URL + "/" + mediaType + "/" + str(tmdbID) + "/external_ids", params=parameters)
+    res = requests.get(TMDB_URL + "/" + mediaType + "/" +
+                       str(tmdbID) + "/external_ids", params=parameters)
     return res.json()["imdb_id"]
-

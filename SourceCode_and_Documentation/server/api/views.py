@@ -48,6 +48,8 @@ def search_watch(request, query):
 
 def search_listen(request, query):
     data = search(query, ['music', 'podcasts'], 20)
+    print(data)
+    print(query)
     data['music'].update(data['podcasts'])
     obj = {
         "Search Results": data['music']

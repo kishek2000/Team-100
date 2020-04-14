@@ -15,6 +15,7 @@ else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 
+
 def searchFilms(searchTerm, nItems, country):
     '''
     Keyword search for movies (through tmdb)
@@ -155,13 +156,13 @@ def search(searchTerm, formats, nItems, country="AU"):
         'podcasts': []
     }
 
-    str(searchTerm).replace("%20", " ")
+    searchTerm = str(searchTerm).replace("%20", " ")
     if "movies" in formats:
         results['movies'] = searchFilms(searchTerm, nItems, country)
     if "tv" in formats:
         results['tv'] = searchShows(searchTerm, nItems, country)
 
-    searchTerm.replace(" ", "%20OR%20")
+    print(searchTerm)
     types = ""
     if "music" in formats:
         types += "album,track,"
