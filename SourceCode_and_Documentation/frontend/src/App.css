@@ -641,6 +641,7 @@ in colours.
   flex-direction: column;
   color: inherit;
   margin-top: 1vw;
+  margin-bottom: 1vw;
 }
 
 .overlay-description-title {
@@ -654,6 +655,20 @@ in colours.
   font-family: HelveticaNeue-Light;
   font-size: 0.8vw;
   width: 55vw;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  margin-top: 0.2vw;
+}
+
+.overlay-trailer-video {
+  margin-top: 0.4vw;
+  width: 26vw;
+  height: 16vw;
+  border: none;
+  outline: none;
 }
 
 .fWohKN {

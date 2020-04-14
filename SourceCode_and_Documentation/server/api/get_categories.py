@@ -173,8 +173,9 @@ def getTVData(id, region="AU, US"):
 
     if data["videos"]["results"]:
         for media in data["videos"]["results"]:
-            if media["type"] == "trailer":
-                trailer_link = 'youtube.com/watch?v={}'.format(media["key"])
+            if media["type"] == "Trailer":
+                trailer_link = 'https://www.youtube.com/embed/{}'.format(
+                    media["key"])
 
     for content_ratings in data["content_ratings"]["results"]:
         if content_ratings["iso_3166_1"] in region:
@@ -210,8 +211,9 @@ def getMovieData(id, region="AU, US"):
     content_rating = ""
     genreString = ""
     for media in data["videos"]["results"]:
-        if media["type"] == "trailer":
-            trailer_link = 'youtube.com/watch?v={}'.format(media["key"])
+        if media["type"] == "Trailer":
+            trailer_link = 'https://www.youtube.com/embed/{}'.format(
+                media["key"])
 
     for content_ratings in data["releases"]["countries"]:
         if content_ratings["iso_3166_1"] in region:

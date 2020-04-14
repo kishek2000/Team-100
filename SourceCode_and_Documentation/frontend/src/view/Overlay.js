@@ -35,14 +35,6 @@ export function Overlay({
               >
                 X
               </div>
-              {/* <button
-            className="close-button"
-            onClick={() => {
-              setOpenOverlayID(-1);
-            }}
-          >
-            <div className="close-button-text">X</div>
-          </button> */}
             </div>
             <div className="overlay-genres">{media_data["genres"]}</div>
             <div className="overlay-description">
@@ -52,6 +44,13 @@ export function Overlay({
               </div>
             </div>
             <div className="overlay-links"></div>
+            <div className="overlay-description-title">Trailer</div>
+            <iframe
+              title="trailer"
+              src={media_data["trailer"]}
+              allowfullscreen="allowfullscreen"
+              className="overlay-trailer-video"
+            ></iframe>
           </div>
         </section>
       );
