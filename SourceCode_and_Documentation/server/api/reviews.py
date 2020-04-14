@@ -28,8 +28,8 @@ SHOWS_FILE = relPath('episode_collections.p')
 TITLES_FILE = relPath('titles.p')
 MISSING_RATING = -1
 
-#Returns episode ratings for a shows tmdb id
-def tv_collection_ratings(tmdbID):
+#Returns episode ratings for a shows imdb/tmdb id
+def tv_collection_ratings(id):
     #returned obj will be of format [episodeObject, episodeObject, ...]
     #episodeObject is of format {
     #   'ttID': str
@@ -37,21 +37,29 @@ def tv_collection_ratings(tmdbID):
     #   'ep': int
     #   'rating': int
     # }
-    ttID = tmdbToImdb(tmdbID, 'tv')
-    shows = pickle.load(open(SHOWS_FILE, "rb"))
+    #Converts from tmdb ID if needed
+    if (id[0] != "t"):
+        ttID = tmdbToImdb(tmdbID, 'tv')
+    else:
+        ttID = id
+    
     try:
         return shows[ttID]
     except KeyError:
         return None
 
-#Returns imdb rating for given tmdb ID
-def title_rating(tmdbID):
-    try:
-        ttID = tmdbToImdb(tmdbID, 'tv')
-    except:
-        ttID = tmdbToImdb(tmdbID, 'movie')
-    
-    titles = pickle.load(open(TITLES_FILE, "rb"))
+#Returns imdb rating for given ID
+def title_rating(id):
+
+    #Convert tmdb ID -> imdb ID if needed
+    if (id[0] != "t"):
+        try:
+            ttID = tmdbToImdb(tmdbID, 'tv')
+        except:
+            ttID = tmdbToImdb(tmdbID, 'movie')
+    else:
+        ttID = id
+
     try:
         return titles[ttID]
     except KeyError:
@@ -125,7 +133,6 @@ def generate_shows():
             if ep['parentTconst'] not in shows.keys():
                 #Create episode list
                 shows[ep['parentTconst']] = []
-                #print("Created...", ep['parentTconst'] + ", show #" + str(len(shows.keys())))
             
             #Append episode list
             shows[ep['parentTconst']].append(epObj)
@@ -134,18 +141,17 @@ def generate_shows():
 
 #Generates a hash map (dict) from imdb ID to rating
 def generate_titles():
-    #Open review file, compile titles
+    #Open review file, create title -> review mapping
     with open(REVIEW_FILE) as f:
         titles = {}
         reader = csv.DictReader(f, dialect='excel-tab')
-
         for row in reader:
             titles[row['tconst']] = float(row['averageRating'])
     
     return titles
 
-#This setup should only be needed once
-if __name__ == "__main__":
+
+def generate_db():
     if FORCE_RENEW_SOURCE_FILES:
         #Refreshes ratings and episode database
         print('Beginning file download with requests')
@@ -173,6 +179,23 @@ if __name__ == "__main__":
         os.remove(REVIEW_FILE)
         os.remove(EPISODE_FILE)
 
-    #Example usage
-    #print(tv_collection_ratings('tt0369179')) # two and a half men
-    #print(title_rating('tt0369179'))
+#When run directly, updates imdb database
+if __name__ == "__main__":
+    generate_db()
+
+#This code is executed on startup
+#Loads reviews into memory to cut down response times (will use 1GB RAM, but eliminates response time almost completely)
+try:
+    print("Loading reviews...", end=" ")
+    shows = pickle.load(open(SHOWS_FILE, "rb"))
+    titles = pickle.load(open(TITLES_FILE, "rb"))
+    print("Finished")
+except FileNotFoundError:
+    print("missing reviews database")
+    print("--- PERFORMING FIRST TIME DATABASE SETUP ---")
+    generate_db()
+    print("Loading reviews...", end=" ")
+    shows = pickle.load(open(SHOWS_FILE, "rb"))
+    titles = pickle.load(open(TITLES_FILE, "rb"))
+    print("Finished")
+
