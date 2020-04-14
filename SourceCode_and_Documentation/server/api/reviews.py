@@ -30,8 +30,8 @@ MISSING_RATING = -1
 
 #Returns episode ratings for a shows imdb/tmdb id
 def tv_collection_ratings(id):
-    #returned obj will be of format [episodeObject, episodeObject, ...]
-    #episodeObject is of format {
+    # Returned obj will be of format [episodeObject, episodeObject, ...]
+    # episodeObject is of format {
     #   'ttID': str
     #   'season': int
     #   'ep': int
@@ -50,7 +50,6 @@ def tv_collection_ratings(id):
 
 #Returns imdb rating for given ID
 def title_rating(id):
-
     #Convert tmdb ID -> imdb ID if needed
     if (id[0] != "t"):
         try:
@@ -70,7 +69,7 @@ def get_tsv(url, out):
     #Download and unzip file
     print("Accessing", url)
     r = requests.get(url)
-    print("Decompressing and writing", out)
+    print("Decompressing...")
     data = gzip.decompress(r.content).decode('utf8')
     with open(out, 'w') as f:
         f.write(data)
@@ -104,7 +103,6 @@ def generate_shows():
                     reviewID = tt_strip(currRev['tconst'])
                 except StopIteration:
                     #No more reviews
-                    print("No more reviews, currently {0} shows".format(len(shows.keys())))
                     currRev = None
                     reviewID = '0'
                     reviewsLeft = False
@@ -136,7 +134,7 @@ def generate_shows():
             
             #Append episode list
             shows[ep['parentTconst']].append(epObj)
-        print("#reviews found:", reviewsFound)
+        print(reviewsFound, "reviews found")
     return shows
 
 #Generates a hash map (dict) from imdb ID to rating
@@ -192,7 +190,7 @@ try:
     print("Finished")
 except FileNotFoundError:
     print("missing reviews database")
-    print("--- PERFORMING FIRST TIME DATABASE SETUP ---")
+    print("--- PERFORMING FIRST TIME DATABASE SETUP (should take 3-4 mins) ---")
     generate_db()
     print("Loading reviews...", end=" ")
     shows = pickle.load(open(SHOWS_FILE, "rb"))
