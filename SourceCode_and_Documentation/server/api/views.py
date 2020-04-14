@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework import generics
 import requests
 import pprint
 
 from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData
 from .search_data import search
-from .models import Lead
-from .serializers import LeadSerializer
-from rest_framework import generics
+from .reviews import title_rating, tv_collection_ratings
 # Create your views here.
 
-#from django.views.decorators.http import require_GET, require_http_method
+# from django.views.decorators.http import require_GET, require_http_method
 
 
 def home_watch(request):
@@ -65,11 +64,23 @@ def details_tv(request, id):
     return JsonResponse(obj)
 
 
+def review_title(request, id):
+    obj = {
+        'rating': title_rating(id)
+    }
+    return JsonResponse(obj)
+
+
 def details_movie(request, id):
     data = getMovieData(id)
     obj = {
         "data": data
     }
+    return JsonResponse(obj)
+
+
+def review_collection(request, id):  # TODO
+    obj = {'episodes': tv_collection_ratings(id)}
     return JsonResponse(obj)
 
 
