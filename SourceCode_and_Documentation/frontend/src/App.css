@@ -1,39 +1,41 @@
 .App-header {
-  background: rgb(0, 0, 0, 0.65)
-    url("https://source.unsplash.com/1920x1080/?livingroom");
+  background: rgb(0, 0, 0, 0.55)
+    url("https://source.unsplash.com/1920x400/?livingroom");
   background-blend-mode: darken;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 99.4vw;
-  height: 100vh;
+  height: 33vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
   color: white;
+  padding: 0;
+  z-index: 4;
 }
 
 .header-contents {
+  margin-top: 0.8vw;
+  margin-right: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: auto;
-  margin-top: calc(100px + 5vw);
+  /* justify-content: center; */
+  width: 98.4vw;
+}
+
+.time-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5.8vw;
 }
 
 .time {
   font-family: HelveticaNeue-Bold;
-  font-size: 1.8vw;
-  margin-right: auto;
-  margin-top: 0.8vw;
-  margin-left: 0.8vw;
+  font-size: 1.2vw;
 }
 
 .date-text {
-  font-family: HelveticaNeue-Thin;
+  font-family: HelveticaNeue-Light;
   font-size: 0.7vw;
-  margin-right: auto;
-  margin-left: 1.1vw;
 }
 
 .dark-mode {
@@ -46,8 +48,9 @@
 }
 
 ::-webkit-scrollbar {
-  background: rgb(59, 59, 59);
+  background: rgb(45, 45, 45);
   border-radius: 10px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -59,77 +62,58 @@
   background: rgb(172, 172, 172);
 }
 
+.App-header .header-contents .myLounge-header-titling {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .myLounge-heading {
   display: flex;
-  flex-shrink: 1;
-  font-family: HelveticaNeue-Ultralight;
-  font-size: 10vw;
-  margin-bottom: 0;
+  font-family: HelveticaNeue-Light;
+  font-size: 5.3vw;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .myLounge-subtitle {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 2.8vw;
-  line-height: 0;
   display: flex;
-  flex-shrink: 1;
+  margin-left: auto;
   font-family: HelveticaNeue-Thin;
-  font-size: 2vw;
-}
-
-/* //////////////// */
-/*  Media Options   */
-/* //////////////// */
-
-.App-media-options {
-  background-color: inherit;
-  min-height: 100vh;
-  margin-left: 3.5vw;
-  margin-right: 3.5vw;
-  padding-bottom: 6.5vw;
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  z-index: -1;
+  font-size: 1.5vw;
+  margin: 0;
 }
 
 /* COMPONENTS */
 /* Search Bar */
 
 /*
-  In the app, we have two main types of search bar. The main menu, and the actual page. So,
-  we will have common features for the class searchbar and searchbar_menu but just different
-  in colours.
-  */
+In the app, we have two main types of search bar. The main menu, and the actual page. So,
+we will have common features for the class searchbar and searchbar_menu but just different
+in colours.
+*/
 
-.searchbar,
-.searchbar-menu {
+.searchbar {
   display: flex;
-  position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: calc(90px + 28vw);
   border-radius: 20px;
+  height: 1.4vw;
+  width: 22vw;
+  /* border-bottom: 1px solid; */
+  box-shadow: 0px 0px 10px rgb(212, 212, 212);
+  /* border-color: inherit; */
+  /* background: white; */
+  margin-right: 6.6vw;
 }
 
-.searchbar {
-  height: calc(15px + 1.4vw);
-  padding-left: 2px;
-  border: 2px solid;
-  border-color: inherit;
-  margin-left: auto;
+.dark-mode .searchbar {
+  box-shadow: 0px 0px 10px rgb(107, 107, 107);
 }
 
-.searchbar-menu {
-  height: calc(12px + 1.2vw);
-  border: 1.3px solid white;
-}
-
-.searchinput,
-.searchinput-menu {
+.searchinput {
   display: flex;
   align-self: center;
   justify-content: center;
@@ -138,19 +122,10 @@
   outline: none;
   border: none;
   position: relative;
-  width: 90%;
-}
-
-.searchinput {
+  width: 85%;
   color: inherit;
   font-family: HelveticaNeue-Thin;
-  font-size: calc(12px + 0.6vw);
-}
-
-.searchinput-menu {
-  color: white;
-  font-family: HelveticaNeue-Light;
-  font-size: calc(10px + 0.5vw);
+  font-size: 0.7vw;
 }
 
 .searchinput::placeholder {
@@ -158,39 +133,22 @@
   align-self: center;
   justify-content: center;
   font-family: HelveticaNeue-Thin;
-  font-size: calc(12px + 0.6vw);
+  font-size: 0.7vw;
   padding: 0px;
   margin: 0px;
   color: inherit;
 }
 
-.searchinput-menu::placeholder {
-  font-family: HelveticaNeue-Thin;
-  font-size: calc(8px + 0.5vw);
-  color: white;
-}
-
-.searchbutton,
-.searchbutton-menu {
+.searchbutton {
   background-size: cover;
   position: relative;
   display: flex;
   border: 0px;
-  margin-left: 0.6vw;
-}
-
-.searchbutton {
-  width: calc(2px + 1.1vw);
-  height: calc(2px + 1.1vw);
+  width: 0.9vw;
+  height: 0.9vw;
 }
 
 .dark-mode .searchbutton {
-  -webkit-filter: invert(100%);
-}
-
-.searchbutton-menu {
-  width: 1vw;
-  height: 1vw;
   -webkit-filter: invert(100%);
 }
 
@@ -199,74 +157,119 @@
 /* //////////////////////// */
 
 .color-mode {
-  display: flex;
-  width: 4.3vw;
+  position: fixed;
+  width: 2.3vw;
   font-family: HelveticaNeue-Light;
-  margin-top: 0.8vw;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
   background: none;
-  border: 1px solid black;
+  border: none;
   border-radius: 20px;
   cursor: pointer;
+  z-index: 3;
+  right: 1.3vw;
+  top: 45.5vw;
 }
 
 .color-mode:focus {
   outline: none;
 }
 
-.color-mode:hover {
-  background-color: black;
-  color: white;
+.dark-mode-vector,
+.light-mode-vector {
+  width: 2vw;
+  height: 2vw;
 }
 
-.dark-mode .color-mode {
-  border: 1px solid white;
-  color: white;
+.color-mode:hover .dark-mode-vector {
+  width: 2.1vw;
+  height: 2.1vw;
 }
 
-.dark-mode .color-mode:hover {
-  color: black;
-  background-color: white;
+.dark-mode .light-mode-vector {
+  -webkit-filter: invert(100%);
+}
+
+.dark-mode .color-mode:hover .light-mode-vector {
+  width: 2.1vw;
+  height: 2.1vw;
 }
 
 #color-mode-text {
   font-size: calc(2px + 0.6vw);
 }
 
+/* //////////////// */
+/*  Media Options   */
+/* //////////////// */
+
+.App-media-options {
+  background: white;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(203, 203, 203, 1) 30%,
+    rgba(255, 255, 255, 1) 51%,
+    rgba(203, 203, 203, 1) 73%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  min-height: 100vh;
+  padding-bottom: 6.5vw;
+  padding-left: 6.3vw;
+  padding-right: 6.3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  z-index: -1;
+}
+
+.dark-mode .App-media-options {
+  background: black;
+  background: linear-gradient(
+    180deg,
+    rgb(5, 5, 5) 0%,
+    rgb(74, 74, 74) 30%,
+    rgb(22, 22, 22) 51%,
+    rgb(73, 73, 73) 73%,
+    rgb(25, 25, 25) 100%
+  );
+}
+
 /* This below is the styling for the upper header of filters. */
 .filters-header {
   display: flex;
-  margin-top: 0.6vw;
-  position: relative;
-  width: 100%;
-  align-self: flex-start;
   flex-direction: row;
+  width: 99.4vw;
+  margin-bottom: 1vw;
+  margin-top: 0.7vw;
+  height: 3vw;
   align-items: center;
   justify-content: space-between;
+  /* box-shadow: 0px 0px 10px rgb(226, 226, 226); */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+}
+
+.dark-mode .filters-header {
+  background: black;
 }
 
 /* This below is for the selection of watch or listen */
 .media-selection {
+  margin-left: 6.6vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-right: 25vw;
 }
 
 .selection-label {
   display: flex;
   /* align-self: flex-start; */
   font-family: HelveticaNeue-Thin;
-  font-size: calc(12px + 0.7vw);
-  color: inherit;
-}
-
-.region-selector {
-  display: flex;
-  font-family: HelveticaNeue-Light;
-  font-size: calc(12px + 0.7vw);
+  font-size: 0.8vw;
   color: inherit;
 }
 
@@ -274,9 +277,9 @@
   display: flex;
   align-self: center;
   margin-left: 0.6vw;
-  width: calc(60px + 2.5vw);
-  height: calc(15px + 1.7vw);
-  border: solid 2px inherit;
+  width: 4vw;
+  height: 1.5vw;
+  border-bottom: solid 2px inherit;
   border-radius: 20px;
   cursor: pointer;
   padding: 0px;
@@ -284,31 +287,20 @@
 
 .media-button-wrapper {
   display: flex;
-  width: calc(60px + 2.5vw);
-  height: calc(12px + 1.7vw);
+  width: 4vw;
+  height: 1.5vw;
   flex-direction: row;
   justify-content: center;
   align-self: center;
   align-items: center;
   font-family: HelveticaNeue-Medium;
-  font-size: calc(12px + 0.6vw);
+  font-size: 0.8vw;
 }
 
 .media-button.selected {
   background-color: black;
   color: white;
   text-align: center;
-}
-
-.dark-mode .media-button.selected {
-  background-color: white;
-  color: black;
-  text-align: center;
-}
-
-.dark-mode .media-button {
-  background-color: black;
-  color: white;
 }
 
 .media-button:focus {
@@ -324,91 +316,107 @@
 }
 
 .category-list {
-  margin-top: 2vw;
   display: flex;
+  width: 87vw;
   flex-direction: column;
+  border-radius: 8px;
+  padding-bottom: 2vw;
+  padding-left: 1.4vw;
+  padding-right: 1.4vw;
 }
 
 .category-title {
   display: flex;
-  margin-bottom: 15px;
-  font-family: HelveticaNeue-Light;
-  font-size: calc(18px + 1.6vw);
+  margin-bottom: 0.5vw;
+  font-family: HelveticaNeue-Bold;
+  font-size: 1.5vw;
   color: inherit;
 }
 
-.category-media {
+.category-media,
+.listen-category-media {
   display: flex;
   flex-direction: row;
+  overflow: hidden;
   overflow-x: scroll;
-  height: inherit;
   width: 100%;
-  padding-left: 1vw;
   padding-top: 1vw;
 }
 
+.CircularProgressbar {
+  width: 3vw;
+  height: 3vw;
+  position: absolute;
+  z-index: 3;
+}
+
 .category-media .media-template:first-child {
-  margin-left: 0;
+  margin-left: 0.6vw;
 }
 
-.category-media .listen-set:first-child {
-  margin-left: 0;
+.category-media .media-template:last-child {
+  margin-right: 0;
 }
 
-.category-media .listen-set {
-  height: 25vw;
+.listen-category-media .listen-set:first-child {
+  margin-left: 0;
 }
 
 .category-media .media-template {
-  position: relative;
   display: flex;
-  align-self: center;
-  height: 26vw;
-  width: 18.35vw;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: 4px 5px 20px black;
-  margin-left: 2.95vw;
-  margin-right: 2.95vw;
-  margin-bottom: 2vw;
-}
-
-.media-template .media-image {
-  position: relative;
-  display: flex;
-  width: inherit;
+  flex-direction: column;
   height: inherit;
-  border-radius: inherit;
+  width: 10.5vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  border-radius: 8px;
+  margin-bottom: 0.5vw;
 }
 
-.listen-set {
+.media-template .media-image-wrapper .media-image {
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(68, 68, 68, 0.45);
+  height: 16vw;
+  border-radius: 8px;
+}
+
+.media-image-wrapper {
+  width: 11.5vw;
+}
+
+.media-template .watch-title {
+  display: flex;
+  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
+  width: 11vw;
+  text-align: left;
+  color: inherit;
+}
+
+.listen-category-media .listen-set {
   display: flex;
   flex-direction: column;
   justify-content: left;
   text-align: left;
   color: inherit;
-  margin-left: 2.95vw;
-  margin-right: 2.95vw;
 }
 
-.listen-media,
-.listen-genre-template-first,
-.listen-genre-template-middle,
-.listen-genre-template-last {
+.listen-media {
   position: relative;
   display: flex;
   align-self: center;
-  height: 18.35vw;
-  width: 18.35vw;
-  border-radius: 20px;
-  box-shadow: 4px 5px 20px black;
+  height: 10.5vw;
+  width: 10.5vw;
+  border-radius: 8px;
+  margin-right: 2vw;
 }
 
 .listen-media-subtext {
   font-family: HelveticaNeue-Light;
   font-size: calc(7px + 0.4vw);
   height: 1.8vw;
-  width: 18.35vw;
+  width: 10.5vw;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -423,9 +431,10 @@
 }
 
 .listen-media-titles {
-  font-family: HelveticaNeue-Light;
-  font-size: calc(15px + 0.5vw);
-  width: 18.35vw;
+  display: flex;
+  font-family: HelveticaNeue-Bold;
+  font-size: calc(5px + 0.8vw);
+  width: 10.5vw;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -467,9 +476,9 @@
 }
 
 .loading-text {
-  font-size: calc(18px + 4.6vw);
+  font-size: 1.5vw;
   color: inherit;
-  font-family: HelveticaNeue-Ultralight;
+  font-family: HelveticaNeue-Bold;
   display: flex;
   margin-right: 1.2vw;
   margin-left: 0;
@@ -477,11 +486,11 @@
 }
 
 .loader {
-  border: 0.4vw solid rgb(207, 207, 207);
-  border-top: 0.4vw solid rgb(59, 59, 59);
+  border: 0.3vw solid rgb(207, 207, 207);
+  border-top: 0.3vw solid rgb(59, 59, 59);
   border-radius: 50%;
-  width: 1.8vw;
-  height: 1.8vw;
+  width: 1vw;
+  height: 1vw;
   animation: spin 2s linear infinite;
 }
 
@@ -505,13 +514,13 @@
   flex-direction: row;
   justify-content: left;
   align-items: flex-start;
-  padding-top: 5.8vw;
-  padding-left: 5vw;
+  padding-top: 7.8vw;
+  padding-left: 6.7vw;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
-  z-index: 1;
+  z-index: 5;
 }
 
 .overlay-poster-wrapper {
@@ -520,15 +529,15 @@
 
 .overlay-poster {
   border-radius: 1vw;
-  width: 24vw;
-  height: 36vw;
+  width: 20vw;
+  height: 30vw;
 }
 
 .overlay-information {
   display: flex;
   flex-direction: column;
   color: inherit;
-  width: 64vw;
+  width: 60vw;
 }
 
 .overlay-information-header {
@@ -548,7 +557,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 6vw;
+  font-size: 3vw;
   font-family: HelveticaNeue-Thin;
   text-align: left;
   margin-bottom: 0.7vw;
@@ -557,46 +566,52 @@
 }
 
 .overlay-year {
-  font-size: 2.4vw;
+  font-size: 1.8vw;
   font-family: HelveticaNeue-Ultralight;
   color: inherit;
   margin-left: 1.4vw;
 }
 
 .close-text {
-  text-align: right;
+  /* text-align: ; */
+  width: 1.7vw;
+  height: 1.5vw;
   align-self: flex-start;
-  font-size: 1.2vw;
-  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
+  font-family: HelveticaNeue-Thin;
   cursor: pointer;
   color: white;
+  text-align: center;
 }
 
 .close-text:hover {
-  font-size: 1.5vw;
+  border-radius: 100%;
+  background: white;
+  color: black;
 }
 
 .overlay-genres {
   color: inherit;
   font-family: HelveticaNeue-Ultralight;
-  font-size: 2.5vw;
+  font-size: 2vw;
 }
 
 .overlay-description {
   display: flex;
   flex-direction: column;
   color: inherit;
-  margin-top: 1.2vw;
+  margin-top: 1vw;
 }
 
 .overlay-description-title {
   color: inherit;
   font-family: HelveticaNeue-Bold;
-  font-size: 1vw;
+  font-size: 0.8vw;
 }
 
 .overlay-description-text {
   color: inherit;
   font-family: HelveticaNeue-Light;
-  font-size: 1vw;
+  font-size: 0.8vw;
+  width: 55vw;
 }

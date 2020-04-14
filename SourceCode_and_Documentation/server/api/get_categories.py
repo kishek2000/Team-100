@@ -35,7 +35,8 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "overview": result["overview"],
                 "first_air_date": result["first_air_date"][0:4],
                 "genres": genreIdsToString(result["genre_ids"], "tv"),
-                "id": result["id"]
+                "id": result["id"],
+                "score": round(result["vote_average"]/10, 2)
                 # "location": findStreamingServices(result["id"])
             })
         elif media == '/movie/':
@@ -45,7 +46,8 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
                 "genres": genreIdsToString(result["genre_ids"], "tv"),
-                "id": result["id"]
+                "id": result["id"],
+                "score": round(result["vote_average"]/10, 2)
                 # "location": findStreamingServices(result["id"])
             })
     return mediaObjects
@@ -69,7 +71,8 @@ def getWatchTrending():
                 "overview": result["overview"],
                 "first_air_date": result["first_air_date"][0:4],
                 "genres": genreIdsToString(result["genre_ids"], "tv"),
-                "id": result["id"]
+                "id": result["id"],
+                "score": round(result["vote_average"]/10, 2)
                 # "location": findStreamingServices(result["id"])
             })
         elif result['media_type'] == 'movie':
@@ -79,7 +82,8 @@ def getWatchTrending():
                 "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
                 "genres": genreIdsToString(result["genre_ids"], "movie"),
-                "id": result["id"]
+                "id": result["id"],
+                "score": round(result["vote_average"]/10, 2)
                 # "location": findStreamingServices(result["id"])
             })
     return mediaObjects
@@ -130,7 +134,6 @@ def featuredPlaylists(nItems, country="AU"):
             final = result["description"].partition('>')[2].partition(
                 '<')[0] + result["description"].partition('>')[2].partition('>')[2]
         else:
-            print(result["description"])
             final = result["description"].partition('Cover:')[0]
         mediaObjects.append({
             "show_name": result["name"],

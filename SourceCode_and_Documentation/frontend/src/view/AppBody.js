@@ -27,12 +27,18 @@ export const AppBody = ({
         var element = document.body;
         element.classList.toggle("dark-mode");
         isDark = !isDark;
-        document.getElementById("color-mode-text").innerText = isDark
-          ? "Light Mode"
-          : "Dark Mode";
+        document.getElementById("color-mode-img").innerHTML = isDark
+          ? "<img class='light-mode-vector' src='https://img.icons8.com/android/48/000000/sun.png' alt='light-mode'/>"
+          : "<img class='dark-mode-vector' src='https://img.icons8.com/ios/50/000000/crescent-moon.png' alt='dark-mode'/>";
       }}
     >
-      <span id="color-mode-text">Dark Mode</span>
+      <span id="color-mode-img">
+        <img
+          className="dark-mode-vector"
+          src="https://img.icons8.com/ios/50/000000/crescent-moon.png"
+          alt="dark-mode"
+        />
+      </span>
     </button>
     <div className="filters-header">
       <div className="media-selection">
@@ -48,7 +54,7 @@ export const AppBody = ({
           />
         ))}
       </div>
-      <div className="region-selector">Region: AU</div>
+      {/* <div className="region-selector">Region: AU</div> */}
       <SearchBar
         name="searchbar"
         inputname="searchinput"

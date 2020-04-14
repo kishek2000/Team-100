@@ -8,7 +8,7 @@ export function ListenMedia({ category, content, type }) {
       return (
         <div className="category-list">
           <p className="category-title">{category}</p>
-          <div className="category-media">
+          <div className="listen-category-media">
             {contentStart.map((item, index) => (
               <PodcastSet
                 index={index}
@@ -26,7 +26,7 @@ export function ListenMedia({ category, content, type }) {
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
-        <div className="category-media">
+        <div className="listen-category-media">
           {contentStart.map((item, index) => (
             <ListenSet
               index={index}
