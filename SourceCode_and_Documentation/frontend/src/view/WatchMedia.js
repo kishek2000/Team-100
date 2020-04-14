@@ -9,13 +9,23 @@ export function WatchMedia({
   content,
   getOverlayData,
   setOpenOverlayCategory,
+  num,
 }) {
   if (content !== undefined) {
     const contentStart = content.slice(0, 14);
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
-        <div className="category-media">
+        <div className="category-media" >
+          <button className = "prev" onClick= {() =>{
+            document.getElementsByClassName("category-media")[num].scrollLeft-=190;
+          }}
+          />
+          <button className = "next" onClick= {() =>{
+            console.log(num);
+            document.getElementsByClassName("category-media")[num].scrollLeft+=190;
+          }}
+          />
           {contentStart.map((item, index) => (
             <div className="media-template">
               <div className="media-image-wrapper">

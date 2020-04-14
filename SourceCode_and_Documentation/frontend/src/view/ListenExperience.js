@@ -58,6 +58,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
             media="LISTEN"
             mediaContent={data["New Releases"]}
             getOverlayData={getOverlayData}
+            num='0'
           />
           <MediaCategoryList
             category="Featured Playlists"
@@ -65,10 +66,12 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
             type="Playlist"
             mediaContent={data["Featured Playlists"]}
             getOverlayData={getOverlayData}
+            num='1'
           />
           <MediaCategoryList
             category="Top Rated Podcasts"
             media="LISTEN"
+            num='2'
             // mediaContent={data}
             // getOverlayData={getOverlayData}
           />

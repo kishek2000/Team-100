@@ -1,7 +1,7 @@
 import React from "react";
 import { ListenSet } from "./ListenSet";
 
-export function ListenMedia({ category, content, type }) {
+export function ListenMedia({ category, content, type, num }) {
   if (content !== undefined) {
     const contentStart = content.slice(0, 50);
     if (type === "Podcast" || type === "Playlist") {
@@ -9,6 +9,15 @@ export function ListenMedia({ category, content, type }) {
         <div className="category-list">
           <p className="category-title">{category}</p>
           <div className="listen-category-media">
+            <button className = "prev" onClick= {() =>{
+              document.getElementsByClassName("listen-category-media")[num].scrollLeft-=190;
+            }}
+            />
+            <button className = "next" onClick= {() =>{
+              console.log(num);
+              document.getElementsByClassName("listen-category-media")[num].scrollLeft+=190;
+            }}
+            />
             {contentStart.map((item, index) => (
               <PodcastSet
                 index={index}

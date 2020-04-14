@@ -338,10 +338,42 @@ in colours.
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
+  scroll-behavior: smooth;
   width: 100%;
   padding-top: 1vw;
 }
+
+
+.prev {
+  background-image: url("./images/left_arrow.png");
+  background-color: transparent;
+  position: sticky;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: transparent;
+  left:0;
+  z-index: 1;
+  top:30%;
+  height:30px;
+  min-width:30px;
+  
+}
+.next {
+  background-image: url("./images/right_arrow.png");
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position:sticky;
+  left:95%;
+  z-index: 1;
+  top:30%;
+  height:30px;
+  min-width:30px;
+  border:transparent;
+}
+
+
 
 .media-user-score {
   display: flex;
@@ -368,7 +400,7 @@ in colours.
 }
 
 .category-media .media-template:first-child {
-  margin-left: 0.6vw;
+  margin-left: 0;
 }
 
 .category-media .media-template:last-child {
