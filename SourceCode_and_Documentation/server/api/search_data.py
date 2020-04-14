@@ -37,6 +37,7 @@ def searchFilms(searchTerm, nItems, country):
             "imgURL": craftPosterURL(result["poster_path"]),
             "genres": genreIdsToString(result["genre_ids"], "movie"),
             # "location": findStreamingServices(result["id"]),
+            "score": round(result["vote_average"]/10, 2),
             "overview": result["overview"],
             "first_air_date": result["release_date"][0:4],
             "id": result["id"]
@@ -66,6 +67,7 @@ def searchShows(searchTerm, nItems, country):
             "genres": genreIdsToString(result["genre_ids"], "tv"),
             # "location": findStreamingServices(result["id"]),
             "overview": result["overview"],
+            "score": round(result["vote_average"]/10, 2),
             "first_air_date": result["first_air_date"][0:4],
             "id": result["id"]
         })

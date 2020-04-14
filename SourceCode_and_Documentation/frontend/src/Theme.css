@@ -1,0 +1,60 @@
+.dark-mode {
+  height: 100vh;
+}
+
+.dark-mode .App {
+  background: black;
+  color: white;
+}
+
+.dark-mode .searchbar {
+  box-shadow: 0px 0px 10px rgb(107, 107, 107);
+}
+
+.dark-mode .searchbutton {
+  -webkit-filter: invert(100%);
+}
+
+.dark-mode-vector,
+.light-mode-vector {
+  width: 2vw;
+  height: 2vw;
+}
+.color-mode:hover .dark-mode-vector {
+  width: 2.1vw;
+  height: 2.1vw;
+}
+
+.dark-mode .light-mode-vector {
+  -webkit-filter: invert(100%);
+}
+
+.dark-mode .color-mode:hover .light-mode-vector {
+  width: 2.1vw;
+  height: 2.1vw;
+}
+
+.dark-mode .App-media-options {
+  background: black;
+  background: linear-gradient(
+    180deg,
+    rgb(5, 5, 5) 0%,
+    rgb(74, 74, 74) 30%,
+    rgb(22, 22, 22) 51%,
+    rgb(73, 73, 73) 73%,
+    rgb(25, 25, 25) 100%
+  );
+}
+
+.dark-mode .filters-header {
+  background: black;
+}
+
+.dark-mode .loader {
+  border: 0.4vw solid rgb(59, 59, 59);
+  border-top: 0.4vw solid rgb(207, 207, 207);
+}
+
+.dark-mode .top-arrow {
+  -webkit-filter: invert(100%);
+}

@@ -28,12 +28,14 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
               media="WATCH"
               mediaContent={tv_results}
               getOverlayData={getOverlayData}
+              num="0"
             />
             <MediaCategoryList
               category="Movie Results"
               media="WATCH"
               mediaContent={movie_results}
               getOverlayData={getOverlayData}
+              num="1"
             />
           </div>
         </div>
@@ -46,28 +48,28 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Trending Daily"]}
             getOverlayData={getOverlayData}
-            num='0'
+            num="0"
           />
           <MediaCategoryList
             category="Top Rated TV Shows"
             media="WATCH"
             mediaContent={data["Top Rated TV Shows"]}
             getOverlayData={getOverlayData}
-            num='1'
+            num="1"
           />
           <MediaCategoryList
             category="Now Airing TV Shows"
             media="WATCH"
             mediaContent={data["Now Airing TV Shows"]}
             getOverlayData={getOverlayData}
-            num='2'
+            num="2"
           />
           <MediaCategoryList
             category="Top Rated Movies"
             media="WATCH"
             mediaContent={data["Top Rated Movies"]}
             getOverlayData={getOverlayData}
-            num='3'
+            num="3"
           />
           {/* <MediaGenreList media="WATCH" genres={WATCH_GENRES} /> */}
         </div>

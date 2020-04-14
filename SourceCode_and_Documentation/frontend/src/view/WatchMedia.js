@@ -1,31 +1,18 @@
 import React from "react";
+import { WatchMediaNav } from "./WatchMediaNav";
 
 function WatchMediaMetadata({ airDate, language, rating }) {
   return [airDate, language, rating].filter((item) => !!item).join(" | ");
 }
 
-export function WatchMedia({
-  category,
-  content,
-  getOverlayData,
-  setOpenOverlayCategory,
-  num,
-}) {
+export function WatchMedia({ category, content, getOverlayData, num }) {
   if (content !== undefined) {
-    const contentStart = content.slice(0, 14);
+    const contentStart = content.slice(0, 20);
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
-        <div className="category-media" >
-          <button className = "prev" onClick= {() =>{
-            document.getElementsByClassName("category-media")[num].scrollLeft-=190;
-          }}
-          />
-          <button className = "next" onClick= {() =>{
-            console.log(num);
-            document.getElementsByClassName("category-media")[num].scrollLeft+=190;
-          }}
-          />
+        <WatchMediaNav num={num} />
+        <div className="category-media">
           {contentStart.map((item, index) => (
             <div className="media-template">
               <div className="media-image-wrapper">

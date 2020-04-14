@@ -1,5 +1,7 @@
 import React from "react";
+
 import "../App.css";
+import "../Theme.css";
 
 import { AppHeader } from "./AppHeader";
 import { AppBody } from "./AppBody";

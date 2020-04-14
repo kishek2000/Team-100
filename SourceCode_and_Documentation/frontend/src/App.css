@@ -38,15 +38,6 @@
   font-size: 0.7vw;
 }
 
-.dark-mode {
-  height: 100vh;
-}
-
-.dark-mode .App {
-  background: black;
-  color: white;
-}
-
 ::-webkit-scrollbar {
   background: rgb(45, 45, 45);
   border-radius: 10px;
@@ -109,10 +100,6 @@ in colours.
   margin-right: 6.6vw;
 }
 
-.dark-mode .searchbar {
-  box-shadow: 0px 0px 10px rgb(107, 107, 107);
-}
-
 .searchinput {
   display: flex;
   align-self: center;
@@ -148,10 +135,6 @@ in colours.
   height: 0.9vw;
 }
 
-.dark-mode .searchbutton {
-  -webkit-filter: invert(100%);
-}
-
 /* //////////////////////// */
 /* END OF COMPONENTS STYLES */
 /* //////////////////////// */
@@ -172,26 +155,6 @@ in colours.
 
 .color-mode:focus {
   outline: none;
-}
-
-.dark-mode-vector,
-.light-mode-vector {
-  width: 2vw;
-  height: 2vw;
-}
-
-.color-mode:hover .dark-mode-vector {
-  width: 2.1vw;
-  height: 2.1vw;
-}
-
-.dark-mode .light-mode-vector {
-  -webkit-filter: invert(100%);
-}
-
-.dark-mode .color-mode:hover .light-mode-vector {
-  width: 2.1vw;
-  height: 2.1vw;
 }
 
 #color-mode-text {
@@ -223,18 +186,6 @@ in colours.
   z-index: -1;
 }
 
-.dark-mode .App-media-options {
-  background: black;
-  background: linear-gradient(
-    180deg,
-    rgb(5, 5, 5) 0%,
-    rgb(74, 74, 74) 30%,
-    rgb(22, 22, 22) 51%,
-    rgb(73, 73, 73) 73%,
-    rgb(25, 25, 25) 100%
-  );
-}
-
 /* This below is the styling for the upper header of filters. */
 .filters-header {
   display: flex;
@@ -251,10 +202,6 @@ in colours.
   top: 0;
   background: white;
   z-index: 2;
-}
-
-.dark-mode .filters-header {
-  background: black;
 }
 
 /* This below is for the selection of watch or listen */
@@ -315,14 +262,23 @@ in colours.
   color: black;
 }
 
+.watch-experience-lists .category-list:first-child,
+.listen-experience-lists .category-list:first-child {
+  margin-top: 0;
+}
+
 .category-list {
   display: flex;
-  width: 87vw;
+  width: 85vw;
   flex-direction: column;
   border-radius: 8px;
-  padding-bottom: 2vw;
-  padding-left: 1.4vw;
-  padding-right: 1.4vw;
+  position: relative;
+  padding-bottom: 25px;
+  padding-left: 40px;
+  padding-right: 40px;
+  /* box-shadow: 0 0 10px rgba(212, 212, 212); */
+  background: none;
+  margin-top: 2vw;
 }
 
 .category-title {
@@ -336,44 +292,48 @@ in colours.
 .category-media,
 .listen-category-media {
   display: flex;
+  position: relative;
   flex-direction: row;
   overflow: hidden;
-  /* overflow-x: scroll; */
   scroll-behavior: smooth;
   width: 100%;
+  /* height: 550px; */
   padding-top: 1vw;
 }
 
+.category-media .nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 16vw;
+  width: 100%;
+}
+
+.listen-category-media .nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 16vw;
+  width: 100%;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  height: 50px;
+  width: 50px;
+}
 
 .prev {
-  background-image: url("./images/left_arrow.png");
-  background-color: transparent;
-  position: sticky;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: transparent;
-  left:0;
-  z-index: 1;
-  top:30%;
-  height:30px;
-  min-width:30px;
-  
+  left: -25px;
 }
+
 .next {
-  background-image: url("./images/right_arrow.png");
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position:sticky;
-  left:95%;
-  z-index: 1;
-  top:30%;
-  height:30px;
-  min-width:30px;
-  border:transparent;
+  right: -25px;
 }
-
-
 
 .media-user-score {
   display: flex;
@@ -415,37 +375,34 @@ in colours.
 .category-media .media-template {
   display: flex;
   flex-direction: column;
-  height: inherit;
-  width: 10.45vw;
-  margin-left: 1vw;
-  margin-right: 1vw;
+  min-width: calc((100% / 6.5) - 40px);
+  max-width: calc((100% / 6.5) - 40px);
+  margin-right: 40px;
   border-radius: 8px;
-  margin-bottom: 0.5vw;
+  /* opacity: 0; */
+  animation: appear 1s linear;
 }
 
 .media-template .media-image-wrapper .media-image {
-  display: flex;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(68, 68, 68, 0.45);
-  height: 16vw;
+  width: 100%;
   border-radius: 8px;
+  /* box-shadow: 0 0 15px rgba(68, 68, 68, 0.25); */
+  height: 100%;
 }
 
 .media-image-wrapper {
-  display: flex;
   position: relative;
-  justify-content: center;
-  width: 10.8vw;
-  /* align-items: center; */
+  width: 100%;
+  height: 100%;
 }
 
 .media-template .watch-title {
   font-family: HelveticaNeue-Bold;
   font-size: 0.9vw;
-  width: 11vw;
   text-align: left;
+  line-height: 2em;
   color: inherit;
-  margin-top: 1vw;
   margin-bottom: 0;
   display: -webkit-box;
   overflow: hidden;
@@ -456,7 +413,6 @@ in colours.
 
 .media-template .watch-metadata {
   font-size: 0.7vw;
-  margin: 0.5vw 0vw;
   font-family: HelveticaNeue-Light;
 }
 
@@ -466,29 +422,37 @@ in colours.
   justify-content: left;
   text-align: left;
   color: inherit;
+  width: 100%;
+  height: 100%;
+  margin-right: 40px;
 }
 
-.listen-media {
-  position: relative;
+.listen-set .listen-media {
   display: flex;
-  align-self: center;
-  height: 10.5vw;
-  width: 10.5vw;
+  position: relative;
+  box-shadow: 0 0 15px rgba(68, 68, 68, 0.25);
   border-radius: 8px;
-  margin-right: 2vw;
+  animation: appear 1s linear;
+  width: 100%;
+  height: 100%;
+}
+
+.listen-category-media .listen-media .listen-set-image {
+  position: relative;
+  margin-right: 40px;
+  min-width: calc((100% / 8) - 40px);
+  min-height: calc((100% / 8) - 40px);
 }
 
 .listen-media-subtext {
   font-family: HelveticaNeue-Light;
   font-size: calc(7px + 0.4vw);
-  height: 1.8vw;
-  width: 10.5vw;
+  width: 350px;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
   text-overflow: ellipsis;
-  margin: 0.5vw 0vw 0.8vw 0vw;
 }
 
 .listen-artist-link,
@@ -500,7 +464,7 @@ in colours.
 .listen-media-titles {
   font-family: HelveticaNeue-Bold;
   font-size: calc(5px + 0.8vw);
-  width: 10.5vw;
+  width: 350px;
   overflow: hidden;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -519,6 +483,12 @@ in colours.
 
 .hide-this {
   display: none;
+}
+
+.search-results {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .search-results-title {
@@ -566,17 +536,23 @@ in colours.
   animation: spin 2s linear infinite;
 }
 
-.dark-mode .loader {
-  border: 0.4vw solid rgb(59, 59, 59);
-  border-top: 0.4vw solid rgb(207, 207, 207);
-}
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes appear {
+  0% {
+    /* transform: translateY(-120px); */
+    opacity: 0;
+  }
+  100% {
+    /* transform: translateY(0); */
+    opacity: 1;
   }
 }
 
@@ -706,8 +682,8 @@ in colours.
 .fWohKN {
   position: absolute;
   font-size: 1vw !important;
-  right: 1.3vw;
-  bottom: 3.2vw !important;
+  left: -0.8vw;
+  bottom: 0vw !important;
   align-content: center;
 }
 
@@ -720,8 +696,4 @@ in colours.
 .top-arrow:hover {
   width: 2.15vw;
   height: 2.15vw;
-}
-
-.dark-mode .top-arrow {
-  -webkit-filter: invert(100%);
 }

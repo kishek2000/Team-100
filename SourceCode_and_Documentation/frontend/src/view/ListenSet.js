@@ -2,14 +2,16 @@ import React from "react";
 export function ListenSet(props) {
   return (
     <div className="listen-set">
-      <a href={props.music_link} target="_blank" rel="noopener noreferrer">
-        <img
-          src={props.imageSource}
-          className={props.mediaClass}
-          alt="music_cover"
-          href={props.music_link}
-        />
-      </a>
+      <div className="listen-set-image">
+        <a href={props.music_link} target="_blank" rel="noopener noreferrer">
+          <img
+            src={props.imageSource}
+            className={props.mediaClass}
+            alt="music_cover"
+            href={props.music_link}
+          />
+        </a>
+      </div>
       <p className="listen-media-titles">
         <a
           href={props.music_link}
