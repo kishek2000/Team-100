@@ -14,6 +14,7 @@ tmdbToImdb(tmdbID, mediaType) (Deprecated)
 import requests
 TMDB_API_KEY = "6a347f3f994cdb8434d8698152dc44a8"
 TMDB_URL = "https://api.themoviedb.org/3"
+SPOTIFY_AUTHORISATION = 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU='
 
 # Find the img URL used by TMDB
 parameters = {
@@ -24,7 +25,7 @@ TMDB_BASE_IMG_URL = config.json()["images"]["secure_base_url"]
 
 # Create a spotify Token (Client-Client Authorization only)
 headers = {
-    'Authorization': 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU=',
+    'Authorization': SPOTIFY_AUTHORISATION,
 }
 data = {
     'grant_type': 'client_credentials'
