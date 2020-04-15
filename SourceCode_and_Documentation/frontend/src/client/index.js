@@ -35,7 +35,9 @@ export class Client {
   }
 
   async getMediaOverlayData(mediaId, mediaType) {
-    const data = await this.api(`/api/details/${mediaType}/${mediaId}`);
+    const data = await this.api(
+      `/api/details/${mediaType.toLowerCase()}/${mediaId}`
+    );
     return data.data;
   }
 }

@@ -11,11 +11,11 @@ import requests
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL
-    from .definitions import getMovieContentRating, getTVContentRating
+    from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
     from .definitions import genreIdsToString, craftPosterURL
-    from .definitions import getMovieContentRating, getTVContentRating
+    from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
 
 
 def getWatchCategory(media, category, keyname, country="AU"):
@@ -118,13 +118,13 @@ def newMusicReleases(nItems, country="AU"):
     mediaObjects = []
     for result in json["albums"]["items"]:
         mediaObjects.append({
-            "music_name": result["name"],
+            "listen_name": result["name"],
             "artist_name": result["artists"][0]["name"],
             "artist_link": result["artists"][0]["external_urls"]["spotify"],
             "type": result["album_type"].title(),
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
-            "music_link": result["external_urls"]["spotify"]
+            "listen_link": result["external_urls"]["spotify"]
         })
     return mediaObjects
 
@@ -142,18 +142,14 @@ def featuredPlaylists(nItems, country="AU"):
     json = res.json()
     mediaObjects = []
     for result in json["playlists"]["items"]:
-        if 'Cover' not in result["description"] and '<a' in result["description"]:
-            final = result["description"].partition('>')[2].partition(
-                '<')[0] + result["description"].partition('>')[2].partition('>')[2]
-        else:
-            final = result["description"].partition('Cover:')[0]
+
         mediaObjects.append({
-            "show_name": result["name"],
+            "listen_name": result["name"],
             "type": "Playlist",
-            "description": final,
+            "description": craftPlaylistDesc(result["description"]),
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
-            "show_link": result["external_urls"]["spotify"]
+            "listen_link": result["external_urls"]["spotify"]
         })
     return mediaObjects
 
@@ -191,7 +187,8 @@ def getTVData(id, region="AU, US"):
         "first_air_date": data["first_air_date"][0:4],
         "content_rating": content_rating,
         "genres": genreString[0:len(genreString)-2],
-        "trailer": trailer_link
+        "trailer": trailer_link,
+        "lang": data["original_language"].upper()
         # "location": findStreamingServices(data["id"])
     })
     return mediaObjects
@@ -229,7 +226,87 @@ def getMovieData(id, region="AU, US"):
         "first_air_date": data["release_date"][0:4],
         "content_rating": content_rating,
         "genres": genreString[0:len(genreString)-2],
-        "trailer": trailer_link
+        "trailer": trailer_link,
+        "lang": data["original_language"].upper()
         # "location": findStreamingServices(data["id"])
+    })
+    return mediaObjects
+
+
+def getAlbumSingleData(id, media="album", country="AU"):
+    '''
+    Returns album or single data for a specified id in Spotify
+    '''
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/albums/{}".format(id),
+                       headers=header, params=parameters)
+    result = res.json()
+    mediaObjects = []
+    mediaObjects.append({
+        "listen_name": result["name"],
+        "listen_link": result["external_urls"]["spotify"],
+        "artist_name": result["artists"][0]["name"],
+        "artist_link": result["artists"][0]["external_urls"]["spotify"],
+        "type": "album",
+        "imgURL": result["images"][0]["url"],
+        "label": result["label"],
+        "total_tracks": result["total_tracks"],
+        "copyright_statement": result["copyrights"][0]["text"],
+        "release_date": result["release_date"][0:4]
+    })
+    return mediaObjects
+
+
+def getPodcastData(id, media="podcast", country="AU"):
+    '''
+    Returns album or single data for a specified id in Spotify
+    '''
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/shows/{}".format(id),
+                       headers=header, params=parameters)
+    result = res.json()
+    mediaObjects = []
+    mediaObjects.append({
+        "listen_name": result["name"],
+        "listen_link": result["external_urls"]["spotify"],
+        "type": "podcast",
+        "imgURL": result["images"][0]["url"],
+        "label": result["publisher"],
+        "description": result["description"]
+    })
+    return mediaObjects
+
+
+def getPlaylistData(id, media="playlist", country="AU"):
+    '''
+    Returns album or single data for a specified id in Spotify
+    '''
+    header = {
+        "Authorization": SPOTIFY_TOKEN
+    }
+    parameters = {
+        "market": country,
+        "fields": 'description,name,release_date,external_urls,images'
+    }
+    res = requests.get("https://api.spotify.com/v1/playlists/{}".format(id),
+                       headers=header, params=parameters)
+    result = res.json()
+    mediaObjects = []
+    mediaObjects.append({
+        "listen_name": result["name"],
+        "listen_link": result["external_urls"]["spotify"],
+        "type": "playlist",
+        "imgURL": result["images"][0]["url"],
+        "description": craftPlaylistDesc(result["description"])
     })
     return mediaObjects

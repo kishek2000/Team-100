@@ -4,7 +4,7 @@ from rest_framework import generics
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData
 from .search_data import search
 from .reviews import title_rating, tv_collection_ratings
 # Create your views here.
@@ -83,6 +83,38 @@ def details_movie(request, id):
 
 def review_collection(request, id):  # TODO
     obj = {'episodes': tv_collection_ratings(id)}
+    return JsonResponse(obj)
+
+
+def details_album(request, id):
+    data = getAlbumSingleData(id)
+    obj = {
+        "data": data
+    }
+    return JsonResponse(obj)
+
+
+def details_track(request, id):
+    data = getAlbumSingleData(id, 'single')
+    obj = {
+        "data": data
+    }
+    return JsonResponse(obj)
+
+
+def details_playlist(request, id):
+    data = getPlaylistData(id)
+    obj = {
+        "data": data
+    }
+    return JsonResponse(obj)
+
+
+def details_podcast(request, id):
+    data = getPodcastData(id)
+    obj = {
+        "data": data
+    }
     return JsonResponse(obj)
 
 

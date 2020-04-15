@@ -322,7 +322,7 @@ in colours.
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 1;
   height: 50px;
   width: 50px;
 }
@@ -434,6 +434,7 @@ in colours.
   border-radius: 8px;
   animation: appear 1s linear;
   width: 100%;
+  cursor: pointer;
   height: 100%;
 }
 
@@ -453,6 +454,12 @@ in colours.
   -webkit-box-orient: vertical;
   display: -webkit-box;
   text-overflow: ellipsis;
+}
+
+.spotify-play {
+  margin-top: 0.5vw;
+  width: 97%;
+  height: 10vw;
 }
 
 .listen-artist-link,
@@ -560,15 +567,14 @@ in colours.
   position: fixed;
   display: flex;
   flex-direction: row;
-  justify-content: left;
-  align-items: flex-start;
-  padding-top: 7.8vw;
-  padding-left: 6.7vw;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   z-index: 5;
+  animation: appear 0.5s linear;
 }
 
 .overlay-poster-wrapper {
@@ -579,6 +585,14 @@ in colours.
   border-radius: 1vw;
   width: 20vw;
   height: 30vw;
+  cursor: pointer;
+}
+
+.overlay-poster-music {
+  border-radius: 1vw;
+  width: 20vw;
+  height: 20vw;
+  cursor: pointer;
 }
 
 .overlay-information {
@@ -605,12 +619,12 @@ in colours.
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 3vw;
-  font-family: HelveticaNeue-Thin;
+  font-size: 2vw;
+  font-family: HelveticaNeue-Bold;
   text-align: left;
-  margin-bottom: 0.7vw;
   color: inherit;
-  line-height: 1.4;
+  line-height: 1.2;
+  margin-bottom: 0.25vw;
 }
 
 .overlay-year {
@@ -640,43 +654,64 @@ in colours.
 
 .overlay-genres {
   color: inherit;
-  font-family: HelveticaNeue-Ultralight;
-  font-size: 2vw;
+  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
 }
 
 .overlay-description {
   display: flex;
   flex-direction: column;
   color: inherit;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
 }
 
-.overlay-description-title {
+.overlay-subtitle {
   color: inherit;
   font-family: HelveticaNeue-Bold;
   font-size: 0.8vw;
 }
 
-.overlay-description-text {
+.overlay-listen-description-text,
+.overlay-watch-description-text,
+.overlay-meta-watch-text,
+.overlay-listen-options-text,
+.overlay-meta-listen-text {
   color: inherit;
   font-family: HelveticaNeue-Light;
   font-size: 0.8vw;
-  width: 55vw;
+}
+
+.overlay-meta-watch-text,
+.overlay-meta-listen-text {
+  margin-bottom: 1vw;
+}
+
+.overlay-listen-options-text {
+  margin-bottom: 0.5vw;
+}
+
+.overlay-listen-description-text,
+.overlay-watch-description-text {
+  margin-top: 0.2vw;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
   text-overflow: ellipsis;
-  margin-top: 0.2vw;
+}
+
+.overlay-listen-description-text {
+  margin-bottom: 1vw;
+}
+
+.overlay-watch-description-text {
+  margin-bottom: 1.5vw;
 }
 
 .overlay-trailer-video {
   margin-top: 0.4vw;
   width: 26vw;
-  height: 16vw;
+  height: 15vw;
   border: none;
-  outline: none;
 }
 
 .fWohKN {

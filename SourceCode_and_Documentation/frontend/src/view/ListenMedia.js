@@ -3,7 +3,7 @@ import { ListenSet } from "./ListenSet";
 import { PodcastSet } from "./PodcastSet";
 import { ListenMediaNav } from "./ListenMediaNav";
 
-export function ListenMedia({ category, content, type, num }) {
+export function ListenMedia({ category, content, type, num, getOverlayData }) {
   if (content !== undefined) {
     const contentStart = content.slice(0, 50);
     if (type === "Podcast" || type === "Playlist") {
@@ -16,10 +16,13 @@ export function ListenMedia({ category, content, type, num }) {
               <PodcastSet
                 index={index}
                 imageSource={item["imgURL"]}
-                title={item["show_name"]}
+                title={item["listen_name"]}
                 subtext={item["description"]}
-                show_link={item["show_link"]}
+                listen_link={item["listen_link"]}
                 mediaClass="listen-media"
+                getOverlayData={getOverlayData}
+                id={item["id"]}
+                type={type.toLowerCase()}
               />
             ))}
           </div>
@@ -35,12 +38,14 @@ export function ListenMedia({ category, content, type, num }) {
             <ListenSet
               index={index}
               imageSource={item["imgURL"]}
-              title={item["music_name"]}
+              title={item["listen_name"]}
               subtext={item["type"]}
               artist={item["artist_name"]}
               artist_link={item["artist_link"]}
-              music_link={item["music_link"]}
+              listen_link={item["listen_link"]}
               mediaClass="listen-media"
+              getOverlayData={getOverlayData}
+              id={item["id"]}
             />
           ))}
         </div>
