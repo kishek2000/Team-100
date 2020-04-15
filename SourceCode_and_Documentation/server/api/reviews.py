@@ -40,7 +40,7 @@ def tv_collection_ratings(id):
     # }
     #Converts from tmdb ID if needed
     if (id[0] != "t"):
-        ttID = tmdbToImdb(tmdbID, 'tv')
+        ttID = tmdbToImdb(id, 'tv')
     else:
         ttID = id
     
@@ -54,9 +54,9 @@ def title_rating(id):
     #Convert tmdb ID -> imdb ID if needed
     if (id[0] != "t"):
         try:
-            ttID = tmdbToImdb(tmdbID, 'tv')
+            ttID = tmdbToImdb(id, 'tv')
         except:
-            ttID = tmdbToImdb(tmdbID, 'movie')
+            ttID = tmdbToImdb(id, 'movie')
     else:
         ttID = id
 
