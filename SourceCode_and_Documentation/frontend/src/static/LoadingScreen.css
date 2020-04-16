@@ -18,10 +18,6 @@
 }
 
 .loader {
-  border: 0.3vw solid rgb(207, 207, 207);
-  border-top: 0.3vw solid rgb(59, 59, 59);
-  border-radius: 50%;
-  width: 1vw;
-  height: 1vw;
-  animation: spin 2s linear infinite;
+  width: 1.5vw;
+  height: 1.5vw;
 }
