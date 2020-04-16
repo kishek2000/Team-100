@@ -9,10 +9,10 @@ search(searchTerm, formats, nItems, country="AU")
 '''
 import requests
 if __name__ == "__main__":
-    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 else:
-    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
 
 
@@ -81,7 +81,7 @@ def spotifySearch(searchTerm, nItems, country, types):
     in a comma separated string
     '''
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "q": searchTerm,
@@ -164,14 +164,13 @@ def search(searchTerm, formats, nItems, country="AU"):
     if "tv" in formats:
         results['tv'] = searchShows(searchTerm, nItems, country)
 
-    print(searchTerm)
     types = ""
     if "music" in formats:
         types += "album,track,"
     if "podcasts" in formats:
-        types += "show"
+        types += "show,"
     if types != "":
-        # types = types[:-1]
+        types = types[:-1] # Need this line - excess commas break spotify
         spotifyObjects = spotifySearch(searchTerm, nItems, country, types)
         results["music"] = spotifyObjects["music"]
         results["podcasts"] = spotifyObjects["podcasts"]

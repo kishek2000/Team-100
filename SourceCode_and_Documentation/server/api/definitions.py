@@ -12,6 +12,7 @@ tmdbToImdb(tmdbID, mediaType) (Deprecated)
 '''
 
 import requests
+import threading
 TMDB_API_KEY = "6a347f3f994cdb8434d8698152dc44a8"
 TMDB_URL = "https://api.themoviedb.org/3"
 SPOTIFY_AUTHORISATION = 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU='
@@ -23,19 +24,29 @@ parameters = {
 config = requests.get(TMDB_URL + "/configuration", params=parameters)
 TMDB_BASE_IMG_URL = config.json()["images"]["secure_base_url"]
 
-# Create a spotify Token (Client-Client Authorization only)
-headers = {
-    'Authorization': SPOTIFY_AUTHORISATION,
-}
-data = {
-    'grant_type': 'client_credentials'
-}
-RESPONSE = requests.post(
-    'https://accounts.spotify.com/api/token', headers=headers, data=data)
-SPOTIFY_TOKEN = RESPONSE.json()["token_type"] + \
-    " " + RESPONSE.json()["access_token"]
-# ADD A TIMER FUNCTION
+def clientSpotifyAuthorise():
+    '''
+    Create and refresh spotify Token (Client-Client Authorization only)
+    '''
+    global spotifyToken
+    headers = {
+        'Authorization': SPOTIFY_AUTHORISATION,
+    }
+    data = {
+        'grant_type': 'client_credentials'
+    }
+    RESPONSE = requests.post(
+        'https://accounts.spotify.com/api/token', headers=headers, data=data)
+    spotifyToken = RESPONSE.json()["token_type"] + \
+        " " + RESPONSE.json()["access_token"]
+    refreshTimer = threading.Timer(RESPONSE.json()["expires_in"], clientSpotifyAuthorise)
+    refreshTimer.start()
 
+spotifyToken = ""
+clientSpotifyAuthorise()
+
+def getSpotifyToken():
+    return spotifyToken
 '''
 def findStreamingServices(id):
     '''

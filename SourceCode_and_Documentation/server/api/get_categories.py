@@ -9,11 +9,11 @@ newMusicReleases(nItems, country="AU")
 
 import requests
 if __name__ == "__main__":
-    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
 else:
-    from .definitions import TMDB_API_KEY, TMDB_URL, SPOTIFY_TOKEN
+    from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
 
@@ -106,7 +106,7 @@ def newMusicReleases(nItems, country="AU"):
     Returns Spotifys new music
     '''
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "limit": nItems,
@@ -131,7 +131,7 @@ def newMusicReleases(nItems, country="AU"):
 
 def featuredPlaylists(nItems, country="AU"):
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "limit": nItems,
@@ -238,7 +238,7 @@ def getAlbumSingleData(id, media="album", country="AU"):
     Returns album or single data for a specified id in Spotify
     '''
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "market": country
@@ -267,7 +267,7 @@ def getPodcastData(id, media="podcast", country="AU"):
     Returns album or single data for a specified id in Spotify
     '''
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "market": country
@@ -292,7 +292,7 @@ def getPlaylistData(id, media="playlist", country="AU"):
     Returns album or single data for a specified id in Spotify
     '''
     header = {
-        "Authorization": SPOTIFY_TOKEN
+        "Authorization": getSpotifyToken()
     }
     parameters = {
         "market": country,
