@@ -1,5 +1,6 @@
 '''
 Authorises application to use spotify and refreshes spotify token.
+DEPRECATED because we didn't need it and it was a huge pain
 '''
 
 import requests
