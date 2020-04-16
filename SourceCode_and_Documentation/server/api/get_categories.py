@@ -24,8 +24,9 @@ def getWatchCategory(media, category, keyname, country="AU"):
     '''
     parameters = {
         "api_key": TMDB_API_KEY,
-        "region": country
     }
+    if country != None:
+        parameters["region"] = country
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"][0:14]
     mediaObjects = []
@@ -35,7 +36,7 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "name": result["name"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "first_air_date": result["first_air_date"][0:4],
-                "content_rating": getTVContentRating(result["id"]),
+                # "content_rating": getTVContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
                 "lang": result["original_language"].upper(),
@@ -46,15 +47,12 @@ def getWatchCategory(media, category, keyname, country="AU"):
             mediaObjects.append({
                 "name": result["title"],
                 "imgURL": craftPosterURL(result["poster_path"]),
-                "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
-                "content_rating": getMovieContentRating(result["id"]),
-                "genres": genreIdsToString(result["genre_ids"], "tv"),
+                # "content_rating": getMovieContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
                 "lang": result["original_language"].upper(),
                 "type": "movie"
-                # "location": findStreamingServices(result["id"])
             })
     return mediaObjects
 
@@ -74,29 +72,23 @@ def getWatchTrending():
             mediaObjects.append({
                 "name": result["name"],
                 "imgURL": craftPosterURL(result["poster_path"]),
-                "overview": result["overview"],
                 "first_air_date": result["first_air_date"][0:4],
-                "content_rating": getTVContentRating(result["id"]),
-                "genres": genreIdsToString(result["genre_ids"], "tv"),
+                # "content_rating": getTVContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
                 "lang": result["original_language"].upper(),
                 "type": "tv"
-                # "location": findStreamingServices(result["id"])
             })
         elif result['media_type'] == 'movie':
             mediaObjects.append({
                 "name": result["title"],
                 "imgURL": craftPosterURL(result["poster_path"]),
-                "overview": result["overview"],
                 "first_air_date": result["release_date"][0:4],
-                "content_rating": getMovieContentRating(result["id"]),
-                "genres": genreIdsToString(result["genre_ids"], "movie"),
+                # "content_rating": getMovieContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
                 "lang": result["original_language"].upper(),
                 "type": "movie"
-                # "location": findStreamingServices(result["id"])
             })
     return mediaObjects
 

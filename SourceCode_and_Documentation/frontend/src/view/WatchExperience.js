@@ -5,11 +5,12 @@ import svg from "../images/tail-spin.svg";
 // This function will give us the complete watch experience!
 export function WatchExperience({ watch, searchQuery, getOverlayData }) {
   const { data } = watch;
+  console.table(data);
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
       return (
         <div className="loading-screen">
-          <div className="loading-text">LOADING SEARCH DATA</div>
+          <div className="loading-text">LOADING SEARCH RESULTS...</div>
           <img src={svg} alt="load" className="loader" />
         </div>
       );
@@ -57,20 +58,33 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             num="1"
           />
           <MediaCategoryList
-            category="Now Airing TV Shows"
+            category="On Air TV Shows"
             media="WATCH"
-            mediaContent={data["Now Airing TV Shows"]}
+            mediaContent={data["On Air TV Shows"]}
             getOverlayData={getOverlayData}
             num="2"
+          />
+          <MediaCategoryList
+            category="Popular TV Shows"
+            media="WATCH"
+            mediaContent={data["Popular TV Shows"]}
+            getOverlayData={getOverlayData}
+            num="3"
           />
           <MediaCategoryList
             category="Top Rated Movies"
             media="WATCH"
             mediaContent={data["Top Rated Movies"]}
             getOverlayData={getOverlayData}
-            num="3"
+            num="4"
           />
-          {/* <MediaGenreList media="WATCH" genres={WATCH_GENRES} /> */}
+          <MediaCategoryList
+            category="Popular Movies"
+            media="WATCH"
+            mediaContent={data["Popular Movies"]}
+            getOverlayData={getOverlayData}
+            num="5"
+          />
         </div>
       );
     }
@@ -78,7 +92,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
     // TODO: add loading state
     return (
       <div className="loading-screen">
-        <div className="loading-text">LOADING WATCH DATA</div>
+        <div className="loading-text">LOADING WATCH ITEMS...</div>
         <img src={svg} alt="load" className="loader" />
       </div>
     );

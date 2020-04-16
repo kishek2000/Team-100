@@ -13,18 +13,66 @@ from .reviews import title_rating, tv_collection_ratings
 
 
 def home_watch(request):
-    tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name')
-    tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name')
-    movieTopRated = getWatchCategory('/movie/', 'top_rated', 'title')
-    trendingDaily = getWatchTrending()
-
     obj = {
-        "Now Airing TV Shows": tvOnAir,
-        "Top Rated TV Shows": tvTopRated,
-        "Top Rated Movies": movieTopRated,
-        "Trending Daily": trendingDaily
+        "Trending Daily": getWatchTrending(),
+        "Top Rated TV Shows": getWatchCategory('/tv/', 'top_rated', 'name', country=None),
+        "Popular TV Shows": getWatchCategory('/tv/', 'popular', 'name', country=None),
+        "On Air TV Shows": getWatchCategory('/tv/', 'on_the_air', 'name', country=None),
+        "Popular Movies": getWatchCategory('/movie/', 'popular', 'title', country=None),
+        "Top Rated Movies": getWatchCategory('/movie/', 'top_rated', 'title', country=None),
     }
     return JsonResponse(obj)
+
+# def home_watch_trending(request):
+#     trendingDaily = getWatchTrending()
+#     obj = {
+#         "data": trendingDaily
+#     }
+#     return JsonResponse(obj)
+
+
+# def home_tv_toprated(request):
+#     tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name', country=None)
+#     obj = {
+#         "data": tvTopRated
+#     }
+#     return JsonResponse(obj)
+
+
+# def home_tv_onair(request):
+#     tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name', country=None)
+#     obj = {
+#         "data": tvOnAir
+#     }
+#     return JsonResponse(obj)
+
+
+# def home_tv_popular(request):
+#     tvPopular = getWatchCategory('/tv/', 'popular', 'name', country=None)
+#     obj = {
+#         "data": tvPopular
+#     }
+#     return JsonResponse(obj)
+
+
+# def home_movie_popular(request):
+#     moviePopular = getWatchCategory(
+#         '/movie/', 'popular', 'title', country=None)
+
+#     obj = {
+#         "data": moviePopular
+#     }
+#     return JsonResponse(obj)
+
+
+# def home_movie_toprated(request):
+#     movieTopRated = getWatchCategory(
+#         '/movie/', 'top_rated', 'title', country=None)
+
+#     obj = {
+#         "data": movieTopRated
+#     }
+#     return JsonResponse(obj)
 
 
 def home_listen(request):

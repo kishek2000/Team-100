@@ -1,7 +1,6 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-// import { MediaGenreList } from "./MediaGenreList";
-// import { LISTEN_GENRES } from "../constants";
+import svg from "../images/tail-spin.svg";
 
 // This function will give us the complete Listen experience!
 export function ListenExperience({ listen, searchQuery, getOverlayData }) {
@@ -12,8 +11,8 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
       console.table(data);
       return (
         <div className="loading-screen">
-          <div className="loading-text">LOADING SEARCH DATA</div>
-          <div className="loader"></div>
+          <div className="loading-text">LOADING SEARCH RESULTS...</div>
+          <img src={svg} alt="load" className="loader" />
         </div>
       );
     } else if (searchQuery.length > 0 && data["Search Results"]) {
@@ -72,13 +71,13 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
             num="1"
           />
           <MediaCategoryList
-            category="Top Rated Podcasts"
+            category="Popular Categories"
             media="LISTEN"
             num="2"
+            type="Category"
             // mediaContent={data}
             // getOverlayData={getOverlayData}
           />
-          {/* <MediaGenreList media="LISTEN" genres={LISTEN_GENRES} /> */}
         </div>
       );
     }
@@ -86,8 +85,8 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
     // TODO: add loading state
     return (
       <div className="loading-screen">
-        <div className="loading-text">LOADING LISTEN DATA</div>
-        <div className="loader"></div>
+        <div className="loading-text">LOADING LISTEN ITEMS...</div>
+        <img src={svg} alt="load" className="loader" />
       </div>
     );
   }

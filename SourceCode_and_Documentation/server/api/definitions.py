@@ -24,6 +24,7 @@ parameters = {
 config = requests.get(TMDB_URL + "/configuration", params=parameters)
 TMDB_BASE_IMG_URL = config.json()["images"]["secure_base_url"]
 
+
 def clientSpotifyAuthorise():
     '''
     Create and refresh spotify Token (Client-Client Authorization only)
@@ -39,14 +40,19 @@ def clientSpotifyAuthorise():
         'https://accounts.spotify.com/api/token', headers=headers, data=data)
     spotifyToken = RESPONSE.json()["token_type"] + \
         " " + RESPONSE.json()["access_token"]
-    refreshTimer = threading.Timer(RESPONSE.json()["expires_in"], clientSpotifyAuthorise)
+    refreshTimer = threading.Timer(
+        RESPONSE.json()["expires_in"], clientSpotifyAuthorise)
     refreshTimer.start()
+
 
 spotifyToken = ""
 clientSpotifyAuthorise()
 
+
 def getSpotifyToken():
     return spotifyToken
+
+
 '''
 def findStreamingServices(id):
     '''
@@ -127,7 +133,7 @@ def craftPosterURL(path):
     '''
     if path is None:
         return None
-    return TMDB_BASE_IMG_URL + "original" + path
+    return TMDB_BASE_IMG_URL + "w500" + path
 
 
 def craftAlbumURL(images):
