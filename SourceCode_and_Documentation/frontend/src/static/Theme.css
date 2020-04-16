@@ -44,12 +44,11 @@
   );
 }
 
-.dark-mode .loader {
-  border: 0.4vw solid rgb(59, 59, 59);
-  border-top: 0.4vw solid rgb(207, 207, 207);
+.dark-mode .top-arrow {
+  -webkit-filter: invert(100%);
 }
 
-.dark-mode .top-arrow {
+.dark-mode .loader {
   -webkit-filter: invert(100%);
 }
 
