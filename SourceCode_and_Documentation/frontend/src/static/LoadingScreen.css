@@ -1,0 +1,27 @@
+.loading-screen {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding: 0;
+  margin-top: 2vw;
+  width: 100%;
+}
+
+.loading-text {
+  font-size: 1.5vw;
+  color: inherit;
+  font-family: HelveticaNeue-Bold;
+  display: flex;
+  margin-right: 1.2vw;
+  margin-left: 0;
+  padding: 0;
+}
+
+.loader {
+  border: 0.3vw solid rgb(207, 207, 207);
+  border-top: 0.3vw solid rgb(59, 59, 59);
+  border-radius: 50%;
+  width: 1vw;
+  height: 1vw;
+  animation: spin 2s linear infinite;
+}

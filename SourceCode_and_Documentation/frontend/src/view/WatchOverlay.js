@@ -20,10 +20,10 @@ export function WatchOverlay({ media_data, setOpenOverlayID, setOverlayData }) {
         <div className="overlay-information-header">
           <div className="overlay-title">{media_data["name"]}</div>
           <div
-            className="close-text"
+            className="close-text selected"
             onClick={() => {
-              setOpenOverlayID(-1);
               setOverlayData({});
+              setOpenOverlayID(-1);
             }}
           >
             X

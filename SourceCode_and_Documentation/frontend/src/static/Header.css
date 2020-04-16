@@ -1,0 +1,77 @@
+.App-header {
+  background: rgb(0, 0, 0, 0.55)
+    url("https://images.unsplash.com/photo-1551516594-56cb78394645?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&h=400");
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 17.1vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  padding: 0;
+  z-index: 4;
+}
+
+.header-contents {
+  margin-top: 0.8vw;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  width: 98.4vw;
+}
+
+.time-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5.8vw;
+}
+
+.time {
+  font-family: HelveticaNeue-Bold;
+  font-size: 1.2vw;
+}
+
+.date-text {
+  font-family: HelveticaNeue-Light;
+  font-size: 0.7vw;
+}
+
+::-webkit-scrollbar {
+  background: rgb(45, 45, 45);
+  border-radius: 10px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(134, 134, 134);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(172, 172, 172);
+}
+
+.App-header .header-contents .myLounge-header-titling {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.myLounge-heading {
+  display: flex;
+  font-family: HelveticaNeue-Light;
+  font-size: 5.3vw;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.myLounge-subtitle {
+  display: flex;
+  margin-left: auto;
+  font-family: HelveticaNeue-Thin;
+  font-size: 1.5vw;
+  margin: 0;
+}

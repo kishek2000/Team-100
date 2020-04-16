@@ -1,0 +1,156 @@
+.overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 5;
+  animation: appear 0.5s linear;
+}
+
+.overlay-poster-wrapper {
+  margin-right: 2vw;
+}
+
+.overlay-poster {
+  border-radius: 1vw;
+  width: 20vw;
+  height: 30vw;
+  cursor: pointer;
+}
+
+.overlay-poster-music {
+  border-radius: 1vw;
+  width: 20vw;
+  height: 20vw;
+  cursor: pointer;
+}
+
+.overlay-information {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  width: 60vw;
+}
+
+.overlay-information-header {
+  display: flex;
+  flex-direction: row;
+  color: inherit;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.overlay-information-header div:last-child {
+  margin-left: auto;
+}
+
+.overlay-title {
+  max-width: 44vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 2vw;
+  font-family: HelveticaNeue-Bold;
+  text-align: left;
+  color: inherit;
+  line-height: 1.2;
+  margin-bottom: 0.25vw;
+}
+
+.overlay-year {
+  font-size: 1.8vw;
+  font-family: HelveticaNeue-Ultralight;
+  color: inherit;
+  margin-left: 1.4vw;
+}
+
+.close-text {
+  /* text-align: ; */
+  width: 1.7vw;
+  height: 1.5vw;
+  align-self: flex-start;
+  font-size: 1vw;
+  font-family: HelveticaNeue-Thin;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+}
+
+.close-text:hover {
+  border-radius: 100%;
+  background: white;
+  color: black;
+}
+
+.overlay-genres {
+  color: inherit;
+  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
+}
+
+.overlay-description {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+}
+
+.overlay-subtitle {
+  color: inherit;
+  font-family: HelveticaNeue-Bold;
+  font-size: 0.8vw;
+}
+
+.overlay-listen-description-text,
+.overlay-watch-description-text,
+.overlay-meta-watch-text,
+.overlay-listen-options-text,
+.overlay-meta-listen-text {
+  color: inherit;
+  font-family: HelveticaNeue-Light;
+  font-size: 0.8vw;
+}
+
+.overlay-meta-watch-text,
+.overlay-meta-listen-text {
+  margin-bottom: 1vw;
+}
+
+.overlay-listen-options-text {
+  margin-bottom: 0.5vw;
+}
+
+.overlay-listen-description-text,
+.overlay-watch-description-text {
+  margin-top: 0.2vw;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+}
+
+.overlay-listen-description-text {
+  margin-bottom: 1vw;
+}
+
+.overlay-watch-description-text {
+  margin-bottom: 1.5vw;
+}
+
+.overlay-trailer-video {
+  margin-top: 0.4vw;
+  width: 26vw;
+  height: 15vw;
+  border: none;
+}
+
+.spotify-play {
+  margin-top: 0.5vw;
+  width: 97%;
+  height: 10vw;
+}

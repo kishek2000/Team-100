@@ -1,7 +1,12 @@
 import React from "react";
 
-import "../App.css";
-import "../Theme.css";
+import "../static/AppMediaStyle.css";
+import "../static/Header.css";
+import "../static/LoadingScreen.css";
+import "../static/Overlay.css";
+import "../static/Search.css";
+import "../static/Theme.css";
+import "../static/Transitions.css";
 
 import { AppHeader } from "./AppHeader";
 import { AppBody } from "./AppBody";

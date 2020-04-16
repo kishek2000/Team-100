@@ -39,7 +39,7 @@ def home_listen(request):
 
 
 def search_watch(request, query):
-    data = search(query, ['tv', 'movies'], 4)
+    data = search(query, ['tv', 'movies'], 20)
     obj = {
         "Search Results": {"TV Results": data['tv'], "Movie Results": data['movies']}
     }
@@ -48,8 +48,6 @@ def search_watch(request, query):
 
 def search_listen(request, query):
     data = search(query, ['music', 'podcasts'], 20)
-    print(data)
-    print(query)
     data['music'].update(data['podcasts'])
     obj = {
         "Search Results": data['music']

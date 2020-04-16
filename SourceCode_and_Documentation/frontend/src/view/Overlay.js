@@ -12,7 +12,7 @@ export function Overlay({
   // const id, media = media_id.split()
   if (Object.keys(data).length > 0 && media_id !== -1) {
     const record = data["data"];
-    if (Object.keys(record).length > 0 && media_id !== -1) {
+    if (Object.keys(record).length > 0) {
       const media_data = record[0];
       if (experience === "WATCH") {
         return (
