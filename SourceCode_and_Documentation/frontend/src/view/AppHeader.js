@@ -7,7 +7,7 @@ export const AppHeader = () => (
   <header className="App-header">
     <div className="header-contents">
       <div className="time-data">
-        <Clock className="time" ticking={true} format={"HH:mm:ss"} />
+        <Clock className="time" ticking={true} format={"HH:mm:ss A"} />
         <div className="date-text">
           {TIME()["day"]} the {TIME()["date"]} of {TIME()["month"]},{" "}
           {TIME()["year"]}

@@ -32,6 +32,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               type="Track"
               mediaContent={album_matches}
               getOverlayData={getOverlayData}
+              num="0"
             />
             <MediaCategoryList
               category="Track Results"
@@ -39,6 +40,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               type="Album"
               mediaContent={track_matches}
               getOverlayData={getOverlayData}
+              num="1"
             />
             <MediaCategoryList
               category="Podcast Results"
@@ -46,6 +48,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               media="LISTEN"
               mediaContent={podcast_matches}
               getOverlayData={getOverlayData}
+              num="2"
             />
           </div>
         </div>

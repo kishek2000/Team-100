@@ -137,3 +137,18 @@ def tmdbToImdb(tmdbID, mediaType=None):
     res = requests.get(TMDB_URL + "/" + mediaType + "/" +
                        str(tmdbID) + "/external_ids", params=parameters)
     return res.json()["imdb_id"]
+
+
+def craftPlaylistDesc(string):
+    final_desc = ""
+    if 'Cover' not in string and '<a' in string:
+        final_desc = string.partition('>')[2].partition(
+            '<')[0] + string.partition('>')[2].partition('>')[2]
+    elif 'Cover' in string and '<a' in string:
+        final = string.partition('<')[0]+string.partition('>')[2].partition(
+            '<')[0] + string.partition('>')[2].partition('>')[2]
+        if 'Cover' in final:
+            final_desc = final.partition('Cover')[0]
+    else:
+        final_desc = string.partition('Cover:')[0]
+    return final_desc

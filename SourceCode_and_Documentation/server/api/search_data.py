@@ -107,26 +107,26 @@ def spotifySearch(searchTerm, nItems, country, types):
             if result is None:
                 break
             mediaObjects["music"]["Album Results"].append({
-                "music_name": result["name"],
+                "listen_name": result["name"],
                 "artist_name": result["artists"][0]["name"],
                 "artist_link": result["artists"][0]["external_urls"]["spotify"],
                 "type": result["album_type"].title(),
                 "id": result["id"],
                 "imgURL": craftAlbumURL(result["images"]),
-                "music_link": result["external_urls"]["spotify"]
+                "listen_link": result["external_urls"]["spotify"]
             })
     if "tracks" in json:
         for result in json["tracks"]["items"]:
             if result is None:
                 break
             mediaObjects["music"]["Track Results"].append({
-                "music_name": result["name"],
+                "listen_name": result["name"],
                 "artist_name": result["artists"][0]["name"],
                 "artist_link": result["artists"][0]["external_urls"]["spotify"],
                 "type": result["type"].title(),
                 "id": result["id"],
                 "imgURL": craftAlbumURL(result["album"]["images"]),
-                "music_link": result["external_urls"]["spotify"]
+                "listen_link": result["external_urls"]["spotify"]
             })
     # Extracts podcasts (called shows in Spotify)
     if "shows" in json:
@@ -134,12 +134,12 @@ def spotifySearch(searchTerm, nItems, country, types):
             if result is None:
                 break
             mediaObjects["podcasts"]["Podcast Results"].append({
-                "show_name": result["name"],
+                "listen_name": result["name"],
                 "description": result["description"],
                 "type": result["type"].title(),
                 "id": result["id"],
                 "imgURL": craftAlbumURL(result["images"]),
-                "show_link": result["external_urls"]["spotify"]
+                "listen_link": result["external_urls"]["spotify"]
             })
     return mediaObjects
 
