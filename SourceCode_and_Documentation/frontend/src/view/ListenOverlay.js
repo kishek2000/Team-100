@@ -1,6 +1,12 @@
 import React from "react";
 
-export function ListenOverlayMeta({ releaseDate, typeLabel, totalTracks }) {
+function ListenOverlayMeta({
+  releaseDate,
+  typeLabel,
+  totalTracks,
+  giveString,
+}) {
+  console.log(typeLabel);
   if (totalTracks === 1) {
     typeLabel = "Single";
     totalTracks = null;
@@ -10,9 +16,12 @@ export function ListenOverlayMeta({ releaseDate, typeLabel, totalTracks }) {
     typeLabel = typeLabel[0].toUpperCase() + typeLabel.slice(1);
     totalTracks = `${totalTracks} Tracks`;
   }
-  return [releaseDate, typeLabel, totalTracks]
-    .filter((item) => !!item)
-    .join(" | ");
+  if (giveString) {
+    return [releaseDate, typeLabel, totalTracks]
+      .filter((item) => !!item)
+      .join(" | ");
+  }
+  return typeLabel;
 }
 
 export function ListenOverlay({
@@ -67,25 +76,63 @@ export function ListenOverlay({
         ) : (
           <div></div>
         )}
-        <div className="overlay-links"></div>
-        <div className="overlay-subtitle">
-          {media_data["type"] === "podcast"
-            ? "Play Latest Episode"
-            : "Preview Now"}
+        <div className="overlay-subtitle">Play Now</div>
+        <div className="overlay-viewing-row">
+          <div
+            className="spotify-listen"
+            style={
+              media_data["youtube"] !== "" ? { width: "50%" } : { width: "97%" }
+            }
+          >
+            <div className="overlay-listen-options-text">Spotify:</div>
+            <iframe
+              src={
+                media_data["listen_link"].slice(0, 25) +
+                "embed/" +
+                media_data["listen_link"].slice(25)
+              }
+              className="spotify-play"
+              title="play"
+              frameborder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+            ></iframe>
+          </div>
+          {media_data["youtube"] !== "" ? (
+            <div className="listen-video">
+              <div className="overlay-listen-options-text">
+                Youtube -{" "}
+                {String(
+                  ListenOverlayMeta({
+                    releaseDate: media_data["release_date"],
+                    typeLabel: media_data["type"],
+                    totalTracks: media_data["total_tracks"],
+                    giveString: false,
+                  })
+                ) === "Single"
+                  ? "Full Music Video"
+                  : "Full " +
+                    String(
+                      ListenOverlayMeta({
+                        releaseDate: media_data["release_date"],
+                        typeLabel: media_data["type"],
+                        totalTracks: media_data["total_tracks"],
+                        giveString: false,
+                      })
+                    )}
+                :
+              </div>
+              <iframe
+                title="music-video"
+                src={media_data["youtube"]}
+                allowfullscreen="allowfullscreen"
+                className="overlay-music-video"
+              ></iframe>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
-        <div className="overlay-listen-options-text">Spotify:</div>
-        <iframe
-          src={
-            media_data["listen_link"].slice(0, 25) +
-            "embed/" +
-            media_data["listen_link"].slice(25)
-          }
-          className="spotify-play"
-          title="play"
-          frameborder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        ></iframe>
       </div>
     </section>
   );

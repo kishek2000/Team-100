@@ -7,6 +7,7 @@ import "../static/Overlay.css";
 import "../static/Search.css";
 import "../static/Theme.css";
 import "../static/Transitions.css";
+import "../static/StarRating.css";
 
 import { AppHeader } from "./AppHeader";
 import { AppBody } from "./AppBody";

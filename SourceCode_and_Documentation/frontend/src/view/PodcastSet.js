@@ -2,14 +2,16 @@ import React from "react";
 export function PodcastSet(props) {
   return (
     <div className="listen-set">
-      <img
-        src={props.imageSource}
-        className={props.mediaClass}
-        alt="music_cover"
-        onClick={() => {
-          props.getOverlayData(props.id, props.type);
-        }}
-      />
+      <div className="listen-image">
+        <img
+          src={props.imageSource}
+          className={props.mediaClass}
+          alt="music_cover"
+          onClick={() => {
+            props.getOverlayData(props.id, props.type);
+          }}
+        />
+      </div>
       <p className="listen-media-titles">
         <a
           href={props.listen_link}

@@ -1,13 +1,13 @@
 import React from "react";
 import { WatchMediaNav } from "./WatchMediaNav";
 
-function WatchMediaMetadata({ airDate, language, rating }) {
-  return [airDate, language, rating].filter((item) => !!item).join(" | ");
+function WatchMediaMetadata({ airDate, language, genre }) {
+  return [airDate, language, genre].filter((item) => !!item).join(" | ");
 }
 
 export function WatchMedia({ category, content, getOverlayData, num }) {
   if (content !== undefined) {
-    const contentStart = content.slice(0, 20);
+    const contentStart = content;
     return (
       <div className="category-list">
         <p className="category-title">{category}</p>
@@ -36,7 +36,7 @@ export function WatchMedia({ category, content, getOverlayData, num }) {
                 <WatchMediaMetadata
                   airDate={item["first_air_date"]}
                   language={item["lang"]}
-                  rating={item["content_rating"]}
+                  genre={item["genre"]}
                 />
               </div>
             </div>

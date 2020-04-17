@@ -1,6 +1,6 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-import svg from "../images/tail-spin.svg";
+import LoadingSpinner from "../images/tail-spin.svg";
 
 // This function will give us the complete watch experience!
 export function WatchExperience({ watch, searchQuery, getOverlayData }) {
@@ -11,7 +11,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
       return (
         <div className="loading-screen">
           <div className="loading-text">LOADING SEARCH RESULTS...</div>
-          <img src={svg} alt="load" className="loader" />
+          <img src={LoadingSpinner} alt="load" className="loader" />
         </div>
       );
     } else if (searchQuery.length > 0 && data[`Search Results`]) {
@@ -93,7 +93,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
     return (
       <div className="loading-screen">
         <div className="loading-text">LOADING WATCH ITEMS...</div>
-        <img src={svg} alt="load" className="loader" />
+        <img src={LoadingSpinner} alt="load" className="loader" />
       </div>
     );
   }

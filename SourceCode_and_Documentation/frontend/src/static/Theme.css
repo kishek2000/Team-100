@@ -23,7 +23,8 @@
   height: 2.1vw;
 }
 
-.dark-mode .light-mode-vector {
+.dark-mode .light-mode-vector,
+.dark-mode .single-star-outline {
   -webkit-filter: invert(100%);
 }
 

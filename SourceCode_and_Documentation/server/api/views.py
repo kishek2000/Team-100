@@ -4,7 +4,7 @@ from rest_framework import generics
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData
 from .search_data import search
 from .reviews import title_rating, tv_collection_ratings
 # Create your views here.
@@ -87,7 +87,7 @@ def home_listen(request):
 
 
 def search_watch(request, query):
-    data = search(query, ['tv', 'movies'], 20)
+    data = search(query, ['tv', 'movies'], 50)
     obj = {
         "Search Results": {"TV Results": data['tv'], "Movie Results": data['movies']}
     }
@@ -95,7 +95,7 @@ def search_watch(request, query):
 
 
 def search_listen(request, query):
-    data = search(query, ['music', 'podcasts'], 20)
+    data = search(query, ['music', 'podcasts'], 50)
     data['music'].update(data['podcasts'])
     obj = {
         "Search Results": data['music']
@@ -140,8 +140,16 @@ def details_album(request, id):
     return JsonResponse(obj)
 
 
-def details_track(request, id):
+def details_single(request, id):
     data = getAlbumSingleData(id, 'single')
+    obj = {
+        "data": data
+    }
+    return JsonResponse(obj)
+
+
+def details_track(request, id):
+    data = getTrackData(id)
     obj = {
         "data": data
     }

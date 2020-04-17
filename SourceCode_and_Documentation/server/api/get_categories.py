@@ -8,14 +8,18 @@ newMusicReleases(nItems, country="AU")
 '''
 
 import requests
+import pprint
+
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
+    from .constants import getTVGenre, getMovieGenre
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
+    from .constants import getTVGenre, getMovieGenre
 
 
 def getWatchCategory(media, category, keyname, country="AU"):
@@ -28,7 +32,7 @@ def getWatchCategory(media, category, keyname, country="AU"):
     if country != None:
         parameters["region"] = country
     res = requests.get(TMDB_URL + media + category, params=parameters)
-    json = res.json()["results"][0:14]
+    json = res.json()["results"]
     mediaObjects = []
     for result in json:
         if media == '/tv/':
@@ -36,21 +40,20 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "name": result["name"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "first_air_date": result["first_air_date"][0:4],
-                # "content_rating": getTVContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
+                "genre": getTVGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
-                "type": "tv"
-                # "location": findStreamingServices(result["id"])
+                "type": "tv",
             })
         elif media == '/movie/':
             mediaObjects.append({
                 "name": result["title"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "first_air_date": result["release_date"][0:4],
-                # "content_rating": getMovieContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
+                "genre": getMovieGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
                 "type": "movie"
             })
@@ -65,7 +68,7 @@ def getWatchTrending():
         "api_key": TMDB_API_KEY,
     }
     res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
-    json = res.json()["results"][0:14]
+    json = res.json()["results"]
     mediaObjects = []
     for result in json:
         if result['media_type'] == 'tv':
@@ -73,9 +76,9 @@ def getWatchTrending():
                 "name": result["name"],
                 "imgURL": craftPosterURL(result["poster_path"]),
                 "first_air_date": result["first_air_date"][0:4],
-                # "content_rating": getTVContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
+                "genre": getTVGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
                 "type": "tv"
             })
@@ -87,6 +90,7 @@ def getWatchTrending():
                 # "content_rating": getMovieContentRating(result["id"]),
                 "id": result["id"],
                 "score": round(result["vote_average"]/10, 2),
+                "genre": getMovieGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
                 "type": "movie"
             })
@@ -220,7 +224,6 @@ def getMovieData(id, region="AU, US"):
         "genres": genreString[0:len(genreString)-2],
         "trailer": trailer_link,
         "lang": data["original_language"].upper()
-        # "location": findStreamingServices(data["id"])
     })
     return mediaObjects
 
@@ -249,7 +252,8 @@ def getAlbumSingleData(id, media="album", country="AU"):
         "label": result["label"],
         "total_tracks": result["total_tracks"],
         "copyright_statement": result["copyrights"][0]["text"],
-        "release_date": result["release_date"][0:4]
+        "release_date": result["release_date"][0:4],
+        "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects
 
@@ -274,7 +278,8 @@ def getPodcastData(id, media="podcast", country="AU"):
         "type": "podcast",
         "imgURL": result["images"][0]["url"],
         "label": result["publisher"],
-        "description": result["description"]
+        "description": result["description"],
+        "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects
 
@@ -299,6 +304,58 @@ def getPlaylistData(id, media="playlist", country="AU"):
         "listen_link": result["external_urls"]["spotify"],
         "type": "playlist",
         "imgURL": result["images"][0]["url"],
-        "description": craftPlaylistDesc(result["description"])
+        "description": craftPlaylistDesc(result["description"]),
+        "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects
+
+
+def getTrackData(id, country="AU"):
+    '''
+    Returns track data for a specified id in Spotify
+    '''
+    header = {
+        "Authorization": getSpotifyToken()
+    }
+    parameters = {
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/tracks/{}".format(id),
+                       headers=header, params=parameters)
+    result = res.json()
+    mediaObjects = []
+    mediaObjects.append({
+        "listen_name": result["name"],
+        "listen_link": result["external_urls"]["spotify"],
+        "artist_name": result["artists"][0]["name"],
+        "artist_link": result["artists"][0]["external_urls"]["spotify"],
+        "type": "track",
+        "imgURL": result["album"]["images"][0]["url"],
+        "release_date": result["album"]["release_date"][0:4],
+        "duration": result["duration"] / 3600,
+        "youtube": getListenLinks(result["external_urls"]["spotify"])
+    })
+    return mediaObjects
+
+
+def getListenLinks(url):
+    '''
+    Returns links where you can listen to a given spotify url item
+    '''
+    parameters = {
+        "url": url,
+        "key": '555e94f4-c67d-41e3-9e9b-a8376d4766b4'
+    }
+    res = requests.get("https://api.song.link/v1-alpha.1/links",
+                       params=parameters)
+    # result = res.json()
+    if 'linksByPlatform' in res.json() and 'youtube' in res.json()['linksByPlatform']:
+        youtube = res.json()['linksByPlatform']['youtube']['url']
+        if 'playlist' in youtube:
+            url = youtube.partition('.com/')
+            return url[0]+'.com/embed/' + url[2]
+        else:
+            url = youtube.partition('watch?v=')
+            return url[0]+'embed/' + url[2]
+
+    return ''

@@ -11,9 +11,11 @@ import requests
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
+    from .constants import getMovieGenre, getTVGenre
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
+    from .constants import getMovieGenre, getTVGenre
 
 
 def searchFilms(searchTerm, nItems, country):
@@ -35,9 +37,8 @@ def searchFilms(searchTerm, nItems, country):
             "name": result["title"],
             "type": "movie",
             "imgURL": craftPosterURL(result["poster_path"]),
-            "genres": genreIdsToString(result["genre_ids"], "movie"),
-            # "location": findStreamingServices(result["id"]),
             "score": round(result["vote_average"]/10, 2),
+            "genre": getMovieGenre(result["genre_ids"]),
             "overview": result["overview"],
             "first_air_date": result["release_date"][0:4],
             "id": result["id"]
@@ -64,9 +65,8 @@ def searchShows(searchTerm, nItems, country):
             "name": result["name"],
             "type": "tv",
             "imgURL": craftPosterURL(result["poster_path"]),
-            "genres": genreIdsToString(result["genre_ids"], "tv"),
+            "genre": getTVGenre(result["genre_ids"]),
             # "location": findStreamingServices(result["id"]),
-            "overview": result["overview"],
             "score": round(result["vote_average"]/10, 2),
             "first_air_date": result["first_air_date"][0:4],
             "id": result["id"]
@@ -170,7 +170,7 @@ def search(searchTerm, formats, nItems, country="AU"):
     if "podcasts" in formats:
         types += "show,"
     if types != "":
-        types = types[:-1] # Need this line - excess commas break spotify
+        types = types[:-1]  # Need this line - excess commas break spotify
         spotifyObjects = spotifySearch(searchTerm, nItems, country, types)
         results["music"] = spotifyObjects["music"]
         results["podcasts"] = spotifyObjects["podcasts"]
