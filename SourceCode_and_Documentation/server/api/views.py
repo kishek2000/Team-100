@@ -5,8 +5,10 @@ import requests
 import pprint
 
 from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData
-from .search_data import search
+from .search_data import search, filtered_search
 from .reviews import title_rating, tv_collection_ratings
+from justwatch import JustWatch
+
 # Create your views here.
 
 # from django.views.decorators.http import require_GET, require_http_method
@@ -168,6 +170,23 @@ def details_podcast(request, id):
     data = getPodcastData(id)
     obj = {
         "data": data
+    }
+    return JsonResponse(obj)
+
+
+def region_service_filters(request, region):
+    plist = []
+    just_watch = JustWatch(country=region)
+    aus_providers = just_watch.get_providers()
+    for item in aus_providers:
+        plist.append({"full": item["clear_name"], "short": item["short_name"]})
+    return JsonResponse({"list": plist})
+
+
+def search_watch_filtered(request, query, services):
+    data = filtered_search({"query": query, "providers": services.split('&')})
+    obj = {
+        "Search Results": data
     }
     return JsonResponse(obj)
 

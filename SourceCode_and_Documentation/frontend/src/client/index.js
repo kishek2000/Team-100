@@ -24,8 +24,20 @@ export class Client {
     return data;
   }
 
-  async getWatchSearchResults(query) {
-    const data = await this.api(`/api/search/watch/${query}`);
+  async getWatchSearchResults(query, services) {
+    if (services === []) {
+      const data = await this.api(`/api/search/watch/unfiltered/${query}`);
+      return data;
+    } else {
+      const data = await this.api(
+        `/api/search/watch/filtered/${query}/${services}`
+      );
+      return data;
+    }
+  }
+
+  async getWatchRegionServices(region) {
+    const data = await this.api(`/api/search/watch/filters/${region}`);
     return data;
   }
 

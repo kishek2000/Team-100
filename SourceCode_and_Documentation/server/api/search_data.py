@@ -12,10 +12,14 @@ if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
     from .constants import getMovieGenre, getTVGenre
+    from urllib.parse import quote
+    import json
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
     from .constants import getMovieGenre, getTVGenre
+    from urllib.parse import quote
+    import json
 
 
 def searchFilms(searchTerm, nItems, country):
@@ -39,7 +43,6 @@ def searchFilms(searchTerm, nItems, country):
             "imgURL": craftPosterURL(result["poster_path"]),
             "score": round(result["vote_average"]/10, 2),
             "genre": getMovieGenre(result["genre_ids"]),
-            "overview": result["overview"],
             "first_air_date": result["release_date"][0:4],
             "id": result["id"]
         })
@@ -66,7 +69,6 @@ def searchShows(searchTerm, nItems, country):
             "type": "tv",
             "imgURL": craftPosterURL(result["poster_path"]),
             "genre": getTVGenre(result["genre_ids"]),
-            # "location": findStreamingServices(result["id"]),
             "score": round(result["vote_average"]/10, 2),
             "first_air_date": result["first_air_date"][0:4],
             "id": result["id"]
@@ -175,3 +177,42 @@ def search(searchTerm, formats, nItems, country="AU"):
         results["music"] = spotifyObjects["music"]
         results["podcasts"] = spotifyObjects["podcasts"]
     return results
+
+
+def filtered_search(filter_dict):
+    '''
+    Request to justwatch api for filtered search
+    '''
+    res = requests.get('https://apis.justwatch.com/content/titles/en_AU/popular?body={}'.format(
+        quote(json.dumps(filter_dict, separators=(',', ':')))))
+    mediaObjects = {
+        "TV Results": [],
+        "Movie Results": []
+    }
+    for item in res.json()["items"]:
+        score = 0
+        tmdbid = 0
+        for scores in item["scoring"]:
+            if scores["provider_type"] == "tmdb:id":
+                tmdbid = scores["value"]
+            if scores["provider_type"] == "imdb:score":
+                score = scores["value"]
+        if item["object_type"] == "show":
+            mediaObjects["TV Results"].append({
+                "name": item["title"],
+                "id": tmdbid,
+                "release_date": item["original_release_year"],
+                "type": item["object_type"],
+                "imageURL": "https://images.justwatch.com/" + item["poster"].partition('profile')[0][0:-2] + 's718',
+                "score": score
+            })
+        else:
+            mediaObjects["Movie Results"].append({
+                "name": item["title"],
+                "id": tmdbid,
+                "release_date": item["original_release_year"],
+                "type": item["object_type"],
+                "imageURL": "https://images.justwatch.com/" + item["poster"].partition('profile')[0][0:-2] + 's718',
+                "score": score
+            })
+    return mediaObjects

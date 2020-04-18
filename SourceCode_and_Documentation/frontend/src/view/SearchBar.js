@@ -25,7 +25,7 @@ export class SearchBar extends React.Component {
 
   handleSubmit(event) {
     console.log("you submitted: " + this.state.value);
-    this.props.onSearchQuery(this.state.value, this.props.mediaSelected);
+    this.props.onSearchQuery(this.state.value, this.props.mediaSelected, []);
     this.props.setSearchQuery(this.state.value);
     event.preventDefault();
   }

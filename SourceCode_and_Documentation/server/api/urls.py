@@ -6,8 +6,11 @@ from . import views
 urlpatterns = [
     path('api/home/watch', views.home_watch),
     path('api/home/listen', views.home_listen),
-    path('api/search/watch/<str:query>', views.search_watch),
+    path('api/search/watch/unfiltered/<str:query>', views.search_watch),
     path('api/search/listen/<str:query>', views.search_listen),
+    path('api/search/watch/filtered/<str:query>/<str:services>',
+         views.search_watch_filtered),
+    path('api/search/watch/filters/<str:region>', views.region_service_filters),
     path('api/details/tv/<slug:id>', views.details_tv),
     path('api/details/movie/<slug:id>', views.details_movie),
     path('api/details/album/<str:id>', views.details_album),

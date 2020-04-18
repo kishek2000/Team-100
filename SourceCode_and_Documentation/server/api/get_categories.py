@@ -332,7 +332,6 @@ def getTrackData(id, country="AU"):
         "type": "track",
         "imgURL": result["album"]["images"][0]["url"],
         "release_date": result["album"]["release_date"][0:4],
-        "duration": result["duration"] / 3600,
         "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects

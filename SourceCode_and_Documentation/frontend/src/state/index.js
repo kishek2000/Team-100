@@ -22,14 +22,14 @@ export function AppContainer({ children }) {
   }, [setListenData]);
 
   const onSearchQuery = useCallback(
-    (query, experience) => {
+    (query, experience, services) => {
       if (experience === "WATCH") {
-        client.getWatchSearchResults(query).then((data) => {
+        client.getWatchSearchResults(query, services).then((data) => {
           setWatchData(data);
           setSearchQuery(query);
         });
       } else if (experience === "LISTEN") {
-        client.getListenSearchResults(query).then((data) => {
+        client.getListenSearchResults(query, services).then((data) => {
           setListenData(data);
           setSearchQuery(query);
         });
