@@ -13,6 +13,7 @@ tmdbToImdb(tmdbID, mediaType) (Deprecated)
 
 import requests
 import threading
+from justwatch import JustWatch
 TMDB_API_KEY = "6a347f3f994cdb8434d8698152dc44a8"
 TMDB_URL = "https://api.themoviedb.org/3"
 SPOTIFY_AUTHORISATION = 'Basic ZjkyZTBhMzA5OTZjNGMxZTg3MGM1YjJjZmUyZTU4YzA6MmQyY2U5OGY5YjQxNDQzOWI3NTc1ZmMzYzQ3M2M0MzU='
@@ -52,32 +53,24 @@ clientSpotifyAuthorise()
 def getSpotifyToken():
     return spotifyToken
 
-
-'''
-def findStreamingServices(id):
-    '''
-# UTELLY ALERT
-'''
-    url = "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup"
-    querystring = {
-        "country": "AU",  # Change if we add a select region option
-        "source_id": id,
-        "source": "tmdb"
-    }
-    headers = {
-        'x-rapidapi-host': "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-        'x-rapidapi-key': "c87c08a68cmsh30214da0a2d0d9ap1175f8jsna8ba42f012e2"
-    }
-    res = requests.get(url, headers=headers, params=querystring)
+def findServices(tmdb_id, tmdb_title, region='AU'):
+    just_watch = JustWatch(region)
+    results = just_watch.search_for_item(query=tmdb_title)
+    # Ideally this will go into its own storage so we don't have to keep calling it
+    prov = just_watch.get_providers()
+    providers = {}
+    for result in prov:
+        providers[result["id"]] = result["clear_name"]
     services = []
-    for location in res.json()["collection"]["locations"]:
-        services.append({
-            "name": location['display_name'],
-            "link": location['url']
-        })
+    for item in results['items']:
+        for prov in item['scoring']:
+                if prov['provider_type'] == 'tmdb:id' and prov['value'] == tmdb_id:
+                    for service in item['offers']:
+                        services.append({
+                            "name": providers[service["provider_id"]],
+                            "link": service["urls"]["standard_web"]
+                        })
     return services
-'''
-
 
 def getTVContentRating(mediaID, region="AU, US"):
     '''
