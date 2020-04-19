@@ -5,6 +5,13 @@ E.G. I want to WATCH and I want to LISTEN  categories
 getWatchCategory(media, category, keyname, country="AU")
 getWatchTrending()
 newMusicReleases(nItems, country="AU")
+featuredPlaylists(nItems, country="AU")
+getTVData(id, region="AU, US")
+getMovieData(id, region="AU, US")
+getAlbumSingleData(id, media="album", country="AU")
+getPodcastData(id, media="podcast", country="AU")
+getTrackData(id, country="AU")
+getListenLinks(url)
 '''
 
 import requests
