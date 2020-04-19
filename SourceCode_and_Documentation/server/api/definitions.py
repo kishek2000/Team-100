@@ -4,11 +4,16 @@ mainly search_data and get_categories.
 Also responsible for generating the TMDB image URL and spotify token
 File contains sensitive data (API keys, Spotify Client Secret) which aren't really protected
 
-findStreamingServices(id) (DEFUNCT)
+clientSpotifyAuthorise()
+getSpotifyToken()
+findServices(tmdb_id, tmdb_title, region='AU')
+getTVContentRating(mediaID, region="AU, US")
+getMovieContentRating(mediaID, region="AU, US")
 genreIdsToString(genreIDs, mediaType)
 craftPosterURL(path)
 craftAlbumURL(images)
 tmdbToImdb(tmdbID, mediaType) (Deprecated)
+getSpotifyCopyright(id, type, region='AU')
 '''
 
 import requests
@@ -54,6 +59,9 @@ def getSpotifyToken():
     return spotifyToken
 
 def findServices(tmdb_id, tmdb_title, region='AU'):
+    '''
+    Returns a list of streaming services and links to relevant pages
+    '''
     just_watch = JustWatch(region)
     results = just_watch.search_for_item(query=tmdb_title)
     # Ideally this will go into its own storage so we don't have to keep calling it
@@ -140,6 +148,9 @@ def craftAlbumURL(images):
 
 
 def tmdbToImdb(tmdbID, mediaType=None):
+    '''
+    Converts a TMDB ID to an IMDB ID
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
     }
@@ -164,8 +175,10 @@ def craftPlaylistDesc(string):
     return final_desc
 
 def getSpotifyCopyright(id, type, region='AU'):
-    # Returns spotify copyright information for an album or show
-    # type MUST be "albums" or "shows"
+    '''
+    Returns spotify copyright information for an album or show
+    type MUST be "albums" or "shows"
+    '''
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

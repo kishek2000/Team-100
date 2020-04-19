@@ -6,6 +6,7 @@ searchFilms(searchTerm, nItems, country)
 searchShows(searchTerm, nItems, country)
 spotifySearch(searchTerm, nItems, country, types)
 search(searchTerm, formats, nItems, country="AU")
+filtered_search(filter_dict)
 '''
 import requests
 if __name__ == "__main__":
