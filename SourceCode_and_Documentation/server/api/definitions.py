@@ -162,3 +162,17 @@ def craftPlaylistDesc(string):
     else:
         final_desc = string.partition('Cover:')[0]
     return final_desc
+
+def getSpotifyCopyright(id, type, region='AU'):
+    # Returns spotify copyright information for an album or show
+    # type MUST be "albums" or "shows"
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': getSpotifyToken(),
+    }
+    params = (
+        ('market', region),
+    )
+    response = requests.get('https://api.spotify.com/v1/' + type + '/' + id, headers=headers, params=params)
+    return response.json()["copyrights"]
