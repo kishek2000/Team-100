@@ -12,6 +12,8 @@ urlpatterns = [
          views.search_watch_filtered),
     path('api/search/watch/filters/<str:region>', views.region_service_filters),
     path('api/details/tv/<slug:id>', views.details_tv),
+    path('api/services/tv/<slug:id>/<str:title>/<str:popularity>/<str:score>',
+         views.tmdb_streaming_services),
     path('api/details/movie/<slug:id>', views.details_movie),
     path('api/details/album/<str:id>', views.details_album),
     path('api/details/single/<str:id>', views.details_single),

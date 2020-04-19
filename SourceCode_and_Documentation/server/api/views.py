@@ -8,6 +8,7 @@ from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, 
 from .search_data import search, filtered_search
 from .reviews import title_rating, tv_collection_ratings
 from justwatch import JustWatch
+from .definitions import findServices
 
 # Create your views here.
 
@@ -179,7 +180,8 @@ def region_service_filters(request, region):
     just_watch = JustWatch(country=region)
     aus_providers = just_watch.get_providers()
     for item in aus_providers:
-        plist.append({"full": item["clear_name"], "short": item["short_name"]})
+        plist.append({"label": item["clear_name"],
+                      "value": item["short_name"]})
     return JsonResponse({"list": plist})
 
 
@@ -187,6 +189,14 @@ def search_watch_filtered(request, query, services):
     data = filtered_search({"query": query, "providers": services.split('&')})
     obj = {
         "Search Results": data
+    }
+    return JsonResponse(obj)
+
+
+def tmdb_streaming_services(request, id, title, popularity, score):
+    services = findServices(id, title, popularity, score)
+    obj = {
+        'data': services
     }
     return JsonResponse(obj)
 

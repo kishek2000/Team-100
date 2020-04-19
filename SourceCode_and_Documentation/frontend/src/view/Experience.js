@@ -8,6 +8,7 @@ export function Experience({
   listen,
   searchQuery,
   getOverlayData,
+  getOverlayServices,
 }) {
   if (currentExperience === "WATCH") {
     return (
@@ -15,6 +16,7 @@ export function Experience({
         watch={watch}
         searchQuery={searchQuery}
         getOverlayData={getOverlayData}
+        getOverlayServices={getOverlayServices}
       />
     );
   } else {

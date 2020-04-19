@@ -7,7 +7,6 @@ export const CURRDATESTR = [
   `${new Date().getFullYear()}`,
 ];
 
-console.log(CURRDATESTR.join("/"));
 export const MONTHS = [
   "January",
   "February",
@@ -24,9 +23,7 @@ export const MONTHS = [
 ];
 export const TIME = () => {
   var date = new Date(CURRDATESTR.join("/"));
-  console.log(date);
   var day = date.toLocaleDateString("au-AU", { weekday: "long" });
-  console.log(day);
   return {
     day: day,
     date: CURRDATESTR[1],

@@ -53,24 +53,39 @@ clientSpotifyAuthorise()
 def getSpotifyToken():
     return spotifyToken
 
-def findServices(tmdb_id, tmdb_title, region='AU'):
-    just_watch = JustWatch(region)
+
+def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
+    just_watch = JustWatch()
     results = just_watch.search_for_item(query=tmdb_title)
     # Ideally this will go into its own storage so we don't have to keep calling it
     prov = just_watch.get_providers()
     providers = {}
     for result in prov:
         providers[result["id"]] = result["clear_name"]
+    ###########################################################################################################################################################
+    # TODO: add a link for the icon of the thing (can simply be done with appending the path to images.justwatch.com, and then appending a s100 on the end.)
+    # eg: https://images.justwatch.com/icon/430997/s100, and the link stored in provider is icon/430997/{profile} so just use partition to only have the path
+    # that we want
+    ###########################################################################################################################################################
+
     services = []
     for item in results['items']:
-        for prov in item['scoring']:
-                if prov['provider_type'] == 'tmdb:id' and prov['value'] == tmdb_id:
-                    for service in item['offers']:
-                        services.append({
-                            "name": providers[service["provider_id"]],
-                            "link": service["urls"]["standard_web"]
-                        })
+        if 'scoring' in item:
+            for prov in item['scoring']:
+                if (prov['provider_type'] == 'tmdb:id' and prov['value'] == tmdb_id) or item['title'] == tmdb_title:
+                    if 'offers' in item:
+                        for service in item['offers']:
+                            if service['monetization_type'] != 'cinema':
+                                offer = {
+                                    "name": providers[service["provider_id"]],
+                                    "link": service["urls"]["standard_web"]
+                                }
+                                if offer not in services:
+                                    services.append(offer)
+    if len(services) == 0:
+        services = ["empty"]
     return services
+
 
 def getTVContentRating(mediaID, region="AU, US"):
     '''

@@ -19,6 +19,15 @@ export const AppBody = ({
   setSearchQuery,
   searchQuery,
   getOverlayData,
+  serviceOptions,
+  setServiceOptions,
+  serviceSelections,
+  setServiceSelections,
+  region,
+  setRegion,
+  getServiceOptions,
+  getOverlayServices,
+  overlayServices,
 }) => (
   <section className="App-media-options">
     <button
@@ -66,6 +75,13 @@ export const AppBody = ({
         getListenData={getListenData}
         setSearchQuery={setSearchQuery}
         mediaSelected={mediaSelected}
+        setServiceOptions={setServiceOptions}
+        serviceOptions={serviceOptions}
+        serviceSelections={serviceSelections}
+        setServiceSelections={setServiceSelections}
+        region={region}
+        setRegion={setRegion}
+        getServiceOptions={getServiceOptions}
       />
     </div>
     <Experience
@@ -74,6 +90,8 @@ export const AppBody = ({
       listen={listen}
       searchQuery={searchQuery}
       getOverlayData={getOverlayData}
+      getOverlayServices={getOverlayServices}
+      overlayServices={overlayServices}
     />
     <BackToTop
       showAt={100}

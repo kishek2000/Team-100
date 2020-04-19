@@ -3,15 +3,19 @@ import { Client } from "../client";
 
 // Instantiate a single instance of the Client, used across
 // the application for fetching of data.
-const client = new Client("http://localhost:8000");
+const client = new Client("http://127.0.0.1:8000");
 
 export function AppContainer({ children }) {
   const [mediaSelected, setMediaSelected] = useState("WATCH");
   const [watchData, setWatchData] = useState({});
   const [listenData, setListenData] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
+  const [serviceSelections, setServiceSelections] = useState({});
+  const [serviceOptions, setServiceOptions] = useState({});
+  const [region, setRegion] = useState("AU");
   const [openOverlayID, setOpenOverlayID] = useState(-1);
   const [overlayData, setOverlayData] = useState({});
+  const [overlayServices, setOverlayServices] = useState({});
 
   const getWatchData = useCallback(() => {
     client.getWatchData().then((data) => setWatchData(data));
@@ -21,6 +25,24 @@ export function AppContainer({ children }) {
     client.getListenData().then((data) => setListenData(data));
   }, [setListenData]);
 
+  const getOverlayServices = useCallback(
+    (tmdbID, tmdbTitle, tmdbPopularity, tmdbScore) => {
+      client
+        .getWatchStreams(tmdbID, tmdbTitle, tmdbPopularity, tmdbScore)
+        .then((data) => setOverlayServices(data));
+    },
+    [setOverlayServices]
+  );
+
+  const getServiceOptions = useCallback(
+    (regionInput) => {
+      client.getWatchRegionServices(regionInput).then((data) => {
+        setServiceOptions(data);
+      });
+    },
+    [setServiceOptions]
+  );
+
   const onSearchQuery = useCallback(
     (query, experience, services) => {
       if (experience === "WATCH") {
@@ -29,7 +51,7 @@ export function AppContainer({ children }) {
           setSearchQuery(query);
         });
       } else if (experience === "LISTEN") {
-        client.getListenSearchResults(query, services).then((data) => {
+        client.getListenSearchResults(query).then((data) => {
           setListenData(data);
           setSearchQuery(query);
         });
@@ -63,6 +85,7 @@ export function AppContainer({ children }) {
     getWatchData: getWatchData,
     getListenData: getListenData,
     getOverlayData: getOverlayData,
+    getServiceOptions: getServiceOptions,
     watch: { data: watchData, fetch: getWatchData },
     listen: { data: listenData, fetch: getListenData },
     overlay: { data: overlayData },
@@ -71,5 +94,14 @@ export function AppContainer({ children }) {
     searchQuery: searchQuery,
     openOverlayID: openOverlayID,
     setOpenOverlayID: setOpenOverlayID,
+    setServiceOptions: setServiceOptions,
+    serviceOptions: serviceOptions,
+    serviceSelections: serviceSelections,
+    setServiceSelections: setServiceSelections,
+    region: region,
+    setRegion: setRegion,
+    getOverlayServices: getOverlayServices,
+    overlayServices: overlayServices,
+    setOverlayServices: setOverlayServices,
   });
 }

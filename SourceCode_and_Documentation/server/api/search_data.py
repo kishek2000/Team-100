@@ -37,10 +37,11 @@ def searchFilms(searchTerm, nItems, country):
     for result in json:
         if result is None:
             break
+        img = craftPosterURL(result["poster_path"])
         mediaObjects.append({
             "name": result["title"],
             "type": "movie",
-            "imgURL": craftPosterURL(result["poster_path"]),
+            "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
             "score": round(result["vote_average"]/10, 2),
             "genre": getMovieGenre(result["genre_ids"]),
             "first_air_date": result["release_date"][0:4],
@@ -64,10 +65,11 @@ def searchShows(searchTerm, nItems, country):
     for result in json:
         if result is None:
             break
+        img = craftPosterURL(result["poster_path"])
         mediaObjects.append({
             "name": result["name"],
             "type": "tv",
-            "imgURL": craftPosterURL(result["poster_path"]),
+            "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
             "genre": getTVGenre(result["genre_ids"]),
             "score": round(result["vote_average"]/10, 2),
             "first_air_date": result["first_air_date"][0:4],
@@ -179,6 +181,19 @@ def search(searchTerm, formats, nItems, country="AU"):
     return results
 
 
+def getTmdbId(name, media):
+    parameters = {
+        "api_key": TMDB_API_KEY,
+        "query": name
+    }
+    res = requests.get(
+        TMDB_URL + "/search/{}".format(media), params=parameters)
+    json = res.json()["results"]
+    for result in json:
+        if result["name"] == name:
+            return result["id"]
+
+
 def filtered_search(filter_dict):
     '''
     Request to justwatch api for filtered search
@@ -192,27 +207,28 @@ def filtered_search(filter_dict):
     for item in res.json()["items"]:
         score = 0
         tmdbid = 0
-        for scores in item["scoring"]:
-            if scores["provider_type"] == "tmdb:id":
-                tmdbid = scores["value"]
-            if scores["provider_type"] == "imdb:score":
-                score = scores["value"]
+        if 'scoring' in item:
+            for scores in item["scoring"]:
+                if scores["provider_type"] == "tmdb:id":
+                    tmdbid = scores["value"]
+                if scores["provider_type"] == "imdb:score":
+                    score = scores["value"]
         if item["object_type"] == "show":
             mediaObjects["TV Results"].append({
                 "name": item["title"],
-                "id": tmdbid,
-                "release_date": item["original_release_year"],
-                "type": item["object_type"],
-                "imageURL": "https://images.justwatch.com/" + item["poster"].partition('profile')[0][0:-2] + 's718',
-                "score": score
+                "id": tmdbid if tmdbid != 0 else getTmdbId(item["title"], 'tv'),
+                "first_air_date": item["original_release_year"],
+                "type": "tv",
+                "imgURL": "https://images.justwatch.com" + item["poster"].partition('profile')[0][0:-2] + '/s718',
+                "score": round(score / 10, 2),
             })
         else:
             mediaObjects["Movie Results"].append({
                 "name": item["title"],
-                "id": tmdbid,
-                "release_date": item["original_release_year"],
+                "id": tmdbid if tmdbid != 0 else getTmdbId(item["title"], 'movie'),
+                "first_air_date": item["original_release_year"],
                 "type": item["object_type"],
-                "imageURL": "https://images.justwatch.com/" + item["poster"].partition('profile')[0][0:-2] + 's718',
-                "score": score
+                "imgURL": "https://images.justwatch.com" + item["poster"].partition('profile')[0][0:-2] + '/s718',
+                "score": round(score / 10, 2),
             })
     return mediaObjects

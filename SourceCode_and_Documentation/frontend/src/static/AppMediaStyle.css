@@ -24,6 +24,13 @@
 }
 
 /* This below is the styling for the upper header of filters. */
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: black;
+}
+
 .filters-header {
   display: flex;
   flex-direction: row;
@@ -37,6 +44,29 @@
   top: 0;
   background: white;
   z-index: 2;
+}
+
+.services-filter,
+.region-filter {
+  font-family: HelveticaNeue-Thin;
+  font-size: 0.75vw;
+}
+
+.services-filter {
+  margin-right: 2vw;
+  width: 9vw;
+}
+
+.region-filter {
+  margin-right: 1vw;
+  width: 6vw;
+}
+
+.filter-text {
+  margin-right: 1vw;
+  font-family: HelveticaNeue-Thin;
+  font-size: 0.8vw;
+  color: black;
 }
 
 /* This below is for the selection of watch or listen */

@@ -10,6 +10,7 @@ export function MediaCategoryList(props) {
         category={props.category}
         content={props.mediaContent}
         getOverlayData={props.getOverlayData}
+        getOverlayServices={props.getOverlayServices}
         num={props.num}
       />
     );

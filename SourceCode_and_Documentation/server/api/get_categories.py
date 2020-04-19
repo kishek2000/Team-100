@@ -8,7 +8,6 @@ newMusicReleases(nItems, country="AU")
 '''
 
 import requests
-import pprint
 
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
@@ -45,6 +44,7 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "genre": getTVGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
                 "type": "tv",
+                "popularity": result["popularity"]
             })
         elif media == '/movie/':
             mediaObjects.append({
@@ -55,7 +55,8 @@ def getWatchCategory(media, category, keyname, country="AU"):
                 "score": round(result["vote_average"]/10, 2),
                 "genre": getMovieGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
-                "type": "movie"
+                "type": "movie",
+                "popularity": result["popularity"]
             })
     return mediaObjects
 
@@ -80,7 +81,8 @@ def getWatchTrending():
                 "score": round(result["vote_average"]/10, 2),
                 "genre": getTVGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
-                "type": "tv"
+                "type": "tv",
+                "popularity": result["popularity"]
             })
         elif result['media_type'] == 'movie':
             mediaObjects.append({
@@ -92,7 +94,8 @@ def getWatchTrending():
                 "score": round(result["vote_average"]/10, 2),
                 "genre": getMovieGenre(result["genre_ids"]),
                 "lang": result["original_language"].upper(),
-                "type": "movie"
+                "type": "movie",
+                "popularity": result["popularity"]
             })
     return mediaObjects
 
@@ -175,16 +178,17 @@ def getTVData(id, region="AU, US"):
 
     for genre in data["genres"]:
         genreString += genre["name"] + ", "
-
+    img = craftPosterURL(data["poster_path"])
     mediaObjects.append({
         "name": data["name"],
-        "imgURL": craftPosterURL(data["poster_path"]),
+        "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
         "overview": data["overview"],
-        "first_air_date": data["first_air_date"][0:4],
+        "first_air_date": data["first_air_date"][0:4] if data["first_air_date"] else '',
         "content_rating": content_rating,
         "genres": genreString[0:len(genreString)-2],
         "trailer": trailer_link,
-        "lang": data["original_language"].upper()
+        "lang": data["original_language"].upper(),
+        "popularity": data["popularity"]
         # "location": findStreamingServices(data["id"])
     })
     return mediaObjects
@@ -215,15 +219,17 @@ def getMovieData(id, region="AU, US"):
     for genre in data["genres"]:
         genreString += genre["name"] + ", "
 
+    img = craftPosterURL(data["poster_path"])
     mediaObjects.append({
         "name": data["title"],
-        "imgURL": craftPosterURL(data["poster_path"]),
+        "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
         "overview": data["overview"],
         "first_air_date": data["release_date"][0:4],
         "content_rating": content_rating,
         "genres": genreString[0:len(genreString)-2],
         "trailer": trailer_link,
-        "lang": data["original_language"].upper()
+        "lang": data["original_language"].upper(),
+        "popularity": data["popularity"]
     })
     return mediaObjects
 

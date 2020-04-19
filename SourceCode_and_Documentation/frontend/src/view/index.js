@@ -32,6 +32,15 @@ function App() {
         setOpenOverlayID,
         getOverlayData,
         setOverlayData,
+        getServiceOptions,
+        serviceOptions,
+        serviceSelections,
+        setServiceSelections,
+        region,
+        setRegion,
+        getOverlayServices,
+        overlayServices,
+        setOverlayServices,
       }) => (
         <div className="App">
           <Overlay
@@ -40,6 +49,8 @@ function App() {
             setOpenOverlayID={setOpenOverlayID}
             media_id={openOverlayID}
             setOverlayData={setOverlayData}
+            servicesData={overlayServices}
+            setServicesData={setOverlayServices}
           />
           <AppHeader
             mediaSelected={mediaSelected}
@@ -59,6 +70,14 @@ function App() {
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
             getOverlayData={getOverlayData}
+            getServiceOptions={getServiceOptions}
+            serviceOptions={serviceOptions}
+            serviceSelections={serviceSelections}
+            setServiceSelections={setServiceSelections}
+            region={region}
+            setRegion={setRegion}
+            getOverlayServices={getOverlayServices}
+            overlayServices={overlayServices}
           />
         </div>
       )}

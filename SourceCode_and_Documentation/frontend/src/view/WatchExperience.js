@@ -3,9 +3,13 @@ import { MediaCategoryList } from "./MediaCategoryList";
 import LoadingSpinner from "../images/tail-spin.svg";
 
 // This function will give us the complete watch experience!
-export function WatchExperience({ watch, searchQuery, getOverlayData }) {
+export function WatchExperience({
+  watch,
+  searchQuery,
+  getOverlayData,
+  getOverlayServices,
+}) {
   const { data } = watch;
-  console.table(data);
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
       return (
@@ -28,6 +32,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
               media="WATCH"
               mediaContent={tv_results}
               getOverlayData={getOverlayData}
+              getOverlayServices={getOverlayServices}
               num="0"
             />
             <MediaCategoryList
@@ -35,6 +40,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
               media="WATCH"
               mediaContent={movie_results}
               getOverlayData={getOverlayData}
+              getOverlayServices={getOverlayServices}
               num="1"
             />
           </div>
@@ -48,6 +54,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Trending Daily"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="0"
           />
           <MediaCategoryList
@@ -55,6 +62,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Top Rated TV Shows"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="1"
           />
           <MediaCategoryList
@@ -62,6 +70,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["On Air TV Shows"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="2"
           />
           <MediaCategoryList
@@ -69,6 +78,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Popular TV Shows"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="3"
           />
           <MediaCategoryList
@@ -76,6 +86,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Top Rated Movies"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="4"
           />
           <MediaCategoryList
@@ -83,6 +94,7 @@ export function WatchExperience({ watch, searchQuery, getOverlayData }) {
             media="WATCH"
             mediaContent={data["Popular Movies"]}
             getOverlayData={getOverlayData}
+            getOverlayServices={getOverlayServices}
             num="5"
           />
         </div>

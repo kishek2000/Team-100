@@ -25,7 +25,7 @@ export class Client {
   }
 
   async getWatchSearchResults(query, services) {
-    if (services === []) {
+    if (Object.keys(services).length === 0) {
       const data = await this.api(`/api/search/watch/unfiltered/${query}`);
       return data;
     } else {
@@ -38,7 +38,7 @@ export class Client {
 
   async getWatchRegionServices(region) {
     const data = await this.api(`/api/search/watch/filters/${region}`);
-    return data;
+    return data.list;
   }
 
   async getListenSearchResults(query) {
@@ -49,6 +49,13 @@ export class Client {
   async getMediaOverlayData(mediaId, mediaType) {
     const data = await this.api(
       `/api/details/${mediaType.toLowerCase()}/${mediaId}`
+    );
+    return data.data;
+  }
+
+  async getWatchStreams(tmdbID, tmdbTitle, tmdbPopularity, tmdbScore) {
+    const data = await this.api(
+      `/api/services/tv/${tmdbID}/${tmdbTitle}/${tmdbPopularity}/${tmdbScore}`
     );
     return data.data;
   }
