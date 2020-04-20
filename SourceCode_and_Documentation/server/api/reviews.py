@@ -31,13 +31,15 @@ MISSING_RATING = -1
 
 #Returns episode ratings for a shows imdb/tmdb id
 def tv_collection_ratings(id):
-    # Returned obj will be of format [episodeObject, episodeObject, ...]
+    #Returned obj will contain an ordered list of seasons, 
+    # within each of which is an ordered list of episodeObject's
     # episodeObject is of format {
     #   'ttID': str
     #   'season': int
     #   'ep': int
     #   'rating': int
     # }
+
     #Converts from tmdb ID if needed
     if (id[0] != "t"):
         ttID = tmdbToImdb(id, 'tv')
@@ -45,9 +47,9 @@ def tv_collection_ratings(id):
         ttID = id
     
     try:
-        return shows[ttID]
+        return seasons_list(shows[ttID])
     except KeyError:
-        return None
+        return []
 
 #Returns imdb rating for given ID
 def title_rating(id):
@@ -64,6 +66,26 @@ def title_rating(id):
         return titles[ttID]
     except KeyError:
         return None
+
+#Take in a list of episodes and sort them into ordered seasons
+def seasons_list(episodes):
+    #Get max season
+    maxSeason = 0
+    for ep in episodes:
+        if ep['season'] > maxSeason:
+            maxSeason = ep['season']
+    
+    #Sort episodes into seasons
+    seasons = [[] for i in range(maxSeason)]
+    for ep in episodes:
+        seasons[ep['season'] - 1].append(ep)
+    
+    #Sort each season by episode number
+    for season in seasons:
+        season.sort(key = lambda ep: ep['ep'])
+    
+    print(seasons)
+    return seasons
 
 #Downloads url, unzips and writes to out
 def get_tsv(url, out):

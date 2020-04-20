@@ -130,7 +130,7 @@ def details_movie(request, id):
     return JsonResponse(obj)
 
 
-def review_collection(request, id):  # TODO
+def review_collection(request, id):
     obj = {'episodes': tv_collection_ratings(id)}
     return JsonResponse(obj)
 
