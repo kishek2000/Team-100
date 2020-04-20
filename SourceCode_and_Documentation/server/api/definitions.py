@@ -6,7 +6,7 @@ File contains sensitive data (API keys, Spotify Client Secret) which aren't real
 
 clientSpotifyAuthorise()
 getSpotifyToken()
-findServices(tmdb_id, tmdb_title, region='AU')
+findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU')
 getTVContentRating(mediaID, region="AU, US")
 getMovieContentRating(mediaID, region="AU, US")
 genreIdsToString(genreIDs, mediaType)
@@ -73,12 +73,6 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
             "name": result["clear_name"],
             "logo": "images.justwatch.com" + result["icon_url"][:-9] + "s100"
         }
-    ###########################################################################################################################################################
-    # TODO: add a link for the icon of the thing (can simply be done with appending the path to images.justwatch.com, and then appending a s100 on the end.)
-    # eg: https://images.justwatch.com/icon/430997/s100, and the link stored in provider is icon/430997/{profile} so just use partition to only have the path
-    # that we want
-    ###########################################################################################################################################################
-
     services = []
     for item in results['items']:
         if 'scoring' in item:
