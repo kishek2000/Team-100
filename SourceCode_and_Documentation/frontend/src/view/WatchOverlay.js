@@ -80,6 +80,15 @@ export function WatchOverlay({
               <div></div>
             )}
           </div>
+          <div className="imdb-tv-scores">
+            {media_data["type"] == "tv" &&
+            Object.keys(tvReviewData).length > 0 ? (
+              // <ReviewTable />
+              <div></div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
         <div className="overlay-services">
           <div className="overlay-subtitle">Streaming Services</div>
