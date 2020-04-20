@@ -7,6 +7,35 @@ export function WatchOverlayMeta({ airDate, language, rating, genre }) {
     .join(" | ");
 }
 
+const COLOR_EXCELLENT = "#60B80E"
+const COLOR_GREAT = "#83CE09"
+const COLOR_GOOD = "#E4CD2C"
+const COLOR_OK = "#F3A533"
+const COLOR_BAD = "#E93F33"
+const COLOR_TERRIBLE = "#8D3FBB"
+const COLOR_NO_DATA = ""
+
+function bgMap(rating) {
+  if (rating >= 9) {
+    return COLOR_EXCELLENT;
+  } else if (rating >= 8) {
+    return COLOR_GREAT;
+  } else if (rating >= 7) {
+    return COLOR_GOOD;
+  } else if (rating >= 6) {
+    return COLOR_OK;
+  } else if (rating >= 5) {
+    return COLOR_BAD;
+  } else if (rating >= 0) {
+    return COLOR_TERRIBLE;
+  } else {
+    //Negative rating == no data
+    return COLOR_NO_DATA;
+  }
+
+  
+}
+
 export function WatchOverlay({
   media_data,
   setOpenOverlayID,
@@ -18,6 +47,15 @@ export function WatchOverlay({
 }) {
   console.log(watchReviewData);
   console.log(tvReviewData);
+  console.log(media_data);
+  if (tvReviewData.length > 0) {
+    const reviewTable = tvReviewData.map((season, index) => 
+      <li>Season {index}: {season.length} episodes</li>
+    );
+    console.log(reviewTable);
+  }
+  
+
   return (
     <section className="overlay">
       <div className="overlay-poster-wrapper">
@@ -73,22 +111,34 @@ export function WatchOverlay({
           ) : (
             <div></div>
           )}
-          <div className="imdb-score">
-            {typeof watchReviewData === "number" ? (
-              watchReviewData
+          
+            {tvReviewData.length > 0 ? (
+              //reviewTable
+              <div className="imdb-tv-scores">
+                <div className="overflow-subtitle"> 
+                Reviews across seasons
+                </div>
+                <div className="overlay-table">
+                  {tvReviewData.map((season, index) => (
+                    <div className="overlay-table-column">{index + 1}
+                      {season.map((episode) => (
+                        <div className="overlay-table-cell" 
+                          style={{
+                            backgroundColor: bgMap(episode.rating)
+                          }}
+                        >
+                          {episode.rating >= 0 ? episode.rating : "-"}
+                        </div>
+                        )
+                      )}
+                    </div>
+                    )
+                  )}
+                </div>
+              </div>
             ) : (
               <div></div>
             )}
-          </div>
-          <div className="imdb-tv-scores">
-            {media_data["type"] === "tv" &&
-            Object.keys(tvReviewData).length > 0 ? (
-              // <ReviewTable />
-              <div></div>
-            ) : (
-              <div></div>
-            )}
-          </div>
         </div>
         <div className="overlay-services">
           <div className="overlay-subtitle">Streaming Services</div>
@@ -125,6 +175,13 @@ export function WatchOverlay({
               </div>
             )}
           </div>
+        </div>
+        <div className="imdb-score">
+          {typeof watchReviewData === "number" ? (
+            watchReviewData
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </section>
