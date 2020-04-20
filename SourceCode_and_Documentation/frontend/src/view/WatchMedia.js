@@ -11,6 +11,8 @@ export function WatchMedia({
   getOverlayData,
   num,
   getOverlayServices,
+  getWatchScore,
+  getTVEpScores,
 }) {
   if (content !== undefined) {
     const contentStart = content;
@@ -28,7 +30,6 @@ export function WatchMedia({
                       {Math.round(item["score"] * 1000) / 10}%
                     </span>
                   </div>
-                  {console.log(item["imgURL"])}
                   <img
                     index={index}
                     src={item["imgURL"]}
@@ -42,6 +43,10 @@ export function WatchMedia({
                         item["popularity"],
                         item["score"]
                       );
+                      getWatchScore(item["id"]);
+                      if (item["type"] === "tv") {
+                        getTVEpScores(item["id"]);
+                      }
                     }}
                   />
                 </div>

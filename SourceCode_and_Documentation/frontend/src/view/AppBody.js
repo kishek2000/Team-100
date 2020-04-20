@@ -28,6 +28,8 @@ export const AppBody = ({
   getServiceOptions,
   getOverlayServices,
   overlayServices,
+  getWatchScore,
+  getTVEpScores,
 }) => (
   <section className="App-media-options">
     <button
@@ -92,6 +94,8 @@ export const AppBody = ({
       getOverlayData={getOverlayData}
       getOverlayServices={getOverlayServices}
       overlayServices={overlayServices}
+      getWatchScore={getWatchScore}
+      getTVEpScores={getTVEpScores}
     />
     <BackToTop
       showAt={100}

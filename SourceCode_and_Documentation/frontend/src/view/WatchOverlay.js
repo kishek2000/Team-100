@@ -13,7 +13,11 @@ export function WatchOverlay({
   setOverlayData,
   servicesData,
   setServicesData,
+  watchReviewData,
+  tvReviewData,
 }) {
+  console.log(watchReviewData);
+  console.log(tvReviewData);
   return (
     <section className="overlay">
       <div className="overlay-poster-wrapper">
@@ -55,19 +59,28 @@ export function WatchOverlay({
         ) : (
           <div></div>
         )}
-        {media_data["trailer"] !== "" ? (
-          <div>
-            <div className="overlay-subtitle">Trailer</div>
-            <iframe
-              title="trailer"
-              src={media_data["trailer"]}
-              allowFullScreen={true}
-              className="overlay-trailer-video"
-            ></iframe>
+        <div className="overlay-trailer-and-reviews">
+          {media_data["trailer"] !== "" ? (
+            <div>
+              <div className="overlay-subtitle">Trailer</div>
+              <iframe
+                title="trailer"
+                src={media_data["trailer"]}
+                allowFullScreen={true}
+                className="overlay-trailer-video"
+              ></iframe>
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <div className="imdb-score">
+            {typeof watchReviewData === "number" ? (
+              watchReviewData
+            ) : (
+              <div></div>
+            )}
           </div>
-        ) : (
-          <div></div>
-        )}
+        </div>
         <div className="overlay-services">
           <div className="overlay-subtitle">Streaming Services</div>
           <div className="services-list">

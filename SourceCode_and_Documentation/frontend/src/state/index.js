@@ -16,6 +16,8 @@ export function AppContainer({ children }) {
   const [openOverlayID, setOpenOverlayID] = useState(-1);
   const [overlayData, setOverlayData] = useState({});
   const [overlayServices, setOverlayServices] = useState({});
+  const [overlayReview, setOverlayReview] = useState({});
+  const [overlayEpisodeReviews, setOverlayEpisodeReviews] = useState({});
 
   const getWatchData = useCallback(() => {
     client.getWatchData().then((data) => setWatchData(data));
@@ -58,6 +60,24 @@ export function AppContainer({ children }) {
       }
     },
     [setSearchQuery, setWatchData, setListenData]
+  );
+
+  const getWatchScore = useCallback(
+    (tmdbID) => {
+      client.getWatchIMDBScore(tmdbID).then((data) => {
+        setOverlayReview(data);
+      });
+    },
+    [setOverlayReview]
+  );
+
+  const getTVEpScores = useCallback(
+    (tmdbID) => {
+      client.getTVEpisodeRatings(tmdbID).then((data) => {
+        setOverlayEpisodeReviews(data);
+      });
+    },
+    [setOverlayEpisodeReviews]
   );
 
   const getOverlayData = useCallback(
@@ -103,5 +123,9 @@ export function AppContainer({ children }) {
     getOverlayServices: getOverlayServices,
     overlayServices: overlayServices,
     setOverlayServices: setOverlayServices,
+    overlayReview: overlayReview,
+    overlayEpisodeReviews: overlayEpisodeReviews,
+    getWatchScore: getWatchScore,
+    getTVEpScores: getTVEpScores,
   });
 }

@@ -8,7 +8,10 @@ export function WatchExperience({
   searchQuery,
   getOverlayData,
   getOverlayServices,
+  getWatchScore,
+  getTVEpScores,
 }) {
+  console.log(getWatchScore);
   const { data } = watch;
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
@@ -33,6 +36,8 @@ export function WatchExperience({
               mediaContent={tv_results}
               getOverlayData={getOverlayData}
               getOverlayServices={getOverlayServices}
+              getWatchScore={getWatchScore}
+              getTVEpScores={getTVEpScores}
               num="0"
             />
             <MediaCategoryList
@@ -41,6 +46,8 @@ export function WatchExperience({
               mediaContent={movie_results}
               getOverlayData={getOverlayData}
               getOverlayServices={getOverlayServices}
+              getWatchScore={getWatchScore}
+              getTVEpScores={getTVEpScores}
               num="1"
             />
           </div>
@@ -55,6 +62,8 @@ export function WatchExperience({
             mediaContent={data["Trending Daily"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="0"
           />
           <MediaCategoryList
@@ -63,6 +72,8 @@ export function WatchExperience({
             mediaContent={data["Top Rated TV Shows"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="1"
           />
           <MediaCategoryList
@@ -71,6 +82,8 @@ export function WatchExperience({
             mediaContent={data["On Air TV Shows"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="2"
           />
           <MediaCategoryList
@@ -79,6 +92,8 @@ export function WatchExperience({
             mediaContent={data["Popular TV Shows"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="3"
           />
           <MediaCategoryList
@@ -87,6 +102,8 @@ export function WatchExperience({
             mediaContent={data["Top Rated Movies"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="4"
           />
           <MediaCategoryList
@@ -95,6 +112,8 @@ export function WatchExperience({
             mediaContent={data["Popular Movies"]}
             getOverlayData={getOverlayData}
             getOverlayServices={getOverlayServices}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             num="5"
           />
         </div>

@@ -41,6 +41,10 @@ function App() {
         getOverlayServices,
         overlayServices,
         setOverlayServices,
+        overlayReview,
+        overlayEpisodeReviews,
+        getWatchScore,
+        getTVEpScores,
       }) => (
         <div className="App">
           <Overlay
@@ -51,6 +55,8 @@ function App() {
             setOverlayData={setOverlayData}
             servicesData={overlayServices}
             setServicesData={setOverlayServices}
+            watchReviewData={overlayReview}
+            tvReviewData={overlayEpisodeReviews}
           />
           <AppHeader
             mediaSelected={mediaSelected}
@@ -65,6 +71,8 @@ function App() {
             onSearchQuery={onSearchQuery}
             getWatchData={getWatchData}
             getListenData={getListenData}
+            getWatchScore={getWatchScore}
+            getTVEpScores={getTVEpScores}
             watch={watch}
             listen={listen}
             setSearchQuery={setSearchQuery}

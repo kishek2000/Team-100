@@ -11,6 +11,8 @@ export function MediaCategoryList(props) {
         content={props.mediaContent}
         getOverlayData={props.getOverlayData}
         getOverlayServices={props.getOverlayServices}
+        getWatchScore={props.getWatchScore}
+        getTVEpScores={props.getTVEpScores}
         num={props.num}
       />
     );

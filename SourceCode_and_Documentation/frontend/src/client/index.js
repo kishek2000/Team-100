@@ -53,6 +53,16 @@ export class Client {
     return data.data;
   }
 
+  async getWatchIMDBScore(tmdbID) {
+    const data = await this.api(`/api/reviews/title/${tmdbID}`);
+    return data.rating;
+  }
+
+  async getTVEpisodeRatings(tmdbID) {
+    const data = await this.api(`/api/reviews/episodes/${tmdbID}`);
+    return data.episodes;
+  }
+
   async getWatchStreams(tmdbID, tmdbTitle, tmdbPopularity, tmdbScore) {
     const data = await this.api(
       `/api/services/tv/${tmdbID}/${tmdbTitle}/${tmdbPopularity}/${tmdbScore}`

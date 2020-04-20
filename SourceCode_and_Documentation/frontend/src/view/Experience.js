@@ -9,14 +9,19 @@ export function Experience({
   searchQuery,
   getOverlayData,
   getOverlayServices,
+  getWatchScore,
+  getTVEpScores,
 }) {
   if (currentExperience === "WATCH") {
+    console.log(getWatchScore);
     return (
       <WatchExperience
         watch={watch}
         searchQuery={searchQuery}
         getOverlayData={getOverlayData}
         getOverlayServices={getOverlayServices}
+        getWatchScore={getWatchScore}
+        getTVEpScores={getTVEpScores}
       />
     );
   } else {

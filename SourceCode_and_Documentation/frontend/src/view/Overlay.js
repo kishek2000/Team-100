@@ -10,6 +10,8 @@ export function Overlay({
   setOverlayData,
   servicesData,
   setServicesData,
+  watchReviewData,
+  tvReviewData,
 }) {
   // const id, media = media_id.split()
   if (Object.keys(data).length > 0 && media_id !== -1) {
@@ -24,6 +26,8 @@ export function Overlay({
             setOverlayData={setOverlayData}
             servicesData={servicesData}
             setServicesData={setServicesData}
+            watchReviewData={watchReviewData}
+            tvReviewData={tvReviewData}
           />
         );
       } else {

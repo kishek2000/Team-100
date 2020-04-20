@@ -69,6 +69,11 @@
   margin-left: 1.4vw;
 }
 
+.overlay-trailer-and-reviews {
+  display: flex;
+  flex-direction: row;
+}
+
 .close-text {
   /* text-align: ; */
   width: 1.7vw;
