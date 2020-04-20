@@ -23,7 +23,7 @@ export function WatchMedia({
         <div className="category-media">
           {contentStart.map((item, index) =>
             item["id"] !== null ? (
-              <div className="media-template">
+              <div className="media-template" key={index}>
                 <div className="media-image-wrapper">
                   <div className="media-user-score">
                     <span className="user-score-text">

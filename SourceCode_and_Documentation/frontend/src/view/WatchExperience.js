@@ -11,7 +11,6 @@ export function WatchExperience({
   getWatchScore,
   getTVEpScores,
 }) {
-  console.log(getWatchScore);
   const { data } = watch;
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {

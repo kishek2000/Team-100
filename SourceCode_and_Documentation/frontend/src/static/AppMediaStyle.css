@@ -50,11 +50,13 @@
 .region-filter {
   font-family: HelveticaNeue-Thin;
   font-size: 0.75vw;
+  color: black !important;
 }
 
 .services-filter {
   margin-right: 2vw;
-  width: 9vw;
+  width: 15vw;
+  /* overflow: scroll; */
 }
 
 .region-filter {

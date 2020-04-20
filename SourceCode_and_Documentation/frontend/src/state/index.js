@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Client } from "../client";
+import { AUSTREAMS } from "../constants/index";
 
 // Instantiate a single instance of the Client, used across
 // the application for fetching of data.
@@ -11,7 +12,7 @@ export function AppContainer({ children }) {
   const [listenData, setListenData] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
   const [serviceSelections, setServiceSelections] = useState({});
-  const [serviceOptions, setServiceOptions] = useState({});
+  const [serviceOptions, setServiceOptions] = useState(AUSTREAMS);
   const [region, setRegion] = useState("AU");
   const [openOverlayID, setOpenOverlayID] = useState(-1);
   const [overlayData, setOverlayData] = useState({});
