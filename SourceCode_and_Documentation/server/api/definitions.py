@@ -69,7 +69,10 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
     prov = just_watch.get_providers()
     providers = {}
     for result in prov:
-        providers[result["id"]] = result["clear_name"]
+        providers[result["id"]] = {
+            "name": result["clear_name"],
+            "logo": "images.justwatch.com" + result["icon_url"][:-9] + "s100"
+        }
     ###########################################################################################################################################################
     # TODO: add a link for the icon of the thing (can simply be done with appending the path to images.justwatch.com, and then appending a s100 on the end.)
     # eg: https://images.justwatch.com/icon/430997/s100, and the link stored in provider is icon/430997/{profile} so just use partition to only have the path
@@ -85,8 +88,9 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
                         for service in item['offers']:
                             if service['monetization_type'] != 'cinema':
                                 offer = {
-                                    "name": providers[service["provider_id"]],
-                                    "link": service["urls"]["standard_web"]
+                                    "name": providers[service["provider_id"]]["name"],
+                                    "link": service["urls"]["standard_web"],
+                                    "logo": providers[service["provider_id"]]["logo"]
                                 }
                                 if offer not in services:
                                     services.append(offer)
