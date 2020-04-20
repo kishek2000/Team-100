@@ -73,7 +73,7 @@ def searchShows(searchTerm, nItems, country):
             "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
             "genre": getTVGenre(result["genre_ids"]),
             "score": round(result["vote_average"]/10, 2),
-            "first_air_date": result["first_air_date"][0:4],
+            "first_air_date": result["first_air_date"][0:4] if "first_air_date" in result else '',
             "id": result["id"]
         })
     return mediaObjects

@@ -13,7 +13,6 @@ export function Experience({
   getTVEpScores,
 }) {
   if (currentExperience === "WATCH") {
-    console.log(getWatchScore);
     return (
       <WatchExperience
         watch={watch}

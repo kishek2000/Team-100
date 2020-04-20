@@ -73,11 +73,6 @@ export class SearchBar extends React.Component {
           <div></div>
         )}
         <div className={this.props.name}>
-          <img
-            src="https://img.icons8.com/android/24/000000/search.png"
-            className={this.props.imagename}
-            alt="searchIcon"
-          ></img>
           <input
             className={this.props.inputname}
             type="text"
@@ -86,6 +81,14 @@ export class SearchBar extends React.Component {
             onChange={this.handleChange}
             // onChange={evt => console.log(evt.currentTarget.value)}
           ></input>
+          <div className="execute-search" onClick={this.handleSubmit}>
+            <img
+              src="https://img.icons8.com/android/24/000000/search.png"
+              className={this.props.imagename}
+              alt="searchIcon"
+              onClick={this.handleSubmit}
+            ></img>
+          </div>
         </div>
         <input type="submit" className="hide-this"></input>
       </form>

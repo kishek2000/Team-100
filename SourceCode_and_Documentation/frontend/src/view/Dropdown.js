@@ -42,6 +42,15 @@ export class Dropdown extends React.Component {
         placeholder={this.props.placeholder}
         isMulti={this.props.isMulti}
         isSearchable={false}
+        const
+        colourStyles={{
+          placeholder: (defaultStyles) => {
+            return {
+              ...defaultStyles,
+              color: "black",
+            };
+          },
+        }}
       />
     );
   }

@@ -81,7 +81,7 @@ export function WatchOverlay({
             )}
           </div>
           <div className="imdb-tv-scores">
-            {media_data["type"] == "tv" &&
+            {media_data["type"] === "tv" &&
             Object.keys(tvReviewData).length > 0 ? (
               // <ReviewTable />
               <div></div>
