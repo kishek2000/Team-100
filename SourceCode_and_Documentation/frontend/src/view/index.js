@@ -45,6 +45,16 @@ function App() {
         overlayEpisodeReviews,
         getWatchScore,
         getTVEpScores,
+        setOverlayReview,
+        setOverlayEpisodeReviews,
+        listenYTLink,
+        getListenLink,
+        setListenYTLink,
+        listenCategoryData,
+        setListenCategoryData,
+        getListenCatPlaylist,
+        selectedCat,
+        setSelectedCat,
       }) => (
         <div className="App">
           <Overlay
@@ -57,6 +67,10 @@ function App() {
             setServicesData={setOverlayServices}
             watchReviewData={overlayReview}
             tvReviewData={overlayEpisodeReviews}
+            setOverlayReview={setOverlayReview}
+            setOverlayEpisodeReviews={setOverlayEpisodeReviews}
+            listenYTLink={listenYTLink}
+            setListenYTLink={setListenYTLink}
           />
           <AppHeader
             mediaSelected={mediaSelected}
@@ -73,6 +87,7 @@ function App() {
             getListenData={getListenData}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
+            getListenLink={getListenLink}
             watch={watch}
             listen={listen}
             setSearchQuery={setSearchQuery}
@@ -86,6 +101,11 @@ function App() {
             setRegion={setRegion}
             getOverlayServices={getOverlayServices}
             overlayServices={overlayServices}
+            listenCategoryData={listenCategoryData}
+            setListenCategoryData={setListenCategoryData}
+            getListenCatPlaylist={getListenCatPlaylist}
+            selectedCat={selectedCat}
+            setSelectedCat={setSelectedCat}
           />
         </div>
       )}

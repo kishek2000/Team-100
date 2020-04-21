@@ -6,7 +6,6 @@ function ListenOverlayMeta({
   totalTracks,
   giveString,
 }) {
-  console.log(typeLabel);
   if (totalTracks === 1) {
     typeLabel = "Single";
     totalTracks = null;
@@ -28,7 +27,10 @@ export function ListenOverlay({
   media_data,
   setOpenOverlayID,
   setOverlayData,
+  listenYTLink,
+  setListenYTLink,
 }) {
+  console.log(listenYTLink);
   return (
     <section className="overlay">
       <div className="overlay-poster-wrapper">
@@ -37,6 +39,13 @@ export function ListenOverlay({
           className="overlay-poster-music"
           alt="media-poster"
         />
+        {media_data["copyright_statement"] !== "" ? (
+          <div className="listen-copyrights">
+            {media_data["copyright_statement"]}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="overlay-information">
         <div className="overlay-information-header">
@@ -46,6 +55,7 @@ export function ListenOverlay({
             onClick={() => {
               setOpenOverlayID(-1);
               setOverlayData({});
+              setListenYTLink({});
             }}
           >
             X
@@ -62,6 +72,7 @@ export function ListenOverlay({
             releaseDate={media_data["release_date"]}
             typeLabel={media_data["type"]}
             totalTracks={media_data["total_tracks"]}
+            giveString={true}
           />
         </div>
         {media_data["type"] === "podcast" ||
@@ -81,7 +92,9 @@ export function ListenOverlay({
           <div
             className="spotify-listen"
             style={
-              media_data["youtube"] !== "" ? { width: "50%" } : { width: "97%" }
+              Object.keys(listenYTLink).length > 0 && listenYTLink !== ""
+                ? { width: "50%" }
+                : { width: "97%" }
             }
           >
             <div className="overlay-listen-options-text">Spotify:</div>
@@ -98,7 +111,7 @@ export function ListenOverlay({
               allow="encrypted-media"
             ></iframe>
           </div>
-          {media_data["youtube"] !== "" ? (
+          {Object.keys(listenYTLink).length > 0 && listenYTLink !== "" ? (
             <div className="listen-video">
               <div className="overlay-listen-options-text">
                 Youtube -{" "}
@@ -124,7 +137,7 @@ export function ListenOverlay({
               </div>
               <iframe
                 title="music-video"
-                src={media_data["youtube"]}
+                src={listenYTLink}
                 allowfullscreen="allowfullscreen"
                 className="overlay-music-video"
               ></iframe>

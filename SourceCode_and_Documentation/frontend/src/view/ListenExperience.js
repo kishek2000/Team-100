@@ -1,14 +1,24 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
 import svg from "../images/tail-spin.svg";
+import { Dropdown } from "./Dropdown";
+import { LISTENCATEGORIES } from "../constants/index";
 
 // This function will give us the complete Listen experience!
-export function ListenExperience({ listen, searchQuery, getOverlayData }) {
+export function ListenExperience({
+  listen,
+  searchQuery,
+  getOverlayData,
+  getListenLink,
+  listenCategoryData,
+  getListenCatPlaylist,
+  selectedCat,
+  setSelectedCat,
+}) {
   const { data } = listen;
+  console.log(getListenLink);
   if (Object.keys(data).length > 0) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
-      console.log("yo");
-      console.table(data);
       return (
         <div className="loading-screen">
           <div className="loading-text">LOADING SEARCH RESULTS...</div>
@@ -31,6 +41,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               type="Track"
               mediaContent={album_matches}
               getOverlayData={getOverlayData}
+              getListenLink={getListenLink}
               num="0"
             />
             <MediaCategoryList
@@ -39,6 +50,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               type="Album"
               mediaContent={track_matches}
               getOverlayData={getOverlayData}
+              getListenLink={getListenLink}
               num="1"
             />
             <MediaCategoryList
@@ -47,6 +59,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
               media="LISTEN"
               mediaContent={podcast_matches}
               getOverlayData={getOverlayData}
+              getListenLink={getListenLink}
               num="2"
             />
           </div>
@@ -60,6 +73,7 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
             media="LISTEN"
             mediaContent={data["New Releases"]}
             getOverlayData={getOverlayData}
+            getListenLink={getListenLink}
             num="0"
           />
           <MediaCategoryList
@@ -68,15 +82,23 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
             type="Playlist"
             mediaContent={data["Featured Playlists"]}
             getOverlayData={getOverlayData}
+            getListenLink={getListenLink}
             num="1"
           />
-          <MediaCategoryList
-            category="Popular Categories"
-            media="LISTEN"
-            num="2"
-            type="Category"
-            // mediaContent={data}
-            // getOverlayData={getOverlayData}
+          <div className="listen-categories">
+            <div className="category-title">Choose a Category:</div>
+            <Dropdown
+              options={LISTENCATEGORIES["items"]}
+              setData={getListenCatPlaylist}
+              setSelection={setSelectedCat}
+              class="listen-category-playlists"
+            />
+          </div>
+          <ListenCategoryPlaylists
+            listenCategoryData={listenCategoryData}
+            getOverlayData={getOverlayData}
+            getListenLink={getListenLink}
+            currentCat={selectedCat}
           />
         </div>
       );
@@ -90,4 +112,29 @@ export function ListenExperience({ listen, searchQuery, getOverlayData }) {
       </div>
     );
   }
+}
+
+function ListenCategoryPlaylists({
+  listenCategoryData,
+  getOverlayData,
+  getListenLink,
+  currentCat,
+}) {
+  console.log(currentCat);
+  if (Object.keys(listenCategoryData).length > 0) {
+    return (
+      <div>
+        <MediaCategoryList
+          category={`${currentCat} Playlists`}
+          media="LISTEN"
+          type="Playlist"
+          mediaContent={listenCategoryData}
+          getOverlayData={getOverlayData}
+          getListenLink={getListenLink}
+          num="2"
+        />
+      </div>
+    );
+  }
+  return <div></div>;
 }

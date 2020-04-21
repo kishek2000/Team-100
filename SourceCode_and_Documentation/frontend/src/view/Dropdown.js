@@ -4,6 +4,7 @@ import Select from "react-select";
 export class Dropdown extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = { selectedOption: this.props.default };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,12 +23,13 @@ export class Dropdown extends React.Component {
           if (this.props.isMulti) {
             console.log(selectedOption);
             this.props.setData(selectedOption[0]["value"]);
-          } else {
-            this.props.setData(selectedOption["value"]);
           }
         }
       } else {
-        this.props.setData(selectedOption);
+        this.props.setData(selectedOption["value"]);
+        if (this.props.setSelection) {
+          this.props.setSelection(selectedOption["label"]);
+        }
       }
     });
   };

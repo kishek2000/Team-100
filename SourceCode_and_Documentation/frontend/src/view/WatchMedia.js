@@ -43,11 +43,9 @@ export function WatchMedia({
                         item["popularity"],
                         item["score"]
                       );
-                      getWatchScore(item["id"]);
+                      getWatchScore(item["id"], item["type"]);
                       if (item["type"] === "tv") {
                         getTVEpScores(item["id"]);
-                      } else {
-                        getTVEpScores("t"); //Hacky way of clearing state (will set state to empty array)
                       }
                     }}
                   />

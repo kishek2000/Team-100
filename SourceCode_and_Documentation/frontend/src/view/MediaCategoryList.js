@@ -23,6 +23,7 @@ export function MediaCategoryList(props) {
       content={props.mediaContent}
       type={props.type}
       getOverlayData={props.getOverlayData}
+      getListenLink={props.getListenLink}
       num={props.num}
     />
   );

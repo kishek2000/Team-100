@@ -13,7 +13,7 @@
     rgba(255, 255, 255, 1) 100%
   );
   min-height: 100vh;
-  padding-bottom: 6.5vw;
+  padding-bottom: 6vw;
   padding-left: 6.3vw;
   padding-right: 6.3vw;
   display: flex;
@@ -143,6 +143,11 @@
   padding-left: 40px;
   padding-right: 40px;
   background: none;
+}
+
+.listen-categories {
+  margin-left: 1.6vw;
+  margin-top: 2vw;
 }
 
 .category-title {
@@ -396,4 +401,9 @@
 .top-arrow:hover {
   width: 2.15vw;
   height: 2.15vw;
+}
+
+.listen-category-playlists {
+  width: 25vw;
+  margin-top: 1vw;
 }

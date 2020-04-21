@@ -12,6 +12,10 @@ export function Overlay({
   setServicesData,
   watchReviewData,
   tvReviewData,
+  setOverlayReview,
+  setOverlayEpisodeReviews,
+  listenYTLink,
+  setListenYTLink,
 }) {
   // const id, media = media_id.split()
   if (Object.keys(data).length > 0 && media_id !== -1) {
@@ -28,6 +32,8 @@ export function Overlay({
             setServicesData={setServicesData}
             watchReviewData={watchReviewData}
             tvReviewData={tvReviewData}
+            setOverlayReview={setOverlayReview}
+            setOverlayEpisodeReviews={setOverlayEpisodeReviews}
           />
         );
       } else {
@@ -36,6 +42,8 @@ export function Overlay({
             media_data={media_data}
             setOpenOverlayID={setOpenOverlayID}
             setOverlayData={setOverlayData}
+            listenYTLink={listenYTLink}
+            setListenYTLink={setListenYTLink}
           />
         );
       }

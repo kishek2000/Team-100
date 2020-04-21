@@ -53,8 +53,8 @@ export class Client {
     return data.data;
   }
 
-  async getWatchIMDBScore(tmdbID) {
-    const data = await this.api(`/api/reviews/title/${tmdbID}`);
+  async getWatchIMDBScore(tmdbID, mediaType) {
+    const data = await this.api(`/api/reviews/title/${tmdbID}/${mediaType}`);
     return data.rating;
   }
 
@@ -67,6 +67,18 @@ export class Client {
     const data = await this.api(
       `/api/services/tv/${tmdbID}/${tmdbTitle}/${tmdbPopularity}/${tmdbScore}`
     );
+    return data.data;
+  }
+
+  async getListenYoutube(spotifyID, type) {
+    const data = await this.api(`/api/services/listen/${spotifyID}/${type}`);
+    console.log(data);
+    return data.data;
+  }
+
+  async getListenCatPlaylists(categoryId) {
+    const data = await this.api(`/api/details/listen/category/${categoryId}`);
+    console.log(data);
     return data.data;
   }
 }

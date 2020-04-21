@@ -125,6 +125,18 @@
   margin-bottom: 1vw;
 }
 
+.overlay-meta-watch-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.overlay-imdb-logo {
+  width: 1.4vw;
+  margin-left: 0.2vw;
+  margin-right: 0.2vw;
+}
+
 .overlay-listen-options-text {
   margin-bottom: 0.5vw;
 }
@@ -144,7 +156,8 @@
 }
 
 .overlay-watch-description-text {
-  margin-bottom: 1.5vw;
+  margin-bottom: 0.5vw;
+  width: 45vw;
 }
 
 .overlay-trailer-video {
@@ -152,18 +165,25 @@
   width: 26vw;
   height: 15vw;
   border: none;
-  margin-bottom: 1vw;
+  margin-right: 1vw;
 }
 
 .overlay-music-video {
   border: none;
-  height: 12vw;
-  width: 25vw;
+  height: 13vw;
+  width: 27vw;
 }
 
 .spotify-play {
   width: 100%;
-  height: 12vw;
+  height: 13vw;
+}
+
+.listen-copyrights {
+  font-family: HelveticaNeue-Light;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .overlay-viewing-row {
@@ -209,9 +229,14 @@
   transition: 0.25s;
 }
 
+.services-list {
+  margin-bottom: 1vw;
+}
+
 .overlay-trailer-and-reviews {
   display: flex;
   flex-direction: row;
+  margin-bottom: 1vw;
 }
 
 .overlay-loader {
@@ -225,30 +250,75 @@
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  margin-left: 2vw;
   margin-right: 2vw;
 }
 
 .overlay-table {
   display: flex;
-  flex-direction: row;
-  margin-top: 0.4vw;
-  height: 30vh;
-  width: 35vw;
+  flex-direction: column;
+  padding-top: 0.4vw;
+  height: 15vw;
   overflow-x: auto;
 }
 
 .overlay-table-column {
   display: flex;
-  flex-direction: column;
-  /*background-color: red;*/
-  padding-left: 0.2vw;
+  flex-direction: row;
+  margin-bottom: 0.5vw;
+}
+
+.overlay-table .overlay-table-column:first-child {
+  margin-bottom: 0;
 }
 
 .overlay-table-cell {
   display: flex;
-  -webkit-font-smoothing: always;
-  font-size: 1vh;
-  /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; nvm this is horrific*/
-  padding-left: 0.3vw;
+  min-width: 48px;
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  /* border-radius: 5px; */
+  cursor: default;
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  font-family: HelveticaNeue-Light;
+}
+
+.overlay-table-cell-ep {
+  display: none;
+  text-decoration: none;
+  color: black;
+  font-family: HelveticaNeue-Light;
+  font-size: 12px;
+}
+
+.overlay-table-cell:hover .overlay-table-cell-rating {
+  display: none;
+}
+
+.overlay-table-cell-rating {
+  font-size: 14px;
+  color: #000;
+}
+
+.overlay-table-cell:hover .overlay-table-cell-ep {
+  display: flex;
+  text-decoration: none;
+}
+
+.overlay-table-cell:hover {
+  cursor: pointer;
+}
+
+.overlay-season-none {
+  color: white;
+}
+
+.overlay-season-description-text {
+  font-family: HelveticaNeue-Light;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-bottom: 4px;
 }

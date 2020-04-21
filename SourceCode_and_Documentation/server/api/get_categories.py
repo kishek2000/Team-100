@@ -266,7 +266,6 @@ def getAlbumSingleData(id, media="album", country="AU"):
         "total_tracks": result["total_tracks"],
         "copyright_statement": result["copyrights"][0]["text"],
         "release_date": result["release_date"][0:4],
-        "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects
 
@@ -291,8 +290,8 @@ def getPodcastData(id, media="podcast", country="AU"):
         "type": "podcast",
         "imgURL": result["images"][0]["url"],
         "label": result["publisher"],
+        "copyright_statement": "",
         "description": result["description"],
-        "youtube": getListenLinks(result["external_urls"]["spotify"])
     })
     return mediaObjects
 
@@ -318,7 +317,7 @@ def getPlaylistData(id, media="playlist", country="AU"):
         "type": "playlist",
         "imgURL": result["images"][0]["url"],
         "description": craftPlaylistDesc(result["description"]),
-        "youtube": getListenLinks(result["external_urls"]["spotify"])
+        "copyright_statement": "",
     })
     return mediaObjects
 
@@ -345,17 +344,19 @@ def getTrackData(id, country="AU"):
         "type": "track",
         "imgURL": result["album"]["images"][0]["url"],
         "release_date": result["album"]["release_date"][0:4],
-        "youtube": getListenLinks(result["external_urls"]["spotify"])
+        "copyright_statement": "",
     })
     return mediaObjects
 
 
-def getListenLinks(url):
+def getListenLinks(id, listen_type):
     '''
     Returns links where you can listen to a given spotify url item
     '''
     parameters = {
-        "url": url,
+        "id": id,
+        "platform": "spotify",
+        "type": "{}".format(listen_type),
         "key": '555e94f4-c67d-41e3-9e9b-a8376d4766b4'
     }
     res = requests.get("https://api.song.link/v1-alpha.1/links",
@@ -369,5 +370,27 @@ def getListenLinks(url):
         else:
             url = youtube.partition('watch?v=')
             return url[0]+'embed/' + url[2]
-
     return ''
+
+
+def categoryPlaylists(id, country="AU"):
+    header = {
+        "Authorization": getSpotifyToken()
+    }
+    parameters = {
+        "market": country
+    }
+    res = requests.get("https://api.spotify.com/v1/browse/categories/{}/playlists".format(id),
+                       headers=header, params=parameters)
+    json = res.json()
+    mediaObjects = []
+    for result in json["playlists"]["items"]:
+        mediaObjects.append({
+            "listen_name": result["name"],
+            "type": "Playlist",
+            "description": craftPlaylistDesc(result["description"]),
+            "id": result["id"],
+            "imgURL": result["images"][0]["url"],
+            "listen_link": result["external_urls"]["spotify"]
+        })
+    return mediaObjects

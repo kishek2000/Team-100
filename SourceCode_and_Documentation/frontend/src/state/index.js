@@ -19,6 +19,18 @@ export function AppContainer({ children }) {
   const [overlayServices, setOverlayServices] = useState({});
   const [overlayReview, setOverlayReview] = useState({});
   const [overlayEpisodeReviews, setOverlayEpisodeReviews] = useState({});
+  const [listenYTLink, setListenYTLink] = useState({});
+  const [listenCategoryData, setListenCategoryData] = useState({});
+  const [selectedCat, setSelectedCat] = useState({});
+
+  const getListenCatPlaylist = useCallback(
+    (categoryID) => {
+      client
+        .getListenCatPlaylists(categoryID)
+        .then((data) => setListenCategoryData(data));
+    },
+    [setListenCategoryData]
+  );
 
   const getWatchData = useCallback(() => {
     client.getWatchData().then((data) => setWatchData(data));
@@ -64,8 +76,8 @@ export function AppContainer({ children }) {
   );
 
   const getWatchScore = useCallback(
-    (tmdbID) => {
-      client.getWatchIMDBScore(tmdbID).then((data) => {
+    (tmdbID, mediaType) => {
+      client.getWatchIMDBScore(tmdbID, mediaType).then((data) => {
         setOverlayReview(data);
       });
     },
@@ -89,6 +101,15 @@ export function AppContainer({ children }) {
       });
     },
     [setOverlayData]
+  );
+
+  const getListenLink = useCallback(
+    (spotifyID, listenType) => {
+      client.getListenYoutube(spotifyID, listenType).then((data) => {
+        setListenYTLink(data);
+      });
+    },
+    [setListenYTLink]
   );
 
   useEffect(() => {
@@ -128,5 +149,15 @@ export function AppContainer({ children }) {
     overlayEpisodeReviews: overlayEpisodeReviews,
     getWatchScore: getWatchScore,
     getTVEpScores: getTVEpScores,
+    setOverlayReview: setOverlayReview,
+    setOverlayEpisodeReviews: setOverlayEpisodeReviews,
+    listenYTLink: listenYTLink,
+    getListenLink: getListenLink,
+    setListenYTLink: setListenYTLink,
+    listenCategoryData: listenCategoryData,
+    setListenCategoryData: setListenCategoryData,
+    getListenCatPlaylist: getListenCatPlaylist,
+    selectedCat: selectedCat,
+    setSelectedCat: setSelectedCat,
   });
 }

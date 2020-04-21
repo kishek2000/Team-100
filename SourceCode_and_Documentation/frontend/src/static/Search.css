@@ -16,7 +16,6 @@
 
 .execute-search {
   border-radius: 0px 24px 24px 0px;
-  background: rgb(216, 216, 216);
   height: 1.5vw;
   width: 3vw;
   display: flex;
@@ -27,7 +26,7 @@
 }
 
 .execute-search:hover {
-  background: rgb(190, 190, 190);
+  background: rgb(212, 211, 211);
   transition: 0.5s;
 }
 

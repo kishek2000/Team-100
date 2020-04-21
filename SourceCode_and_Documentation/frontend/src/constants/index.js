@@ -66,3 +66,164 @@ export const SEARCHTEXT = {
   WATCH: "Search for Movie or TV Show by name...",
   LISTEN: "Search for Podcast or Music by name...",
 };
+
+export const LISTENCATEGORIES = {
+  items: [
+    {
+      value: "toplists",
+      label: "Top Lists",
+    },
+    {
+      value: "at_home",
+      label: "At Home",
+    },
+    {
+      value: "mood",
+      label: "Mood",
+    },
+    {
+      value: "pop",
+      label: "Pop",
+    },
+    {
+      value: "chill",
+      label: "Chill",
+    },
+    {
+      value: "hiphop",
+      label: "Hip-Hop",
+    },
+    {
+      value: "workout",
+      label: "Workout",
+    },
+    {
+      value: "wellness",
+      label: "Wellness",
+    },
+    {
+      value: "indie_alt",
+      label: "Indie",
+    },
+    {
+      value: "decades",
+      label: "Decades",
+    },
+    {
+      value: "family",
+      label: "Kids & Family",
+    },
+    {
+      value: "rock",
+      label: "Rock",
+    },
+    {
+      value: "edm_dance",
+      label: "Electronic/Dance",
+    },
+    {
+      value: "sleep",
+      label: "Sleep",
+    },
+    {
+      value: "dinner",
+      label: "Cooking & Dining",
+    },
+    {
+      value: "rnb",
+      label: "R&B",
+    },
+    {
+      value: "focus",
+      label: "Focus",
+    },
+    {
+      value: "country",
+      label: "Country",
+    },
+    {
+      value: "gaming",
+      label: "Gaming",
+    },
+    {
+      value: "romance",
+      label: "Romance",
+    },
+    {
+      value: "soul",
+      label: "Soul",
+    },
+    {
+      value: "roots",
+      label: "Folk & Acoustic",
+    },
+    {
+      value: "party",
+      label: "Party",
+    },
+    {
+      value: "metal",
+      label: "Metal",
+    },
+    {
+      value: "popculture",
+      label: "Trending",
+    },
+    {
+      value: "kpop",
+      label: "K-Pop",
+    },
+    {
+      value: "punk",
+      label: "Punk",
+    },
+    {
+      value: "thirdparty",
+      label: "Tastemakers",
+    },
+    {
+      value: "arab",
+      label: "Arab",
+    },
+    {
+      value: "jazz",
+      label: "Jazz",
+    },
+    {
+      value: "classical",
+      label: "Classical",
+    },
+    {
+      value: "inspirational",
+      label: "Christian",
+    },
+    {
+      value: "desi",
+      label: "Desi",
+    },
+    {
+      value: "travel",
+      label: "Travel",
+    },
+    {
+      value: "reggae",
+      label: "Reggae",
+    },
+    {
+      value: "blues",
+      label: "Blues",
+    },
+    {
+      value: "latin",
+      label: "Latin",
+    },
+    {
+      value: "funk",
+      label: "Funk",
+    },
+    {
+      value: "pride",
+      label: "Pride",
+    },
+  ],
+};

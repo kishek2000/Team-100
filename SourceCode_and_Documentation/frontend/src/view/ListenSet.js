@@ -9,6 +9,11 @@ export function ListenSet(props) {
           alt="music_cover"
           onClick={() => {
             props.getOverlayData(props.id, props.subtext);
+            if (props.subtext === "Single") {
+              props.getListenLink(props.id, "song");
+            } else if (props.subtext === "Album") {
+              props.getListenLink(props.id, "album");
+            }
           }}
         />
       </div>

@@ -4,7 +4,7 @@ from rest_framework import generics
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData, getListenLinks, categoryPlaylists
 from .search_data import search, filtered_search
 from .reviews import title_rating, tv_collection_ratings
 from justwatch import JustWatch
@@ -115,10 +115,11 @@ def details_tv(request, id):
     return JsonResponse(obj)
 
 
-def review_title(request, id):
+def review_title(request, id, media):
     obj = {
-        'rating': title_rating(id)
+        'rating': title_rating(id, media)
     }
+    print(obj)
     return JsonResponse(obj)
 
 
@@ -197,6 +198,25 @@ def tmdb_streaming_services(request, id, title, popularity, score):
     services = findServices(id, title, popularity, score)
     obj = {
         'data': services
+    }
+    return JsonResponse(obj)
+
+
+def listen_youtube_link(request, spotifyid, listen_type):
+    print("url: ", spotifyid)
+    link = getListenLinks(spotifyid, listen_type)
+    print("the links: ", link)
+    obj = {
+        "data": link
+    }
+    print(obj)
+    return JsonResponse(obj)
+
+
+def listen_category_playlists(request, category_id):
+    data = categoryPlaylists(category_id)
+    obj = {
+        "data": data
     }
     return JsonResponse(obj)
 
