@@ -85,7 +85,8 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
                                     "name": providers[service["provider_id"]]["name"],
                                     "link": service["urls"]["standard_web"],
                                     "logo": providers[service["provider_id"]]["logo"],
-                                    "type": service["monetization_type"]
+                                    "type": service["monetization_type"],
+                                    "price": None
                                 }
                                 if "retail_price" in service:
                                     offer["price"] = str(service["retail_price"]) + ' ' + service["currency"]
