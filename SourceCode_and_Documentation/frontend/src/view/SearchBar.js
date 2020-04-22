@@ -21,8 +21,6 @@ export class SearchBar extends React.Component {
   }
 
   clearSearch(doClear) {
-    console.log("clearing now");
-    console.log(`val: ${this.state.value}`);
     if (doClear) {
       this.props.setSearchQuery("");
       this.setState({ value: "" });
@@ -35,7 +33,6 @@ export class SearchBar extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event);
     this.setState({ value: event.target.value });
     if (event.target.value === "") {
       this.clearSearch(true);
@@ -43,9 +40,6 @@ export class SearchBar extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(
-      `Query submitted: ${this.state.value}. Media Selected: ${this.mediaSelected}. Services Filtered: ${this.props.serviceSelections}`
-    );
     this.props.onSearchQuery(
       this.state.value,
       this.props.mediaSelected,
@@ -102,13 +96,15 @@ export class SearchBar extends React.Component {
         </div>
         <input type="submit" className="hide-this"></input>
         {this.props.searchQuery.length > 0 && (
-          <div
-            className="clear-search"
-            onClick={() => {
-              this.clearSearch(true);
-            }}
-          >
-            Clear Search
+          <div className="relative">
+            <div
+              className="clear-search"
+              onClick={() => {
+                this.clearSearch(true);
+              }}
+            >
+              Clear
+            </div>
           </div>
         )}
       </form>

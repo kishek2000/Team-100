@@ -16,7 +16,6 @@ export function ListenExperience({
   setSelectedCat,
 }) {
   const { data } = listen;
-  console.log(getListenLink);
   if (Object.keys(data).length > 0) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
       return (
@@ -73,8 +72,6 @@ export function ListenExperience({
         </div>
       );
     } else {
-      console.log("Just got here now!");
-      console.log(data);
       return (
         <div className="listen-experience-lists">
           <MediaCategoryList
@@ -95,20 +92,23 @@ export function ListenExperience({
             num="1"
           />
           <div className="listen-categories">
-            <div className="category-title">Choose a Category:</div>
+            <ListenCategoryPlaylists
+              listenCategoryData={listenCategoryData}
+              getOverlayData={getOverlayData}
+              getListenLink={getListenLink}
+              currentCat={selectedCat}
+            />
             <Dropdown
               options={LISTENCATEGORIES["items"]}
-              setData={getListenCatPlaylist}
+              getData={getListenCatPlaylist}
               setSelection={setSelectedCat}
               class="listen-category-playlists"
+              default={{
+                value: selectedCat["value"],
+                label: selectedCat["label"],
+              }}
             />
           </div>
-          <ListenCategoryPlaylists
-            listenCategoryData={listenCategoryData}
-            getOverlayData={getOverlayData}
-            getListenLink={getListenLink}
-            currentCat={selectedCat}
-          />
         </div>
       );
     }
@@ -129,12 +129,17 @@ function ListenCategoryPlaylists({
   getListenLink,
   currentCat,
 }) {
-  console.log(currentCat);
   if (Object.keys(listenCategoryData).length > 0) {
+    var category = "";
+    if (typeof currentCat !== "string") {
+      category = currentCat["label"];
+    } else {
+      category = currentCat;
+    }
     return (
       <div>
         <MediaCategoryList
-          category={`${currentCat} Playlists`}
+          category={`${category} Playlists`}
           media="LISTEN"
           type="Playlist"
           mediaContent={listenCategoryData}

@@ -4,10 +4,18 @@ import Select from "react-select";
 export class Dropdown extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    this.state = { selectedOption: this.props.default };
+    this.state = {
+      selectedOption: this.props.default,
+    };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount = () => {
+    if (this.state.selectedOption && this.props.getData) {
+      this.props.getData(this.state.selectedOption["value"]);
+    }
+  };
+
   handleChange = (selectedOption) => {
     this.setState({ selectedOption }, () => {
       if (selectedOption && selectedOption.length > 0) {
@@ -21,14 +29,16 @@ export class Dropdown extends React.Component {
           );
         } else {
           if (this.props.isMulti) {
-            console.log(selectedOption);
             this.props.setData(selectedOption[0]["value"]);
           }
         }
       } else {
-        this.props.setData(selectedOption["value"]);
-        if (this.props.setSelection) {
-          this.props.setSelection(selectedOption["label"]);
+        if (this.props.setData) {
+          this.props.setData(selectedOption["value"]);
+        }
+        if (this.props.setSelection && this.props.getData) {
+          this.props.getData(selectedOption["value"]);
+          this.props.setSelection(selectedOption);
         }
       }
     });

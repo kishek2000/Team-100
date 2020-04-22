@@ -25,7 +25,6 @@ export class Client {
   }
 
   async getWatchSearchResults(query, services) {
-    console.log("received services= ", services);
     if (services === undefined || Object.keys(services).length === 0) {
       const data = await this.api(`/api/search/watch/unfiltered/${query}`);
       return data;
@@ -73,13 +72,11 @@ export class Client {
 
   async getListenYoutube(spotifyID, type) {
     const data = await this.api(`/api/services/listen/${spotifyID}/${type}`);
-    console.log(data);
     return data.data;
   }
 
   async getListenCatPlaylists(categoryId) {
     const data = await this.api(`/api/details/listen/category/${categoryId}`);
-    console.log(data);
     return data.data;
   }
 }

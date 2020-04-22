@@ -132,6 +132,12 @@
   align-items: center;
 }
 
+.overlay-service-logo {
+  width: 1.5vw;
+  height: 1.5vw;
+  border-radius: 5px;
+}
+
 .overlay-imdb-logo {
   width: 1.4vw;
   margin-left: 0.2vw;
@@ -205,24 +211,36 @@
   display: flex;
   flex-direction: row;
   margin-top: 0.5vw;
+  flex-wrap: wrap;
 }
 
 .service-name {
   margin-right: 0.6vw;
   display: flex;
   align-items: center;
+  width: 12vw;
 }
 
 .service-redirect {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
+  white-space: nowrap;
   color: white;
-  border: 1px solid white;
   padding: 0.2vw 0.6vw;
-  border-radius: 20px;
+  border-radius: 5px;
   transition: 0.25s;
   font-family: HelveticaNeue-Light;
   font-size: 0.78vw;
+  margin-bottom: 0.3vw;
 }
+/* 
+.overlay-service-price {
+  font-family: HelveticaNeue-Light;
+  font-size: 0.5vw;
+} */
 
 .service-redirect:hover {
   background: white;
@@ -230,8 +248,11 @@
   transition: 0.25s;
 }
 
-.services-list {
-  margin-bottom: 1vw;
+.wrap {
+  padding: 0;
+  width: 1.5vw;
+  margin-right: 0.3vw;
+  height: 1.5vw;
 }
 
 .overlay-trailer-and-reviews {
@@ -258,7 +279,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 0.4vw;
-  height: 15vw;
+  max-height: 15vw;
   overflow-x: auto;
 }
 
@@ -278,7 +299,7 @@
   min-height: 48px;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: white;
   /* border-radius: 5px; */
   cursor: default;
   border: 0.5px solid rgba(255, 255, 255, 0.5);
@@ -288,8 +309,8 @@
 .overlay-table-cell-ep {
   display: none;
   text-decoration: none;
-  color: black;
-  font-family: HelveticaNeue-Light;
+  color: white;
+  font-family: HelveticaNeue-Bold;
   font-size: 12px;
 }
 
@@ -298,8 +319,9 @@
 }
 
 .overlay-table-cell-rating {
-  font-size: 14px;
-  color: #000;
+  font-size: 13px;
+  font-family: HelveticaNeue-Bold;
+  color: white;
 }
 
 .overlay-table-cell:hover .overlay-table-cell-ep {

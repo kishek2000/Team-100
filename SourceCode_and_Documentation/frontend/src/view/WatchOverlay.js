@@ -2,19 +2,18 @@ import React from "react";
 import LoadingSpinner from "../images/tail-spin.svg";
 
 export function WatchOverlayMeta({ airDate, language, rating, genre }) {
-  return [airDate, language, rating, genre]
+  return [airDate, language, rating, genre, " "]
     .filter((item) => !!item)
     .join(" | ");
 }
 
-const COLOR_BASE = "241, 219, 75";
-const COLOR_EXCELLENT = `rgba(${COLOR_BASE}, 1.0)`;
-const COLOR_GREAT = `rgba(${COLOR_BASE}, 0.9)`;
-const COLOR_GOOD = `rgba(${COLOR_BASE}, 0.8)`;
-const COLOR_OK = `rgba(${COLOR_BASE}, 0.7)`;
-const COLOR_BAD = `rgba(${COLOR_BASE}, 0.6)`;
-const COLOR_TERRIBLE = `rgba(${COLOR_BASE}, 0.5)`;
-const COLOR_NO_DATA = `rgba(${COLOR_BASE}, 0.25)`;
+const COLOR_EXCELLENT = `rgba(0, 26, 255, 1.0)`;
+const COLOR_GREAT = `rgba(0, 96, 255, 1.0)`;
+const COLOR_GOOD = `rgba(0, 158, 255, 1.0)`;
+const COLOR_OK = `rgba(255, 0, 172, 1.0)`;
+const COLOR_BAD = `rgba(255, 121, 81, 1.0)`;
+const COLOR_TERRIBLE = `rgba(212, 0, 0, 1.0)`;
+const COLOR_NO_DATA = `rgba(0,0,0,0)`;
 
 function bgMap(rating) {
   if (rating >= 9) {
@@ -80,7 +79,6 @@ export function WatchOverlay({
           />
           {typeof watchReviewData === "number" ? (
             <div className="imdb-score">
-              |{" "}
               <img
                 src="https://img.icons8.com/color/48/000000/imdb.png"
                 alt="imdb-score:"
@@ -130,13 +128,15 @@ export function WatchOverlay({
                 }
               >
                 {tvReviewData.map((season, index) =>
-                  season.length > 1 ? (
+                  season.length > 1 &&
+                  season.filter((term) => {
+                    return term["rating"] !== -1;
+                  }).length > 0 ? (
                     <div className="overlay-table-data">
                       <div className="overlay-season-description-text">
                         {"Season " + String(index + 1)}
                       </div>
                       <div className="overlay-table-column">
-                        {console.log(season, season.length)}
                         {season.map((episode) =>
                           episode.rating >= 0 ? (
                             <div
@@ -201,7 +201,20 @@ export function WatchOverlay({
                         className="service-redirect"
                         rel="noopener noreferrer"
                       >
-                        {item["name"]}
+                        <div className="wrap">
+                          <img
+                            src={"http://" + item["logo"]}
+                            alt="logo"
+                            className="overlay-service-logo"
+                          />
+                        </div>
+                        <div className="overlay-services-metadata">
+                          <div>{item["name"]}</div>
+                          {/* <div className="overlay-service-price">
+                            {item["price"]}
+                            {console.log(item)}
+                          </div> */}
+                        </div>
                       </a>
                     </div>
                   ))}

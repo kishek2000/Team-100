@@ -21,7 +21,10 @@ export function AppContainer({ children }) {
   const [overlayEpisodeReviews, setOverlayEpisodeReviews] = useState({});
   const [listenYTLink, setListenYTLink] = useState({});
   const [listenCategoryData, setListenCategoryData] = useState({});
-  const [selectedCat, setSelectedCat] = useState({});
+  const [selectedCat, setSelectedCat] = useState({
+    value: "toplists",
+    label: "Top Lists",
+  });
 
   const getListenCatPlaylist = useCallback(
     (categoryID) => {

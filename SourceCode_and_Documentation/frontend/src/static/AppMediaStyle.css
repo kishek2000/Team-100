@@ -147,8 +147,8 @@
 }
 
 .listen-categories {
-  margin-left: 1.6vw;
-  margin-top: 2vw;
+  position: relative;
+  margin-top: 0.5vw;
 }
 
 .category-title {
@@ -404,6 +404,8 @@
 }
 
 .listen-category-playlists {
-  width: 25vw;
-  margin-top: 1vw;
+  position: absolute !important;
+  width: 15vw;
+  top: 1.6vw;
+  right: 1.5vw;
 }

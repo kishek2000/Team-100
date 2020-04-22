@@ -362,6 +362,7 @@ def getListenLinks(id, listen_type):
     res = requests.get("https://api.song.link/v1-alpha.1/links",
                        params=parameters)
     # result = res.json()
+    print(res.json())
     if 'linksByPlatform' in res.json() and 'youtube' in res.json()['linksByPlatform']:
         youtube = res.json()['linksByPlatform']['youtube']['url']
         if 'playlist' in youtube:

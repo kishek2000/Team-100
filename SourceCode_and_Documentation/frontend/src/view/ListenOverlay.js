@@ -30,7 +30,6 @@ export function ListenOverlay({
   listenYTLink,
   setListenYTLink,
 }) {
-  console.log(listenYTLink);
   return (
     <section className="overlay">
       <div className="overlay-poster-wrapper">
@@ -122,7 +121,15 @@ export function ListenOverlay({
                     totalTracks: media_data["total_tracks"],
                     giveString: false,
                   })
-                ) === "Single"
+                ) === "Single" ||
+                String(
+                  ListenOverlayMeta({
+                    releaseDate: media_data["release_date"],
+                    typeLabel: media_data["type"],
+                    totalTracks: media_data["total_tracks"],
+                    giveString: false,
+                  })
+                ) === "Track"
                   ? "Full Music Video"
                   : "Full " +
                     String(
