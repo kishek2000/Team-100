@@ -78,6 +78,7 @@ export const AppBody = ({
         imagename="searchbutton"
         placeholder={SEARCHTEXT[mediaSelected]}
         onSearchQuery={onSearchQuery}
+        searchQuery={searchQuery}
         original={watch}
         getWatchData={getWatchData}
         getListenData={getListenData}
@@ -108,6 +109,7 @@ export const AppBody = ({
       getListenCatPlaylist={getListenCatPlaylist}
       selectedCat={selectedCat}
       setSelectedCat={setSelectedCat}
+      setSearchQuery={setSearchQuery}
     />
     <BackToTop
       showAt={100}

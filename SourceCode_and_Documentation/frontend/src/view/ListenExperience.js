@@ -1,6 +1,6 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-import svg from "../images/tail-spin.svg";
+import LoadingSpinner from "../images/tail-spin.svg";
 import { Dropdown } from "./Dropdown";
 import { LISTENCATEGORIES } from "../constants/index";
 
@@ -22,7 +22,14 @@ export function ListenExperience({
       return (
         <div className="loading-screen">
           <div className="loading-text">LOADING SEARCH RESULTS...</div>
-          <img src={svg} alt="load" className="loader" />
+          <img src={LoadingSpinner} alt="load" className="loader" />
+        </div>
+      );
+    } else if (searchQuery.length === 0 && data["Search Results"]) {
+      return (
+        <div className="loading-screen">
+          <div className="loading-text">LOADING LISTEN ITEMS...</div>
+          <img src={LoadingSpinner} alt="load" className="loader" />
         </div>
       );
     } else if (searchQuery.length > 0 && data["Search Results"]) {
@@ -66,6 +73,8 @@ export function ListenExperience({
         </div>
       );
     } else {
+      console.log("Just got here now!");
+      console.log(data);
       return (
         <div className="listen-experience-lists">
           <MediaCategoryList
@@ -108,7 +117,7 @@ export function ListenExperience({
     return (
       <div className="loading-screen">
         <div className="loading-text">LOADING LISTEN ITEMS...</div>
-        <img src={svg} alt="load" className="loader" />
+        <img src={LoadingSpinner} alt="load" className="loader" />
       </div>
     );
   }

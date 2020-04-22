@@ -20,13 +20,20 @@ export function WatchExperience({
           <img src={LoadingSpinner} alt="load" className="loader" />
         </div>
       );
+    } else if (searchQuery.length === 0 && data["Search Results"]) {
+      return (
+        <div className="loading-screen">
+          <div className="loading-text">LOADING WATCH ITEMS...</div>
+          <img src={LoadingSpinner} alt="load" className="loader" />
+        </div>
+      );
     } else if (searchQuery.length > 0 && data[`Search Results`]) {
       const tv_results = data[`Search Results`]["TV Results"];
       const movie_results = data[`Search Results`]["Movie Results"];
       return (
         <div className="search-results">
           <div className="search-results-title">
-            Search Results for {searchQuery}
+            Search Results for "{searchQuery}"
           </div>
           <div className="search-watch-lists">
             <MediaCategoryList

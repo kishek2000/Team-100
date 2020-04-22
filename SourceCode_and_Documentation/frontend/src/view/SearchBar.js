@@ -10,6 +10,7 @@ export class SearchBar extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRegionChange = this.handleRegionChange.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   async handleRegionChange(region) {
@@ -19,15 +20,25 @@ export class SearchBar extends React.Component {
     this.props.getServiceOptions(region);
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-    if (event.target.value === "") {
-      this.props.setSearchQuery(event.target.value);
+  clearSearch(doClear) {
+    console.log("clearing now");
+    console.log(`val: ${this.state.value}`);
+    if (doClear) {
+      this.props.setSearchQuery("");
+      this.setState({ value: "" });
       if (this.props.mediaSelected === "WATCH") {
         this.props.getWatchData();
       } else {
         this.props.getListenData();
       }
+    }
+  }
+
+  handleChange(event) {
+    console.log(event);
+    this.setState({ value: event.target.value });
+    if (event.target.value === "") {
+      this.clearSearch(true);
     }
   }
 
@@ -79,7 +90,6 @@ export class SearchBar extends React.Component {
             placeholder={this.props.placeholder}
             value={this.state.value}
             onChange={this.handleChange}
-            // onChange={evt => console.log(evt.currentTarget.value)}
           ></input>
           <div className="execute-search" onClick={this.handleSubmit}>
             <img
@@ -91,6 +101,16 @@ export class SearchBar extends React.Component {
           </div>
         </div>
         <input type="submit" className="hide-this"></input>
+        {this.props.searchQuery.length > 0 && (
+          <div
+            className="clear-search"
+            onClick={() => {
+              this.clearSearch(true);
+            }}
+          >
+            Clear Search
+          </div>
+        )}
       </form>
     );
   }

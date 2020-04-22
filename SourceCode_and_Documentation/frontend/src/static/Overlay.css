@@ -125,7 +125,8 @@
   margin-bottom: 1vw;
 }
 
-.overlay-meta-watch-text {
+.overlay-meta-watch-text,
+.imdb-score {
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -17,6 +17,7 @@ export function Experience({
   getListenCatPlaylist,
   selectedCat,
   setSelectedCat,
+  setSearchQuery,
 }) {
   if (currentExperience === "WATCH") {
     return (
@@ -27,6 +28,7 @@ export function Experience({
         getOverlayServices={getOverlayServices}
         getWatchScore={getWatchScore}
         getTVEpScores={getTVEpScores}
+        setSearchQuery={setSearchQuery}
       />
     );
   } else {
@@ -41,6 +43,7 @@ export function Experience({
         getListenCatPlaylist={getListenCatPlaylist}
         selectedCat={selectedCat}
         setSelectedCat={setSelectedCat}
+        setSearchQuery={setSearchQuery}
       />
     );
   }

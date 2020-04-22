@@ -63,13 +63,10 @@ def title_rating(id, media):
     # Convert tmdb ID -> imdb ID if needed
     if (id[0] != "t"):
         ttID = tmdbToImdb(id, mediaType=media)
-        print(ttID)
     else:
         ttID = id
-        print(ttID)
 
     try:
-        print(titles[ttID])
         return titles[ttID]
     except KeyError:
         return None
@@ -93,7 +90,6 @@ def seasons_list(episodes):
     for season in seasons:
         season.sort(key=lambda ep: ep['ep'])
 
-    print(seasons)
     return seasons
 
 # Downloads url, unzips and writes to out

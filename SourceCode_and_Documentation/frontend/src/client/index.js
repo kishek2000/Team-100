@@ -25,7 +25,8 @@ export class Client {
   }
 
   async getWatchSearchResults(query, services) {
-    if (Object.keys(services).length === 0) {
+    console.log("received services= ", services);
+    if (services === undefined || Object.keys(services).length === 0) {
       const data = await this.api(`/api/search/watch/unfiltered/${query}`);
       return data;
     } else {

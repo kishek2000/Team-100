@@ -79,15 +79,15 @@ export function WatchOverlay({
             genre={media_data["genres"]}
           />
           {typeof watchReviewData === "number" ? (
-            " | " +
-            (
+            <div className="imdb-score">
+              |{" "}
               <img
                 src="https://img.icons8.com/color/48/000000/imdb.png"
                 alt="imdb-score:"
                 className="overlay-imdb-logo"
-              />
-            ) +
-            watchReviewData
+              />{" "}
+              {watchReviewData}
+            </div>
           ) : (
             <div></div>
           )}

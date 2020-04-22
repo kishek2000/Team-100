@@ -61,7 +61,7 @@
 
 .region-filter {
   margin-right: 1vw;
-  width: 6vw;
+  width: 5vw;
 }
 
 .filter-text {
@@ -142,6 +142,7 @@
   padding-bottom: 25px;
   padding-left: 40px;
   padding-right: 40px;
+  animation: appear 0.75s ease-in;
   background: none;
 }
 
@@ -251,7 +252,7 @@
   margin-right: 40px;
   border-radius: 8px;
   /* opacity: 0; */
-  animation: appear 1s linear;
+  animation: appear 1s ease;
 }
 
 .media-template .media-image-wrapper .media-image {
@@ -308,7 +309,6 @@
   position: relative;
   box-shadow: 0 0 15px rgba(68, 68, 68, 0.25);
   border-radius: 8px;
-  animation: appear 1s linear;
   width: 100%;
   cursor: pointer;
   height: 100%;
@@ -365,11 +365,11 @@
   position: relative;
   height: 100%;
   width: 100%;
+  margin-top: 2vw;
 }
 
 .search-results-title {
   font-family: HelveticaNeue-Bold;
-  margin-top: 2vw;
   margin-bottom: 0px;
   color: inherit;
   font-size: 1.8vw;

@@ -26,57 +26,6 @@ def home_watch(request):
     }
     return JsonResponse(obj)
 
-# def home_watch_trending(request):
-#     trendingDaily = getWatchTrending()
-#     obj = {
-#         "data": trendingDaily
-#     }
-#     return JsonResponse(obj)
-
-
-# def home_tv_toprated(request):
-#     tvTopRated = getWatchCategory('/tv/', 'top_rated', 'name', country=None)
-#     obj = {
-#         "data": tvTopRated
-#     }
-#     return JsonResponse(obj)
-
-
-# def home_tv_onair(request):
-#     tvOnAir = getWatchCategory('/tv/', 'on_the_air', 'name', country=None)
-#     obj = {
-#         "data": tvOnAir
-#     }
-#     return JsonResponse(obj)
-
-
-# def home_tv_popular(request):
-#     tvPopular = getWatchCategory('/tv/', 'popular', 'name', country=None)
-#     obj = {
-#         "data": tvPopular
-#     }
-#     return JsonResponse(obj)
-
-
-# def home_movie_popular(request):
-#     moviePopular = getWatchCategory(
-#         '/movie/', 'popular', 'title', country=None)
-
-#     obj = {
-#         "data": moviePopular
-#     }
-#     return JsonResponse(obj)
-
-
-# def home_movie_toprated(request):
-#     movieTopRated = getWatchCategory(
-#         '/movie/', 'top_rated', 'title', country=None)
-
-#     obj = {
-#         "data": movieTopRated
-#     }
-#     return JsonResponse(obj)
-
 
 def home_listen(request):
     newReleases = newMusicReleases(50)
@@ -107,7 +56,6 @@ def search_listen(request, query):
 
 
 def details_tv(request, id):
-    print(id)
     data = getTVData(int(id))
     obj = {
         "data": data
@@ -119,7 +67,6 @@ def review_title(request, id, media):
     obj = {
         'rating': title_rating(id, media)
     }
-    print(obj)
     return JsonResponse(obj)
 
 
@@ -203,13 +150,10 @@ def tmdb_streaming_services(request, id, title, popularity, score):
 
 
 def listen_youtube_link(request, spotifyid, listen_type):
-    print("url: ", spotifyid)
     link = getListenLinks(spotifyid, listen_type)
-    print("the links: ", link)
     obj = {
         "data": link
     }
-    print(obj)
     return JsonResponse(obj)
 
 
