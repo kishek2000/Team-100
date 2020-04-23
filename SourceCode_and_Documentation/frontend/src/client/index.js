@@ -63,9 +63,9 @@ export class Client {
     return data.episodes;
   }
 
-  async getWatchStreams(tmdbID, tmdbTitle, tmdbPopularity, tmdbScore) {
+  async getWatchStreams(tmdbID, tmdbTitle, releaseYear, mediaType) {
     const data = await this.api(
-      `/api/services/tv/${tmdbID}/${tmdbTitle}/${tmdbPopularity}/${tmdbScore}`
+      `/api/services/tv/${tmdbID}/${tmdbTitle}/${releaseYear}/${mediaType}`
     );
     return data.data;
   }

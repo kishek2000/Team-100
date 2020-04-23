@@ -18,13 +18,15 @@ export function MediaCategoryList(props) {
     );
   }
   return (
-    <ListenMedia
-      category={props.category}
-      content={props.mediaContent}
-      type={props.type}
-      getOverlayData={props.getOverlayData}
-      getListenLink={props.getListenLink}
-      num={props.num}
-    />
+    <div>
+      <ListenMedia
+        category={props.category}
+        content={props.mediaContent}
+        type={props.type}
+        getOverlayData={props.getOverlayData}
+        getListenLink={props.getListenLink}
+        num={props.num}
+      />
+    </div>
   );
 }

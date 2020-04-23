@@ -59,7 +59,7 @@ def getSpotifyToken():
     return spotifyToken
 
 
-def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
+def findServices(tmdb_id, tmdb_title, date, media_type, region='AU'):
     '''
     Returns a list of streaming services and links to relevant pages
     '''
@@ -75,12 +75,13 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
         }
     services = []
     for item in results['items']:
+        import pprint
         if 'scoring' in item:
             for prov in item['scoring']:
                 if (prov['provider_type'] == 'tmdb:id' and prov['value'] == tmdb_id) or item['title'] == tmdb_title:
                     if 'offers' in item:
                         for service in item['offers']:
-                            if service['monetization_type'] != 'cinema':
+                            if service['monetization_type'] != 'cinema' and (str(item["original_release_year"] + 1) == date or str(item["original_release_year"] - 1) == date or str(item["original_release_year"]) == date):
                                 offer = {
                                     "name": providers[service["provider_id"]]["name"],
                                     "link": service["urls"]["standard_web"],
@@ -92,7 +93,7 @@ def findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU'):
                                         service["retail_price"]) + ' ' + service["currency"]
                                 add = True
                                 for selections in services:
-                                    if selections["link"] == offer["link"]:
+                                    if selections["link"] == offer["link"] or selections["name"] == offer["name"]:
                                         add = False
                                 if add:
                                     services.append(offer)

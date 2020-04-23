@@ -141,8 +141,8 @@ def search_watch_filtered(request, query, services):
     return JsonResponse(obj)
 
 
-def tmdb_streaming_services(request, id, title, popularity, score):
-    services = findServices(id, title, popularity, score)
+def tmdb_streaming_services(request, id, title, date, media_type):
+    services = findServices(id, title, date, media_type)
     obj = {
         'data': services
     }

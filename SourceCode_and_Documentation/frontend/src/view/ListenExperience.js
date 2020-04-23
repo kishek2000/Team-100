@@ -37,38 +37,46 @@ export function ListenExperience({
       const podcast_matches = data["Search Results"]["Podcast Results"];
       return (
         <div className="search-results">
-          <div className="search-results-title">
-            Search Results for {searchQuery}
-          </div>
-          <div className="search-listen-lists">
-            <MediaCategoryList
-              category="Album, Single and Compilation Results"
-              media="LISTEN"
-              type="Track"
-              mediaContent={album_matches}
-              getOverlayData={getOverlayData}
-              getListenLink={getListenLink}
-              num="0"
-            />
-            <MediaCategoryList
-              category="Track Results"
-              media="LISTEN"
-              type="Album"
-              mediaContent={track_matches}
-              getOverlayData={getOverlayData}
-              getListenLink={getListenLink}
-              num="1"
-            />
-            <MediaCategoryList
-              category="Podcast Results"
-              type="Podcast"
-              media="LISTEN"
-              mediaContent={podcast_matches}
-              getOverlayData={getOverlayData}
-              getListenLink={getListenLink}
-              num="2"
-            />
-          </div>
+          {album_matches.length > 0 ||
+          track_matches.length > 0 ||
+          podcast_matches.length > 0 ? (
+            <div>
+              <div className="search-results-title">
+                Search Results for {searchQuery}
+              </div>
+              <div className="search-listen-lists">
+                <MediaCategoryList
+                  category="Album, Single and Compilation Results"
+                  media="LISTEN"
+                  type="Track"
+                  mediaContent={album_matches}
+                  getOverlayData={getOverlayData}
+                  getListenLink={getListenLink}
+                  num="0"
+                />
+                <MediaCategoryList
+                  category="Track Results"
+                  media="LISTEN"
+                  type="Album"
+                  mediaContent={track_matches}
+                  getOverlayData={getOverlayData}
+                  getListenLink={getListenLink}
+                  num="1"
+                />
+                <MediaCategoryList
+                  category="Podcast Results"
+                  type="Podcast"
+                  media="LISTEN"
+                  mediaContent={podcast_matches}
+                  getOverlayData={getOverlayData}
+                  getListenLink={getListenLink}
+                  num="2"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="category-title">Sorry! No results were found.</div>
+          )}
         </div>
       );
     } else {

@@ -191,7 +191,7 @@ def getTmdbId(name, media):
         TMDB_URL + "/search/{}".format(media), params=parameters)
     json = res.json()["results"]
     for result in json:
-        if result["name"] == name:
+        if 'name' in result and result['name'] == name:
             return result["id"]
 
 

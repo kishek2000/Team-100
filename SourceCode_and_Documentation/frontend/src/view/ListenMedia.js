@@ -60,6 +60,12 @@ export function ListenMedia({
         </div>
       </div>
     );
+  } else if (content.length === 0) {
+    return (
+      <div className="no-results-title">
+        Sorry! There were no {category} were found.
+      </div>
+    );
   } else {
     return <div></div>;
   }

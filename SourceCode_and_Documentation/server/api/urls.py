@@ -12,7 +12,7 @@ urlpatterns = [
          views.search_watch_filtered),
     path('api/search/watch/filters/<str:region>', views.region_service_filters),
     path('api/details/tv/<slug:id>', views.details_tv),
-    path('api/services/tv/<slug:id>/<str:title>/<str:popularity>/<str:score>',
+    path('api/services/tv/<slug:id>/<str:title>/<str:date>/<str:media_type>',
          views.tmdb_streaming_services),
     path('api/services/listen/<str:spotifyid>/<str:listen_type>',
          views.listen_youtube_link),

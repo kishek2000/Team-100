@@ -151,12 +151,20 @@
   margin-top: 0.5vw;
 }
 
-.category-title {
+.category-title,
+.no-results-title {
   display: flex;
   margin-bottom: 0.5vw;
-  font-family: HelveticaNeue-Bold;
   font-size: 1.5vw;
+  font-family: HelveticaNeue-Bold;
   color: inherit;
+}
+
+.no-results-title {
+  margin-left: 1.5vw;
+  font-family: HelveticaNeue-Light;
+  font-size: 1vw;
+  margin-top: 1vw;
 }
 
 .category-media,

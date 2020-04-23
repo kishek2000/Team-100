@@ -44,9 +44,9 @@ export function AppContainer({ children }) {
   }, [setListenData]);
 
   const getOverlayServices = useCallback(
-    (tmdbID, tmdbTitle, tmdbPopularity, tmdbScore) => {
+    (tmdbID, tmdbTitle, releaseYear, mediaType) => {
       client
-        .getWatchStreams(tmdbID, tmdbTitle, tmdbPopularity, tmdbScore)
+        .getWatchStreams(tmdbID, tmdbTitle, releaseYear, mediaType)
         .then((data) => setOverlayServices(data));
     },
     [setOverlayServices]

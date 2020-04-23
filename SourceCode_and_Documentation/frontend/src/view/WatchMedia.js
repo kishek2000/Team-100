@@ -14,7 +14,7 @@ export function WatchMedia({
   getWatchScore,
   getTVEpScores,
 }) {
-  if (content !== undefined) {
+  if (content !== undefined && content.length > 0) {
     const contentStart = content;
     return (
       <div className="category-list">
@@ -40,8 +40,8 @@ export function WatchMedia({
                       getOverlayServices(
                         item["id"],
                         item["name"],
-                        item["popularity"],
-                        item["score"]
+                        item["first_air_date"],
+                        item["type"]
                       );
                       getWatchScore(item["id"], item["type"]);
                       if (item["type"] === "tv") {
@@ -64,6 +64,12 @@ export function WatchMedia({
             )
           )}
         </div>
+      </div>
+    );
+  } else if (content.length === 0) {
+    return (
+      <div className="no-results-title">
+        Sorry! There were no {category} were found.
       </div>
     );
   } else {

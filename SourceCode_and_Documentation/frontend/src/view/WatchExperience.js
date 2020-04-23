@@ -30,33 +30,40 @@ export function WatchExperience({
     } else if (searchQuery.length > 0 && data[`Search Results`]) {
       const tv_results = data[`Search Results`]["TV Results"];
       const movie_results = data[`Search Results`]["Movie Results"];
+      console.table(data[`Search Results`]);
       return (
         <div className="search-results">
-          <div className="search-results-title">
-            Search Results for "{searchQuery}"
-          </div>
-          <div className="search-watch-lists">
-            <MediaCategoryList
-              category="TV Results"
-              media="WATCH"
-              mediaContent={tv_results}
-              getOverlayData={getOverlayData}
-              getOverlayServices={getOverlayServices}
-              getWatchScore={getWatchScore}
-              getTVEpScores={getTVEpScores}
-              num="0"
-            />
-            <MediaCategoryList
-              category="Movie Results"
-              media="WATCH"
-              mediaContent={movie_results}
-              getOverlayData={getOverlayData}
-              getOverlayServices={getOverlayServices}
-              getWatchScore={getWatchScore}
-              getTVEpScores={getTVEpScores}
-              num="1"
-            />
-          </div>
+          {tv_results.length > 0 || movie_results.length > 0 ? (
+            <div>
+              <div className="search-results-title">
+                Search Results for "{searchQuery}"
+              </div>
+              <div className="search-watch-lists">
+                <MediaCategoryList
+                  category="TV Results"
+                  media="WATCH"
+                  mediaContent={tv_results}
+                  getOverlayData={getOverlayData}
+                  getOverlayServices={getOverlayServices}
+                  getWatchScore={getWatchScore}
+                  getTVEpScores={getTVEpScores}
+                  num="0"
+                />
+                <MediaCategoryList
+                  category="Movie Results"
+                  media="WATCH"
+                  mediaContent={movie_results}
+                  getOverlayData={getOverlayData}
+                  getOverlayServices={getOverlayServices}
+                  getWatchScore={getWatchScore}
+                  getTVEpScores={getTVEpScores}
+                  num="1"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="category-title">Sorry! No results were found.</div>
+          )}
         </div>
       );
     } else {

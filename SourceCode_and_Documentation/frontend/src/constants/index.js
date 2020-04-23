@@ -98,10 +98,6 @@ export const LISTENCATEGORIES = {
       label: "Workout",
     },
     {
-      value: "wellness",
-      label: "Wellness",
-    },
-    {
       value: "indie_alt",
       label: "Indie",
     },
@@ -176,10 +172,6 @@ export const LISTENCATEGORIES = {
     {
       value: "punk",
       label: "Punk",
-    },
-    {
-      value: "thirdparty",
-      label: "Tastemakers",
     },
     {
       value: "arab",

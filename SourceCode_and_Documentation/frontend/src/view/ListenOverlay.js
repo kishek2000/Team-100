@@ -108,6 +108,7 @@ export function ListenOverlay({
               frameborder="0"
               allowtransparency="true"
               allow="encrypted-media"
+              scrolling="no"
             ></iframe>
           </div>
           {Object.keys(listenYTLink).length > 0 && listenYTLink !== "" ? (
