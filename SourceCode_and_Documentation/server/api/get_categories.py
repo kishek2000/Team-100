@@ -28,7 +28,7 @@ else:
     from .constants import getTVGenre, getMovieGenre
 
 
-def getWatchCategory(media, category, keyname, country="AU"):
+def getWatchCategory(media, category, keyname, country="AU", genre_filter=''):
     '''
     Based on media type and category name returns a list of media in that category
     '''
@@ -40,35 +40,39 @@ def getWatchCategory(media, category, keyname, country="AU"):
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"]
     mediaObjects = []
+    if genre_filter != '':
+        ids = list(map(int, genre_filter.split('&')))
     for result in json:
         if media == '/tv/':
-            mediaObjects.append({
-                "name": result["name"],
-                "imgURL": craftPosterURL(result["poster_path"]),
-                "first_air_date": result["first_air_date"][0:4],
-                "id": result["id"],
-                "score": round(result["vote_average"]/10, 2),
-                "genre": getTVGenre(result["genre_ids"]),
-                "lang": result["original_language"].upper(),
-                "type": "tv",
-                "popularity": result["popularity"]
-            })
+            if genre_filter == '' or len(set(ids).intersection(set(result["genre_ids"]))) == len(ids):
+                mediaObjects.append({
+                    "name": result["name"],
+                    "imgURL": craftPosterURL(result["poster_path"]),
+                    "first_air_date": result["first_air_date"][0:4],
+                    "id": result["id"],
+                    "score": round(result["vote_average"]/10, 2),
+                    "genre": getTVGenre(result["genre_ids"]),
+                    "lang": result["original_language"].upper(),
+                    "type": "tv",
+                    "popularity": result["popularity"]
+                })
         elif media == '/movie/':
-            mediaObjects.append({
-                "name": result["title"],
-                "imgURL": craftPosterURL(result["poster_path"]),
-                "first_air_date": result["release_date"][0:4],
-                "id": result["id"],
-                "score": round(result["vote_average"]/10, 2),
-                "genre": getMovieGenre(result["genre_ids"]),
-                "lang": result["original_language"].upper(),
-                "type": "movie",
-                "popularity": result["popularity"]
-            })
+            if genre_filter == '' or len(set(ids).intersection(set(result["genre_ids"]))) == len(ids):
+                mediaObjects.append({
+                    "name": result["title"],
+                    "imgURL": craftPosterURL(result["poster_path"]),
+                    "first_air_date": result["release_date"][0:4],
+                    "id": result["id"],
+                    "score": round(result["vote_average"]/10, 2),
+                    "genre": getMovieGenre(result["genre_ids"]),
+                    "lang": result["original_language"].upper(),
+                    "type": "movie",
+                    "popularity": result["popularity"]
+                })
     return mediaObjects
 
 
-def getWatchTrending():
+def getWatchTrending(tv_filter='', movie_filter=''):
     '''
     Gets all the trending movies/tv shows for the day
     '''
@@ -78,32 +82,38 @@ def getWatchTrending():
     res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
     json = res.json()["results"]
     mediaObjects = []
+    if tv_filter != '':
+        tv_ids = list(map(int, tv_filter.split('&')))
+    if movie_filter != '':
+        movie_ids = list(map(int, movie_filter.split('&')))
     for result in json:
         if result['media_type'] == 'tv':
-            mediaObjects.append({
-                "name": result["name"],
-                "imgURL": craftPosterURL(result["poster_path"]),
-                "first_air_date": result["first_air_date"][0:4],
-                "id": result["id"],
-                "score": round(result["vote_average"]/10, 2),
-                "genre": getTVGenre(result["genre_ids"]),
-                "lang": result["original_language"].upper(),
-                "type": "tv",
-                "popularity": result["popularity"]
-            })
+            if tv_filter == '' or len(set(tv_ids).intersection(set(result["genre_ids"]))) == len(tv_ids):
+                mediaObjects.append({
+                    "name": result["name"],
+                    "imgURL": craftPosterURL(result["poster_path"]),
+                    "first_air_date": result["first_air_date"][0:4],
+                    "id": result["id"],
+                    "score": round(result["vote_average"]/10, 2),
+                    "genre": getTVGenre(result["genre_ids"]),
+                    "lang": result["original_language"].upper(),
+                    "type": "tv",
+                    "popularity": result["popularity"]
+                })
         elif result['media_type'] == 'movie':
-            mediaObjects.append({
-                "name": result["title"],
-                "imgURL": craftPosterURL(result["poster_path"]),
-                "first_air_date": result["release_date"][0:4],
-                # "content_rating": getMovieContentRating(result["id"]),
-                "id": result["id"],
-                "score": round(result["vote_average"]/10, 2),
-                "genre": getMovieGenre(result["genre_ids"]),
-                "lang": result["original_language"].upper(),
-                "type": "movie",
-                "popularity": result["popularity"]
-            })
+            if movie_filter == '' or len(set(movie_ids).intersection(set(result["genre_ids"]))) == len(movie_ids):
+                mediaObjects.append({
+                    "name": result["title"],
+                    "imgURL": craftPosterURL(result["poster_path"]),
+                    "first_air_date": result["release_date"][0:4],
+                    # "content_rating": getMovieContentRating(result["id"]),
+                    "id": result["id"],
+                    "score": round(result["vote_average"]/10, 2),
+                    "genre": getMovieGenre(result["genre_ids"]),
+                    "lang": result["original_language"].upper(),
+                    "type": "movie",
+                    "popularity": result["popularity"]
+                })
     return mediaObjects
 
 
