@@ -8,6 +8,9 @@ const client = new Client("http://127.0.0.1:8000");
 
 export function AppContainer({ children }) {
   const [mediaSelected, setMediaSelected] = useState("WATCH");
+  const [filterSelected, setFilterSelected] = useState("home");
+  const [movGenresSelected, setMovGenresSelected] = useState("");
+  const [tvGenresSelected, setTVGenresSelected] = useState("");
   const [watchData, setWatchData] = useState({});
   const [listenData, setListenData] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
@@ -42,6 +45,15 @@ export function AppContainer({ children }) {
   const getListenData = useCallback(() => {
     client.getListenData().then((data) => setListenData(data));
   }, [setListenData]);
+
+  const getWatchFilteredData = useCallback(
+    (movieGenres, tvGenres) => {
+      client
+        .getFilteredWatchData(movieGenres, tvGenres)
+        .then((data) => setWatchData(data));
+    },
+    [setWatchData]
+  );
 
   const getOverlayServices = useCallback(
     (tmdbID, tmdbTitle, releaseYear, mediaType) => {
@@ -128,11 +140,12 @@ export function AppContainer({ children }) {
     onMediaChange: setMediaSelected,
     onSearchQuery: onSearchQuery,
     getWatchData: getWatchData,
+    getWatchFilteredData: getWatchFilteredData,
     getListenData: getListenData,
     getOverlayData: getOverlayData,
     getServiceOptions: getServiceOptions,
-    watch: { data: watchData, fetch: getWatchData },
-    listen: { data: listenData, fetch: getListenData },
+    watch: { data: watchData },
+    listen: { data: listenData },
     overlay: { data: overlayData },
     setOverlayData: setOverlayData,
     setSearchQuery: setSearchQuery,
@@ -162,5 +175,11 @@ export function AppContainer({ children }) {
     getListenCatPlaylist: getListenCatPlaylist,
     selectedCat: selectedCat,
     setSelectedCat: setSelectedCat,
+    filterSelected: filterSelected,
+    setFilterSelected: setFilterSelected,
+    movGenresSelected: movGenresSelected,
+    setMovGenresSelected: setMovGenresSelected,
+    tvGenresSelected: tvGenresSelected,
+    setTVGenresSelected: setTVGenresSelected,
   });
 }

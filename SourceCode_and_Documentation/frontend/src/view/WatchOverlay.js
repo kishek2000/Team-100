@@ -198,7 +198,7 @@ export function WatchOverlay({
                       <a
                         href={item["link"]}
                         target="_blank"
-                        className="service-redirect"
+                        className="watch-service-redirect"
                         rel="noopener noreferrer"
                       >
                         <div className="wrap">

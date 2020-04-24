@@ -4,7 +4,7 @@ from rest_framework import generics
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData, getListenLinks, categoryPlaylists
+from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData, getListenLinks, categoryPlaylists, getWatchCategoryFiltered
 from .search_data import search, filtered_search
 from .reviews import title_rating, tv_collection_ratings
 from justwatch import JustWatch
@@ -17,12 +17,26 @@ from .definitions import findServices
 
 def home_watch(request):
     obj = {
-        "Trending Daily": getWatchTrending(),
-        "Top Rated TV Shows": getWatchCategory('/tv/', 'top_rated', 'name', country=None),
-        "Popular TV Shows": getWatchCategory('/tv/', 'popular', 'name', country=None),
-        "On Air TV Shows": getWatchCategory('/tv/', 'on_the_air', 'name', country=None),
-        "Popular Movies": getWatchCategory('/movie/', 'popular', 'title', country=None),
-        "Top Rated Movies": getWatchCategory('/movie/', 'top_rated', 'title', country=None),
+        "Top Rated TV Shows": getWatchCategory('/tv/', 'top_rated', country=None),
+        "Popular TV Shows": getWatchCategory('/tv/', 'popular', country=None),
+        "On Air TV Shows": getWatchCategory('/tv/', 'on_the_air', country=None),
+        "Popular Movies": getWatchCategory('/movie/', 'popular', country=None),
+        "Top Rated Movies": getWatchCategory('/movie/', 'top_rated', country=None),
+    }
+    return JsonResponse(obj)
+
+
+def home_watch_filtered(request, mgenres, tgenres):
+    if mgenres == 'none':
+        mgenres = ''
+    if tgenres == 'none':
+        tgenres = ''
+    obj = {
+        "Top Rated TV Shows": getWatchCategoryFiltered('/tv/', 'top_rated', tv_filter=tgenres, country=None, min=20),
+        "Popular TV Shows": getWatchCategoryFiltered('/tv/', 'popular', tv_filter=tgenres, country=None, min=20),
+        "On Air TV Shows": getWatchCategoryFiltered('/tv/', 'on_the_air', tv_filter=tgenres, country=None, min=20),
+        "Popular Movies": getWatchCategoryFiltered('/movie/', 'popular', movie_filter=mgenres, country=None, min=20),
+        "Top Rated Movies": getWatchCategoryFiltered('/movie/', 'top_rated', movie_filter=mgenres, country=None, min=20),
     }
     return JsonResponse(obj)
 

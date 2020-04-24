@@ -24,6 +24,32 @@ export class Client {
     return data;
   }
 
+  async getFilteredWatchData(movieGenres, tvGenres) {
+    if (movieGenres === undefined) {
+      movieGenres = "";
+    }
+    if (tvGenres === undefined) {
+      tvGenres = "";
+    }
+    if (String(movieGenres).length === 0 && String(tvGenres).length > 0) {
+      const data = await this.api(`/api/home/watch/filtered/none/${tvGenres}`);
+      return data;
+    } else if (
+      String(tvGenres).length === 0 &&
+      String(movieGenres).length > 0
+    ) {
+      const data = await this.api(
+        `/api/home/watch/filtered/${movieGenres}/none`
+      );
+      return data;
+    } else {
+      const data = await this.api(
+        `/api/home/watch/filtered/${movieGenres}/${tvGenres}`
+      );
+      return data;
+    }
+  }
+
   async getWatchSearchResults(query, services) {
     if (services === undefined || Object.keys(services).length === 0) {
       const data = await this.api(`/api/search/watch/unfiltered/${query}`);

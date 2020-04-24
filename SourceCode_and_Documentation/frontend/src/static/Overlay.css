@@ -134,8 +134,10 @@
 
 .overlay-service-logo {
   width: 1.5vw;
-  height: 1.5vw;
+  position: relative;
   border-radius: 5px;
+  background: white;
+  object-fit: contain;
 }
 
 .overlay-imdb-logo {
@@ -166,7 +168,6 @@
   margin-bottom: 0.5vw;
   width: 45vw;
 }
-
 .overlay-trailer-video {
   margin-top: 0.4vw;
   width: 26vw;
@@ -183,8 +184,6 @@
 
 .spotify-play {
   width: 100%;
-  max-height: 13vw;
-  min-height: 10vw;
 }
 
 .listen-copyrights {
@@ -197,6 +196,7 @@
 .overlay-viewing-row {
   display: flex;
   flex-direction: row;
+  margin-bottom: 1vw;
 }
 
 .spotify-listen {
@@ -215,14 +215,20 @@
   flex-wrap: wrap;
 }
 
-.service-name {
+.service-name,
+.listen-service-name {
   margin-right: 0.6vw;
   display: flex;
+  flex-direction: row;
   align-items: center;
+}
+
+.service-name {
   width: 12vw;
 }
 
-.service-redirect {
+.service-redirect,
+.watch-service-redirect {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -230,13 +236,22 @@
   text-decoration: none;
   white-space: nowrap;
   color: white;
-  padding: 0.2vw 0.6vw;
   border-radius: 5px;
   transition: 0.25s;
   font-family: HelveticaNeue-Light;
   font-size: 0.78vw;
+  margin-right: 1vw;
   margin-bottom: 0.3vw;
+  padding: 0.2vw 0.4vw 0.2vw 0vw;
 }
+
+.watch-service-redirect:hover {
+  background: white;
+  padding: 0.2vw 0.4vw 0.2vw 0.4vw;
+  color: black;
+  transition: 0.25s;
+}
+
 /* 
 .overlay-service-price {
   font-family: HelveticaNeue-Light;
@@ -244,6 +259,7 @@
 } */
 
 .service-redirect:hover {
+  padding: 0.2vw 0.4vw 0.2vw 0.4vw;
   background: white;
   color: black;
   transition: 0.25s;
@@ -253,7 +269,7 @@
   padding: 0;
   width: 1.5vw;
   margin-right: 0.3vw;
-  height: 1.5vw;
+  /* height: 1.5vw; */
 }
 
 .overlay-trailer-and-reviews {

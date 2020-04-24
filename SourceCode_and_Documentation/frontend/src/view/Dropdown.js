@@ -18,7 +18,7 @@ export class Dropdown extends React.Component {
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption }, () => {
-      if (selectedOption && selectedOption.length > 0) {
+      if (selectedOption !== null && selectedOption.length > 0) {
         if (selectedOption.length > 1) {
           this.props.setData(
             selectedOption
@@ -33,12 +33,18 @@ export class Dropdown extends React.Component {
           }
         }
       } else {
-        if (this.props.setData) {
-          this.props.setData(selectedOption["value"]);
-        }
-        if (this.props.setSelection && this.props.getData) {
-          this.props.getData(selectedOption["value"]);
-          this.props.setSelection(selectedOption);
+        if (selectedOption === null) {
+          this.props.setData(selectedOption);
+        } else if (typeof selectedOption !== "string") {
+          if (this.props.setData) {
+            this.props.setData(selectedOption["value"]);
+          }
+          if (this.props.setSelection && this.props.getData) {
+            this.props.getData(selectedOption["value"]);
+            this.props.setSelection(selectedOption);
+          }
+        } else {
+          this.props.setData(selectedOption);
         }
       }
     });

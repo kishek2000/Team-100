@@ -69,7 +69,7 @@ export function WatchExperience({
     } else {
       return (
         <div className="watch-experience-lists">
-          <MediaCategoryList
+          {/* <MediaCategoryList
             category="Trending Daily"
             media="WATCH"
             mediaContent={data["Trending Daily"]}
@@ -78,7 +78,7 @@ export function WatchExperience({
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
             num="0"
-          />
+          /> */}
           <MediaCategoryList
             category="Top Rated TV Shows"
             media="WATCH"
@@ -87,7 +87,7 @@ export function WatchExperience({
             getOverlayServices={getOverlayServices}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
-            num="1"
+            num="0"
           />
           <MediaCategoryList
             category="On Air TV Shows"
@@ -97,7 +97,7 @@ export function WatchExperience({
             getOverlayServices={getOverlayServices}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
-            num="2"
+            num="1"
           />
           <MediaCategoryList
             category="Popular TV Shows"
@@ -107,7 +107,7 @@ export function WatchExperience({
             getOverlayServices={getOverlayServices}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
-            num="3"
+            num="2"
           />
           <MediaCategoryList
             category="Top Rated Movies"
@@ -117,7 +117,7 @@ export function WatchExperience({
             getOverlayServices={getOverlayServices}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
-            num="4"
+            num="3"
           />
           <MediaCategoryList
             category="Popular Movies"
@@ -127,7 +127,7 @@ export function WatchExperience({
             getOverlayServices={getOverlayServices}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
-            num="5"
+            num="4"
           />
         </div>
       );

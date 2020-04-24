@@ -1,4 +1,5 @@
 import React from "react";
+import { LISTEN_LOGOS } from "../constants/index";
 
 function ListenOverlayMeta({
   releaseDate,
@@ -106,6 +107,11 @@ export function ListenOverlay({
               className="spotify-play"
               title="play"
               frameborder="0"
+              style={
+                media_data["type"] !== "podcast"
+                  ? { height: "13vw" }
+                  : { height: "" }
+              }
               allowtransparency="true"
               allow="encrypted-media"
               scrolling="no"
@@ -145,7 +151,7 @@ export function ListenOverlay({
               </div>
               <iframe
                 title="music-video"
-                src={listenYTLink}
+                src={listenYTLink[0]["service_link"]}
                 allowfullscreen="allowfullscreen"
                 className="overlay-music-video"
               ></iframe>
@@ -154,6 +160,40 @@ export function ListenOverlay({
             <div></div>
           )}
         </div>
+        {Object.keys(listenYTLink).length > 0 && listenYTLink !== "" ? (
+          <div>
+            <div className="overlay-subtitle">All Services</div>
+            <div className="services-buttons">
+              {listenYTLink.slice(1, 15).map((item, index) => (
+                <div className="listen-service-name" index={index}>
+                  <a
+                    href={item["service_link"]}
+                    target="_blank"
+                    className="service-redirect"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="wrap">
+                      <img
+                        src={LISTEN_LOGOS[item["service_name"]]}
+                        alt="logo"
+                        className="overlay-service-logo"
+                      />
+                    </div>
+                    <div className="overlay-services-metadata">
+                      <div>{item["service_name"]}</div>
+                      {/* <div className="overlay-service-price">
+                      {item["price"]}
+                      {console.log(item)}
+                    </div> */}
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </section>
   );

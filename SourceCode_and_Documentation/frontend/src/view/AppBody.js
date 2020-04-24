@@ -3,7 +3,7 @@ import React from "react";
 import { Experience } from "./Experience";
 import { SearchBar } from "./SearchBar";
 import { MediaSelector } from "./MediaSelector";
-import { OPTIONS, SEARCHTEXT } from "../constants";
+import { OPTIONS, SEARCHTEXT, TV_GENRES, MOVIE_GENRES } from "../constants";
 import BackToTop from "react-back-to-top-button";
 
 var isDark = false;
@@ -16,6 +16,7 @@ export const AppBody = ({
   onSearchQuery,
   getWatchData,
   getListenData,
+  getWatchFilteredData,
   setSearchQuery,
   searchQuery,
   getOverlayData,
@@ -36,6 +37,12 @@ export const AppBody = ({
   getListenCatPlaylist,
   selectedCat,
   setSelectedCat,
+  filterSelected,
+  setFilterSelected,
+  movGenresSelected,
+  setMovGenresSelected,
+  tvGenresSelected,
+  setTVGenresSelected,
 }) => (
   <section className="App-media-options">
     <button
@@ -91,6 +98,15 @@ export const AppBody = ({
         region={region}
         setRegion={setRegion}
         getServiceOptions={getServiceOptions}
+        filterSelected={filterSelected}
+        setFilterSelected={setFilterSelected}
+        getWatchFilteredData={getWatchFilteredData}
+        movieGenreOptions={MOVIE_GENRES["items"]}
+        tvGenreOptions={TV_GENRES["items"]}
+        movGenresSelected={movGenresSelected}
+        setMovGenresSelected={setMovGenresSelected}
+        tvGenresSelected={tvGenresSelected}
+        setTVGenresSelected={setTVGenresSelected}
       />
     </div>
     <Experience

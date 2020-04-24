@@ -24,11 +24,37 @@
 }
 
 /* This below is the styling for the upper header of filters. */
-.filter-form {
+.filter-form,
+.search-filter-row,
+.home-filter-row,
+.filter-text {
   display: flex;
   flex-direction: row;
   align-items: center;
   color: black;
+}
+
+.home-filter-row {
+  margin-right: 3vw;
+  padding-right: 2vw;
+  border-right: 1px solid rgb(218, 218, 218);
+}
+
+.filter-home-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: HelveticaNeue-Thin;
+  font-size: 0.75vw;
+  color: black;
+  cursor: pointer;
+  width: 2.5vw;
+  height: 1.2vw;
+  border-radius: 8px;
+}
+
+.filter-home-button:hover {
+  font-family: HelveticaNeue-Bold;
 }
 
 .filters-header {
@@ -47,10 +73,18 @@
 }
 
 .services-filter,
-.region-filter {
+.region-filter,
+.movie-genres-filter,
+.tv-genres-filter {
   font-family: HelveticaNeue-Thin;
   font-size: 0.75vw;
   color: black !important;
+}
+
+.movie-genres-filter,
+.tv-genres-filter {
+  width: 8vw;
+  margin-right: 1vw;
 }
 
 .services-filter {
@@ -69,6 +103,13 @@
   font-family: HelveticaNeue-Thin;
   font-size: 0.8vw;
   color: black;
+}
+
+.filter-choice {
+  width: 5vw;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  border: none !important;
 }
 
 /* This below is for the selection of watch or listen */

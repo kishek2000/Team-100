@@ -1,5 +1,3 @@
-export const WATCH_GENRES = ["Romance", "Drama", "Comedy", "Horror"];
-export const LISTEN_GENRES = ["Pop", "R&B", "Country", "Workout"];
 export const OPTIONS = ["WATCH", "LISTEN"];
 export const CURRDATESTR = [
   `${new Date().getMonth() + 1}`,
@@ -65,6 +63,156 @@ export const TIME = () => {
 export const SEARCHTEXT = {
   WATCH: "Search for Movie or TV Show by name...",
   LISTEN: "Search for Podcast or Music by name...",
+};
+
+export const MOVIE_GENRES = {
+  items: [
+    {
+      value: 28,
+      label: "Action",
+    },
+    {
+      value: 12,
+      label: "Adventure",
+    },
+    {
+      value: 16,
+      label: "Animation",
+    },
+    {
+      value: 35,
+      label: "Comedy",
+    },
+    {
+      value: 80,
+      label: "Crime",
+    },
+    {
+      value: 99,
+      label: "Documentary",
+    },
+    {
+      value: 18,
+      label: "Drama",
+    },
+    {
+      value: 10751,
+      label: "Family",
+    },
+    {
+      value: 14,
+      label: "Fantasy",
+    },
+    {
+      value: 36,
+      label: "History",
+    },
+    {
+      value: 27,
+      label: "Horror",
+    },
+    {
+      value: 10402,
+      label: "Music",
+    },
+    {
+      value: 9648,
+      label: "Mystery",
+    },
+    {
+      value: 10749,
+      label: "Romance",
+    },
+    {
+      value: 878,
+      label: "Science Fiction",
+    },
+    {
+      value: 10770,
+      label: "TV Movie",
+    },
+    {
+      value: 53,
+      label: "Thriller",
+    },
+    {
+      value: 10752,
+      label: "War",
+    },
+    {
+      value: 37,
+      label: "Western",
+    },
+  ],
+};
+
+export const TV_GENRES = {
+  items: [
+    {
+      value: 10759,
+      label: "Action & Adventure",
+    },
+    {
+      value: 16,
+      label: "Animation",
+    },
+    {
+      value: 35,
+      label: "Comedy",
+    },
+    {
+      value: 80,
+      label: "Crime",
+    },
+    {
+      value: 99,
+      label: "Documentary",
+    },
+    {
+      value: 18,
+      label: "Drama",
+    },
+    {
+      value: 10751,
+      label: "Family",
+    },
+    {
+      value: 10762,
+      label: "Kids",
+    },
+    {
+      value: 9648,
+      label: "Mystery",
+    },
+    {
+      value: 10763,
+      label: "News",
+    },
+    {
+      value: 10764,
+      label: "Reality",
+    },
+    {
+      value: 10765,
+      label: "Sci-Fi & Fantasy",
+    },
+    {
+      value: 10766,
+      label: "Soap",
+    },
+    {
+      value: 10767,
+      label: "Talk",
+    },
+    {
+      value: 10768,
+      label: "War & Politics",
+    },
+    {
+      value: 37,
+      label: "Western",
+    },
+  ],
 };
 
 export const LISTENCATEGORIES = {
@@ -218,4 +366,36 @@ export const LISTENCATEGORIES = {
       label: "Pride",
     },
   ],
+};
+
+export const LISTEN_LOGOS = {
+  Spotify: "https://img.icons8.com/color/96/000000/spotify--v1.png",
+  Itunes: "https://img.icons8.com/metro/104/000000/mac-os.png",
+  "Apple Music": "https://img.icons8.com/color/96/000000/itunes.png",
+  Youtube:
+    "https://346034.smushcdn.com/236617/wp-content/uploads/2018/09/youtube-logo-01-862x391.png?lossy=0&strip=1&webp=1",
+  "Youtube Music":
+    "https://1401700980.rsc.cdn77.org/data/images/full/94629/youtube-music-logo.jpg",
+  Google:
+    "https://www.soundguys.com/wp-content/uploads/2019/08/play-music-icon.jpg",
+  "Google Store":
+    "https://i.pinimg.com/originals/1a/49/22/1a49226d155846acb790eeb919f63c8e.jpg",
+  Pandora:
+    "https://www.underconsideration.com/brandnew/archives/pandora_2016_logo_P.png",
+  Deezer:
+    "https://cdn.vox-cdn.com/thumbor/-Wh1t55YLvEobbumloEGu-BzsSE=/0x0:1000x667/1200x800/filters:focal(0x0:1000x667)/cdn.vox-cdn.com/assets/1081565/deezerlogo.jpg",
+  Tidal:
+    "https://music.mxdwn.com/wp-content/uploads/2015/04/Tidal-streaming.jpg",
+  "Amazon Store":
+    "https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5326_-_Amazon-512.png",
+  "Amazon Music":
+    "https://djmag.com/sites/default/files/article/image/Amazon-Music-Logo-1476279710-640x400.png",
+  Soundcloud:
+    "https://i.pcmag.com/imagery/reviews/00RphstxTwTQ48coaU83lPT-7.fit_scale.size_1028x578.v_1569482503.jpg",
+  Napster:
+    "https://images.squarespace-cdn.com/content/v1/55915377e4b05e44b9c13bca/1535515150211-O2O5767XRDJRF1WG2A1Q/ke17ZwdGBToddI8pDm48kBWyD8QCmC-NZpLkl_N5vSFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI9aFTLD3JG2DfIRHeuIRpa4xu4_TgvxFcnMk4xTGxEDc/Napster-Logo-.png",
+  Yandex:
+    "https://avatars.mds.yandex.net/get-bunker/128809/2242b0f7baf7f84a7d0d6cd6020acd311fba9df8/orig",
+  Spinrilla:
+    "https://www.logolynx.com/images/logolynx/24/24e16814eb4ac17a2261e111f274047c.jpeg",
 };

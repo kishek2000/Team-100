@@ -26,6 +26,7 @@ function App() {
         onSearchQuery,
         getWatchData,
         getListenData,
+        getWatchFilteredData,
         setSearchQuery,
         searchQuery,
         openOverlayID,
@@ -55,6 +56,12 @@ function App() {
         getListenCatPlaylist,
         selectedCat,
         setSelectedCat,
+        filterSelected,
+        setFilterSelected,
+        movGenresSelected,
+        setMovGenresSelected,
+        tvGenresSelected,
+        setTVGenresSelected,
       }) => (
         <div className="App">
           <Overlay
@@ -85,6 +92,7 @@ function App() {
             onSearchQuery={onSearchQuery}
             getWatchData={getWatchData}
             getListenData={getListenData}
+            getWatchFilteredData={getWatchFilteredData}
             getWatchScore={getWatchScore}
             getTVEpScores={getTVEpScores}
             getListenLink={getListenLink}
@@ -106,6 +114,12 @@ function App() {
             getListenCatPlaylist={getListenCatPlaylist}
             selectedCat={selectedCat}
             setSelectedCat={setSelectedCat}
+            filterSelected={filterSelected}
+            setFilterSelected={setFilterSelected}
+            movGenresSelected={movGenresSelected}
+            setMovGenresSelected={setMovGenresSelected}
+            tvGenresSelected={tvGenresSelected}
+            setTVGenresSelected={setTVGenresSelected}
           />
         </div>
       )}

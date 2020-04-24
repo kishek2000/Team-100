@@ -28,23 +28,37 @@ else:
     from .constants import getTVGenre, getMovieGenre
 
 
-def getWatchCategory(media, category, keyname, country="AU", genre_filter=''):
+def getWatchCategoryFiltered(media, category, movie_filter='', tv_filter='', min=None, country=None):
+    data = getWatchCategory(media, category, movie_filter,
+                            tv_filter, country=country, min=min)
+    page = 2
+    while (len(data) < min):
+        data = data + getWatchCategory(media, category,
+                                       movie_filter, tv_filter, country=country, min=min, page=page)
+        page += 1
+    return data
+
+
+def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU", min=0, page=1):
     '''
     Based on media type and category name returns a list of media in that category
     '''
     parameters = {
         "api_key": TMDB_API_KEY,
+        "page": page
     }
     if country != None:
         parameters["region"] = country
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"]
     mediaObjects = []
-    if genre_filter != '':
-        ids = list(map(int, genre_filter.split('&')))
+    if movie_filter != '':
+        mgids = list(map(int, movie_filter.split('&')))
+    if tv_filter != '':
+        tgids = list(map(int, tv_filter.split('&')))
     for result in json:
         if media == '/tv/':
-            if genre_filter == '' or len(set(ids).intersection(set(result["genre_ids"]))) == len(ids):
+            if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
                 mediaObjects.append({
                     "name": result["name"],
                     "imgURL": craftPosterURL(result["poster_path"]),
@@ -57,7 +71,7 @@ def getWatchCategory(media, category, keyname, country="AU", genre_filter=''):
                     "popularity": result["popularity"]
                 })
         elif media == '/movie/':
-            if genre_filter == '' or len(set(ids).intersection(set(result["genre_ids"]))) == len(ids):
+            if movie_filter == '' or len(set(mgids).intersection(set(result["genre_ids"]))) == len(mgids):
                 mediaObjects.append({
                     "name": result["title"],
                     "imgURL": craftPosterURL(result["poster_path"]),
@@ -372,15 +386,44 @@ def getListenLinks(id, listen_type):
     res = requests.get("https://api.song.link/v1-alpha.1/links",
                        params=parameters)
     # result = res.json()
-    print(res.json())
-    if 'linksByPlatform' in res.json() and 'youtube' in res.json()['linksByPlatform']:
+    platforms = []
+    if 'entitiesByUniqueId' in res.json():
+        for item in res.json()['entitiesByUniqueId']:
+            for platform in res.json()['entitiesByUniqueId'][str(item)]['platforms']:
+                platforms.append(platform)
+    allLinks = []
+    if 'youtube' in platforms:
         youtube = res.json()['linksByPlatform']['youtube']['url']
         if 'playlist' in youtube:
             url = youtube.partition('.com/')
-            return url[0]+'.com/embed/' + url[2]
+            allLinks.append(
+                {"service_link": url[0]+'.com/embed/' + url[2], "service_name": "youtube_embed"})
         else:
             url = youtube.partition('watch?v=')
-            return url[0]+'embed/' + url[2]
+            allLinks.append(
+                {"service_link": url[0]+'embed/' + url[2], "service_name": "youtube_embed"})
+    if len(platforms) > 0:
+        for platform in platforms:
+            name = ""
+            if 'Music' in platform:
+                name = platform.partition('Music')[0].title() + ' ' + 'Music'
+                print(name)
+            elif 'Store' in platform:
+                name = platform.partition('Store')[0].title() + ' ' + 'Store'
+                print(name)
+            else:
+                name = platform.title()
+            no_add = False
+            for additions in allLinks:
+                if additions['service_name'] == name:
+                    no_add = True
+            if not no_add:
+                allLinks.append({
+                    "service_link": res.json()['linksByPlatform'][str(platform)]['url'] if str(platform) in res.json()['linksByPlatform'] else '',
+                    "service_name": name
+                })
+    if (len(allLinks) > 0):
+        return allLinks
     return ''
 
 
