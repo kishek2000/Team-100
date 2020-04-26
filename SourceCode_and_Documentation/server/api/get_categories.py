@@ -29,10 +29,13 @@ else:
 
 
 def getWatchCategoryFiltered(media, category, movie_filter='', tv_filter='', min=None, country=None):
+    '''
+    Calls getWatchCategory enough times s
+    '''
     data = getWatchCategory(media, category, movie_filter,
                             tv_filter, country=country, min=min)
     page = 2
-    while (len(data) < min):
+    while len(data) < min and page <= 500:
         data = data + getWatchCategory(media, category,
                                        movie_filter, tv_filter, country=country, min=min, page=page)
         page += 1
@@ -52,6 +55,9 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
     res = requests.get(TMDB_URL + media + category, params=parameters)
     json = res.json()["results"]
     mediaObjects = []
+    # movie_filter and tv_filter will be in the format
+    # "genreid&genreid&genreid" eg. "35&64&10823"
+    # Here we extract the data and put it into a list
     if movie_filter != '':
         mgids = list(map(int, movie_filter.split('&')))
     if tv_filter != '':
@@ -96,6 +102,9 @@ def getWatchTrending(tv_filter='', movie_filter=''):
     res = requests.get(TMDB_URL + "/trending/all/day", params=parameters)
     json = res.json()["results"]
     mediaObjects = []
+    # movie_filter and tv_filter will be in the format
+    # "genreid&genreid&genreid" eg. "35&64&10823"
+    # Here we extract the data and put it into a list
     if tv_filter != '':
         tv_ids = list(map(int, tv_filter.split('&')))
     if movie_filter != '':
@@ -160,6 +169,9 @@ def newMusicReleases(nItems, country="AU"):
 
 
 def featuredPlaylists(nItems, country="AU"):
+    '''
+    Returns spotify's featured-playlists category
+    '''
     header = {
         "Authorization": getSpotifyToken()
     }
@@ -172,7 +184,6 @@ def featuredPlaylists(nItems, country="AU"):
     json = res.json()
     mediaObjects = []
     for result in json["playlists"]["items"]:
-
         mediaObjects.append({
             "listen_name": result["name"],
             "type": "Playlist",
@@ -185,6 +196,9 @@ def featuredPlaylists(nItems, country="AU"):
 
 
 def getTVData(id, region="AU, US"):
+    '''
+    Gets overlay data for a paticular tv show
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "tv_id": id,
@@ -226,6 +240,9 @@ def getTVData(id, region="AU, US"):
 
 
 def getMovieData(id, region="AU, US"):
+    '''
+    Gets overlay data for a paticular movie
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "movie_id": id,
@@ -428,6 +445,9 @@ def getListenLinks(id, listen_type):
 
 
 def categoryPlaylists(id, country="AU"):
+    '''
+    Returns the playlists for every category
+    '''
     header = {
         "Authorization": getSpotifyToken()
     }

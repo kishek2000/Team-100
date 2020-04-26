@@ -183,6 +183,9 @@ def search(searchTerm, formats, nItems, country="AU"):
 
 
 def getTmdbId(name, media):
+    '''
+    Gets the tmdb id for a given movie/tv shows
+    '''
     parameters = {
         "api_key": TMDB_API_KEY,
         "query": name
