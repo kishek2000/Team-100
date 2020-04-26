@@ -66,6 +66,8 @@ def findServices(tmdb_id, tmdb_title, date, media_type, region='AU'):
     just_watch = JustWatch()
     results = just_watch.search_for_item(query=tmdb_title)
     # Ideally this will go into its own storage so we don't have to keep calling it
+    # it still ends up being pretty quick though
+    # We set up a list of providers (Netflix etc.) we can refer to later
     prov = just_watch.get_providers()
     providers = {}
     for result in prov:
@@ -88,6 +90,7 @@ def findServices(tmdb_id, tmdb_title, date, media_type, region='AU'):
                                     "logo": providers[service["provider_id"]]["logo"],
                                     "price": ""
                                 }
+                                # Not all items have a "retail_price" field
                                 if "retail_price" in service:
                                     offer["price"] = str(
                                         service["retail_price"]) + ' ' + service["currency"]
