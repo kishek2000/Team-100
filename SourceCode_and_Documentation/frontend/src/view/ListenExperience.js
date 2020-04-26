@@ -16,6 +16,8 @@ export function ListenExperience({
   setSelectedCat,
 }) {
   const { data } = listen;
+  const LISTEN_LISTS = ["New"];
+  const LISTEN_SUBLISTS = ["Albums", "Singles"];
   if (Object.keys(data).length > 0) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
       return (
@@ -82,14 +84,30 @@ export function ListenExperience({
     } else {
       return (
         <div className="listen-experience-lists">
-          <MediaCategoryList
-            category="New Releases"
-            media="LISTEN"
-            mediaContent={data["New Releases"]}
-            getOverlayData={getOverlayData}
-            getListenLink={getListenLink}
-            num="0"
-          />
+          {LISTEN_LISTS.map((category, num) => (
+            <div>
+              <div className="watch-category-header">
+                <div className="category-title-big" key={num}>
+                  New Releases
+                </div>
+              </div>
+              <div>
+                {LISTEN_SUBLISTS.map((item, index) => (
+                  <MediaCategoryList
+                    category={`${category} ${item}`}
+                    media="LISTEN"
+                    mediaContent={data[`${category} ${item}`]}
+                    getOverlayData={getOverlayData}
+                    getListenLink={getListenLink}
+                    num={index}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="watch-category-header">
+            <div className="category-title-big">Featured Playlists</div>
+          </div>
           <MediaCategoryList
             category="Featured Playlists"
             media="LISTEN"
@@ -97,8 +115,11 @@ export function ListenExperience({
             mediaContent={data["Featured Playlists"]}
             getOverlayData={getOverlayData}
             getListenLink={getListenLink}
-            num="1"
+            num="2"
           />
+          <div className="watch-category-header">
+            <div className="category-title-big">Genre Playlists</div>
+          </div>
           <div className="listen-categories">
             <ListenCategoryPlaylists
               listenCategoryData={listenCategoryData}
@@ -153,7 +174,7 @@ function ListenCategoryPlaylists({
           mediaContent={listenCategoryData}
           getOverlayData={getOverlayData}
           getListenLink={getListenLink}
-          num="2"
+          num="3"
         />
       </div>
     );

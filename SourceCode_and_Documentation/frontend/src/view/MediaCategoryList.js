@@ -13,7 +13,17 @@ export function MediaCategoryList(props) {
         getOverlayServices={props.getOverlayServices}
         getWatchScore={props.getWatchScore}
         getTVEpScores={props.getTVEpScores}
-        num={props.num}
+        num={typeof props.num === "function" ? props.num() : props.num}
+        setMovGenresSelected={props.setMovGenresSelected}
+        setTVGenresSelected={props.setTVGenresSelected}
+        getWatchData={props.getWatchData}
+        getWatchFilteredData={props.getWatchFilteredData}
+        movieGenreOptions={props.movieGenreOptions}
+        tvGenreOptions={props.tvGenreOptions}
+        tvGenresSelected={props.tvGenresSelected}
+        movGenresSelected={props.movGenresSelected}
+        watchCategory={props.watchCategory}
+        watchMode={props.watchMode}
       />
     );
   }

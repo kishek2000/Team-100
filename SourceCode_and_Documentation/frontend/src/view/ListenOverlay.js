@@ -1,5 +1,6 @@
 import React from "react";
 import { LISTEN_LOGOS } from "../constants/index";
+import LoadingSpinner from "../images/tail-spin.svg";
 
 function ListenOverlayMeta({
   releaseDate,
@@ -24,6 +25,12 @@ function ListenOverlayMeta({
   return typeLabel;
 }
 
+function CloseOverlay(setOpenOverlayID, setOverlayData, setListenYTLink) {
+  setOpenOverlayID(-1);
+  setOverlayData({});
+  setListenYTLink({});
+}
+
 export function ListenOverlay({
   media_data,
   setOpenOverlayID,
@@ -32,7 +39,15 @@ export function ListenOverlay({
   setListenYTLink,
 }) {
   return (
-    <section className="overlay">
+    <section
+      className="overlay"
+      // onKeyDown={(event) => {
+      //   if (event.keyCode === 27) {
+      //     console.log("yo");
+      //     CloseOverlay(setOpenOverlayID, setOverlayData, setListenYTLink);
+      //   }
+      // }}
+    >
       <div className="overlay-poster-wrapper">
         <img
           src={media_data["imgURL"]}
@@ -53,9 +68,7 @@ export function ListenOverlay({
           <div
             className="close-text"
             onClick={() => {
-              setOpenOverlayID(-1);
-              setOverlayData({});
-              setListenYTLink({});
+              CloseOverlay(setOpenOverlayID, setOverlayData, setListenYTLink);
             }}
           >
             X
@@ -160,36 +173,47 @@ export function ListenOverlay({
             <div></div>
           )}
         </div>
-        {Object.keys(listenYTLink).length > 0 && listenYTLink !== "" ? (
+        {media_data["type"] !== "podcast" &&
+        media_data["type"] !== "playlist" ? (
           <div>
-            <div className="overlay-subtitle">All Services</div>
-            <div className="services-buttons">
-              {listenYTLink.slice(1, 15).map((item, index) => (
-                <div className="listen-service-name" index={index}>
-                  <a
-                    href={item["service_link"]}
-                    target="_blank"
-                    className="service-redirect"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="wrap">
-                      <img
-                        src={LISTEN_LOGOS[item["service_name"]]}
-                        alt="logo"
-                        className="overlay-service-logo"
-                      />
+            {console.log(media_data["type"])}
+            {Object.keys(listenYTLink).length > 0 && listenYTLink !== "" ? (
+              <div>
+                <div className="overlay-subtitle">All Services</div>
+                <div className="services-buttons">
+                  {listenYTLink.slice(1, 15).map((item, index) => (
+                    <div className="listen-service-name" index={index}>
+                      <a
+                        href={item["service_link"]}
+                        target="_blank"
+                        className="service-redirect"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="wrap">
+                          <img
+                            src={LISTEN_LOGOS[item["service_name"]]}
+                            alt="logo"
+                            className="overlay-listen-service-logo"
+                          />
+                        </div>
+                        <div className="overlay-services-metadata">
+                          <div>{item["service_name"]}</div>
+                        </div>
+                      </a>
                     </div>
-                    <div className="overlay-services-metadata">
-                      <div>{item["service_name"]}</div>
-                      {/* <div className="overlay-service-price">
-                      {item["price"]}
-                      {console.log(item)}
-                    </div> */}
-                    </div>
-                  </a>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div className="overlay-watch-description-text">
+                Loading...
+                <img
+                  src={LoadingSpinner}
+                  alt="load"
+                  className="overlay-loader"
+                />
+              </div>
+            )}
           </div>
         ) : (
           <div></div>

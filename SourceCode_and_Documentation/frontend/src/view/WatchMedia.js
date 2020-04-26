@@ -1,5 +1,6 @@
 import React from "react";
 import { WatchMediaNav } from "./WatchMediaNav";
+import { FilterWatchBar } from "./FilterWatchBar";
 
 function WatchMediaMetadata({ airDate, language, genre }) {
   return [airDate, language, genre].filter((item) => !!item).join(" | ");
@@ -13,12 +14,36 @@ export function WatchMedia({
   getOverlayServices,
   getWatchScore,
   getTVEpScores,
+  setMovGenresSelected,
+  setTVGenresSelected,
+  getWatchData,
+  getWatchFilteredData,
+  movieGenreOptions,
+  tvGenreOptions,
+  tvGenresSelected,
+  movGenresSelected,
+  watchCategory,
+  watchMode,
 }) {
   if (content !== undefined && content.length > 0) {
     const contentStart = content;
     return (
       <div className="category-list">
-        <p className="category-title">{category}</p>
+        <div className="category-header">
+          <p className="category-title">{category}</p>
+          <FilterWatchBar
+            setMovGenresSelected={setMovGenresSelected}
+            setTVGenresSelected={setTVGenresSelected}
+            getWatchData={getWatchData}
+            getWatchFilteredData={getWatchFilteredData}
+            movieGenreOptions={movieGenreOptions}
+            tvGenreOptions={tvGenreOptions}
+            tvGenresSelected={tvGenresSelected}
+            movGenresSelected={movGenresSelected}
+            watchCategory={watchCategory}
+            watchMode={watchMode}
+          />
+        </div>
         <WatchMediaNav num={num} />
         <div className="category-media">
           {contentStart.map((item, index) =>

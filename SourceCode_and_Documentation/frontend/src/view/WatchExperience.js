@@ -1,6 +1,7 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
 import LoadingSpinner from "../images/tail-spin.svg";
+import { WATCH_CATEGORIES } from "../constants/index";
 
 // This function will give us the complete watch experience!
 export function WatchExperience({
@@ -10,8 +11,19 @@ export function WatchExperience({
   getOverlayServices,
   getWatchScore,
   getTVEpScores,
+  setMovGenresSelected,
+  setTVGenresSelected,
+  getWatchData,
+  getWatchFilteredData,
+  movieGenreOptions,
+  tvGenreOptions,
+  tvGenresSelected,
+  movGenresSelected,
 }) {
   const { data } = watch;
+  const WATCH_LISTS = ["Trending", "Top Rated", "On Air"];
+  const WATCH_SUBLISTS = ["TV Shows", "Movies"];
+  var counter = -1;
   if (Object.keys(data).length) {
     if (searchQuery.length > 0 && !data["Search Results"]) {
       return (
@@ -69,66 +81,42 @@ export function WatchExperience({
     } else {
       return (
         <div className="watch-experience-lists">
-          {/* <MediaCategoryList
-            category="Trending Daily"
-            media="WATCH"
-            mediaContent={data["Trending Daily"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="0"
-          /> */}
-          <MediaCategoryList
-            category="Top Rated TV Shows"
-            media="WATCH"
-            mediaContent={data["Top Rated TV Shows"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="0"
-          />
-          <MediaCategoryList
-            category="On Air TV Shows"
-            media="WATCH"
-            mediaContent={data["On Air TV Shows"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="1"
-          />
-          <MediaCategoryList
-            category="Popular TV Shows"
-            media="WATCH"
-            mediaContent={data["Popular TV Shows"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="2"
-          />
-          <MediaCategoryList
-            category="Top Rated Movies"
-            media="WATCH"
-            mediaContent={data["Top Rated Movies"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="3"
-          />
-          <MediaCategoryList
-            category="Popular Movies"
-            media="WATCH"
-            mediaContent={data["Popular Movies"]}
-            getOverlayData={getOverlayData}
-            getOverlayServices={getOverlayServices}
-            getWatchScore={getWatchScore}
-            getTVEpScores={getTVEpScores}
-            num="4"
-          />
+          {WATCH_LISTS.map((category, num) => (
+            <div>
+              <div className="watch-category-header">
+                <div className="category-title-big">{category}</div>
+              </div>
+              <div>
+                {WATCH_SUBLISTS.map((item, index) => (
+                  <div key={index}>
+                    <MediaCategoryList
+                      category={`${category} ${item}`}
+                      media="WATCH"
+                      mediaContent={data[`${category} ${item}`]}
+                      getOverlayData={getOverlayData}
+                      getOverlayServices={getOverlayServices}
+                      getWatchScore={getWatchScore}
+                      getTVEpScores={getTVEpScores}
+                      num={() => {
+                        counter = counter + 1;
+                        return counter;
+                      }}
+                      setMovGenresSelected={setMovGenresSelected}
+                      setTVGenresSelected={setTVGenresSelected}
+                      getWatchData={getWatchData}
+                      getWatchFilteredData={getWatchFilteredData}
+                      movieGenreOptions={movieGenreOptions}
+                      tvGenreOptions={tvGenreOptions}
+                      tvGenresSelected={tvGenresSelected}
+                      movGenresSelected={movGenresSelected}
+                      watchCategory={WATCH_CATEGORIES[category]}
+                      watchMode={item}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       );
     }

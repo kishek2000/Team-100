@@ -47,9 +47,9 @@ export function AppContainer({ children }) {
   }, [setListenData]);
 
   const getWatchFilteredData = useCallback(
-    (movieGenres, tvGenres) => {
+    (movieGenres, tvGenres, watchCategory) => {
       client
-        .getFilteredWatchData(movieGenres, tvGenres)
+        .getFilteredWatchData(movieGenres, tvGenres, watchCategory)
         .then((data) => setWatchData(data));
     },
     [setWatchData]

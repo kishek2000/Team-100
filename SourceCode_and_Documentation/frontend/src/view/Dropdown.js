@@ -18,17 +18,36 @@ export class Dropdown extends React.Component {
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption }, () => {
+      console.log("selected option is: ", selectedOption);
       if (selectedOption !== null && selectedOption.length > 0) {
         if (selectedOption.length > 1) {
-          this.props.setData(
-            selectedOption
-              .map(function (stream) {
-                return stream["value"];
-              })
-              .join("&")
-          );
+          if (this.props.mode !== undefined) {
+            this.props.setData(
+              selectedOption
+                .map(function (stream) {
+                  return stream["value"];
+                })
+                .join("&"),
+              this.props.mode,
+              this.props.watchCategory
+            );
+          } else {
+            this.props.setData(
+              selectedOption
+                .map(function (stream) {
+                  return stream["value"];
+                })
+                .join("&")
+            );
+          }
         } else {
-          if (this.props.isMulti) {
+          if (this.props.isMulti && this.props.mode !== undefined) {
+            this.props.setData(
+              selectedOption[0]["value"],
+              this.props.mode,
+              this.props.watchCategory
+            );
+          } else if (this.props.isMulti) {
             this.props.setData(selectedOption[0]["value"]);
           }
         }
@@ -36,7 +55,9 @@ export class Dropdown extends React.Component {
         if (selectedOption === null) {
           this.props.setData(selectedOption);
         } else if (typeof selectedOption !== "string") {
-          if (this.props.setData) {
+          if (this.props.onClear) {
+            this.props.onClear(true);
+          } else if (this.props.setData) {
             this.props.setData(selectedOption["value"]);
           }
           if (this.props.setSelection && this.props.getData) {
@@ -61,14 +82,7 @@ export class Dropdown extends React.Component {
         isMulti={this.props.isMulti}
         isSearchable={false}
         const
-        colourStyles={{
-          placeholder: (defaultStyles) => {
-            return {
-              ...defaultStyles,
-              color: "black",
-            };
-          },
-        }}
+        styles={this.props.styles}
       />
     );
   }

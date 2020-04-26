@@ -16,7 +16,9 @@ export function ListenMedia({
     if (type === "Podcast" || type === "Playlist") {
       return (
         <div className="category-list">
-          <p className="category-title">{category}</p>
+          <div className="category-header">
+            <p className="category-title">{category}</p>
+          </div>
           <ListenMediaNav num={num} />
           <div className="listen-category-media">
             {contentStart.map((item, index) => (
@@ -39,7 +41,9 @@ export function ListenMedia({
     }
     return (
       <div className="category-list">
-        <p className="category-title">{category}</p>
+        <div className="category-header">
+          <p className="category-title">{category}</p>
+        </div>
         <ListenMediaNav num={num} />
         <div className="listen-category-media">
           {contentStart.map((item, index) => (

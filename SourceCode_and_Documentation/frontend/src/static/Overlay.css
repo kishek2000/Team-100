@@ -132,12 +132,18 @@
   align-items: center;
 }
 
-.overlay-service-logo {
-  width: 1.5vw;
+.overlay-watch-service-logo,
+.overlay-listen-service-logo {
+  width: 95%;
+  height: 95%;
   position: relative;
   border-radius: 5px;
   background: white;
   object-fit: contain;
+}
+
+.overlay-listen-service-logo {
+  padding: 2px;
 }
 
 .overlay-imdb-logo {
@@ -173,7 +179,7 @@
   width: 26vw;
   height: 15vw;
   border: none;
-  margin-right: 1vw;
+  margin-right: 2vw;
 }
 
 .overlay-music-video {
@@ -227,6 +233,10 @@
   width: 12vw;
 }
 
+.listen-service-name {
+  width: 8vw;
+}
+
 .service-redirect,
 .watch-service-redirect {
   display: flex;
@@ -266,10 +276,13 @@
 }
 
 .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 0;
   width: 1.5vw;
   margin-right: 0.3vw;
-  /* height: 1.5vw; */
+  height: 1.5vw;
 }
 
 .overlay-trailer-and-reviews {
@@ -313,14 +326,13 @@
 .overlay-table-cell {
   display: flex;
   min-width: 48px;
-  min-height: 48px;
+  min-height: 36px;
   justify-content: center;
   align-items: center;
   color: white;
   /* border-radius: 5px; */
   cursor: default;
   border: 0.5px solid rgba(255, 255, 255, 0.5);
-  font-family: HelveticaNeue-Light;
 }
 
 .overlay-table-cell-ep {
@@ -337,7 +349,7 @@
 
 .overlay-table-cell-rating {
   font-size: 13px;
-  font-family: HelveticaNeue-Bold;
+  font-family: HelveticaNeue-Medium;
   color: white;
 }
 
@@ -355,10 +367,10 @@
 }
 
 .overlay-season-description-text {
-  font-family: HelveticaNeue-Light;
+  font-family: HelveticaNeue-Medium;
   color: white;
-  font-weight: 700;
+  /* font-weight: 700; */
   font-size: 12px;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding-bottom: 12px;
 }

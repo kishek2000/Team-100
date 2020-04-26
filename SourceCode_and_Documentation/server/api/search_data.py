@@ -45,7 +45,7 @@ def searchFilms(searchTerm, nItems, country):
             "imgURL": img if img else "https://ik.imagekit.io/penchantcain/Image_Not_Found_fyfU56Re4.png",
             "score": round(result["vote_average"]/10, 2),
             "genre": getMovieGenre(result["genre_ids"]),
-            "first_air_date": result["release_date"][0:4],
+            "first_air_date": result["release_date"][0:4] if 'release_date' in result else '',
             "id": result["id"]
         })
     return mediaObjects

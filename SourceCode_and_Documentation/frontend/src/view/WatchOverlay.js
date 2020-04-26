@@ -10,8 +10,8 @@ export function WatchOverlayMeta({ airDate, language, rating, genre }) {
 const COLOR_EXCELLENT = `rgba(0, 26, 255, 1.0)`;
 const COLOR_GREAT = `rgba(0, 96, 255, 1.0)`;
 const COLOR_GOOD = `rgba(0, 158, 255, 1.0)`;
-const COLOR_OK = `rgba(255, 0, 172, 1.0)`;
-const COLOR_BAD = `rgba(255, 121, 81, 1.0)`;
+const COLOR_OK = `rgba(255, 138, 217, 1.0)`;
+const COLOR_BAD = `rgba(255, 148, 115, 1.0)`;
 const COLOR_TERRIBLE = `rgba(212, 0, 0, 1.0)`;
 const COLOR_NO_DATA = `rgba(0,0,0,0)`;
 
@@ -205,7 +205,7 @@ export function WatchOverlay({
                           <img
                             src={"http://" + item["logo"]}
                             alt="logo"
-                            className="overlay-service-logo"
+                            className="overlay-watch-service-logo"
                           />
                         </div>
                         <div className="overlay-services-metadata">

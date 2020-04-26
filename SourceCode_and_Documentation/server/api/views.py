@@ -4,7 +4,7 @@ from rest_framework import generics
 import requests
 import pprint
 
-from .get_categories import getWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData, getListenLinks, categoryPlaylists, getWatchCategoryFiltered
+from .get_categories import getMoreWatchCategory, craftPosterURL, getWatchTrending, newMusicReleases, featuredPlaylists, getMovieData, getTVData, getAlbumSingleData, getPodcastData, getPlaylistData, getListenLinks, getTrackData, getListenLinks, categoryPlaylists, getWatchCategoryFiltered
 from .search_data import search, filtered_search
 from .reviews import title_rating, tv_collection_ratings
 from justwatch import JustWatch
@@ -17,26 +17,29 @@ from .definitions import findServices
 
 def home_watch(request):
     obj = {
-        "Top Rated TV Shows": getWatchCategory('/tv/', 'top_rated', country=None),
-        "Popular TV Shows": getWatchCategory('/tv/', 'popular', country=None),
-        "On Air TV Shows": getWatchCategory('/tv/', 'on_the_air', country=None),
-        "Popular Movies": getWatchCategory('/movie/', 'popular', country=None),
-        "Top Rated Movies": getWatchCategory('/movie/', 'top_rated', country=None),
+        "Trending TV Shows": getMoreWatchCategory('/tv/', 'popular', country=None, min=20),
+        "Trending Movies": getMoreWatchCategory('/movie/', 'popular', country=None, min=20),
+        "Top Rated TV Shows": getMoreWatchCategory('/tv/', 'top_rated', country=None, min=20),
+        "Top Rated Movies": getMoreWatchCategory('/movie/', 'top_rated', country=None, min=20),
+        "On Air TV Shows": getMoreWatchCategory('/tv/', 'on_the_air', country=None, min=20),
+        "On Air Movies": ''
     }
     return JsonResponse(obj)
 
 
-def home_watch_filtered(request, mgenres, tgenres):
+def home_watch_filtered(request, mgenres, tgenres, category):
     if mgenres == 'none':
         mgenres = ''
     if tgenres == 'none':
         tgenres = ''
+
     obj = {
-        "Top Rated TV Shows": getWatchCategoryFiltered('/tv/', 'top_rated', tv_filter=tgenres, country=None, min=20),
-        "Popular TV Shows": getWatchCategoryFiltered('/tv/', 'popular', tv_filter=tgenres, country=None, min=20),
-        "On Air TV Shows": getWatchCategoryFiltered('/tv/', 'on_the_air', tv_filter=tgenres, country=None, min=20),
-        "Popular Movies": getWatchCategoryFiltered('/movie/', 'popular', movie_filter=mgenres, country=None, min=20),
-        "Top Rated Movies": getWatchCategoryFiltered('/movie/', 'top_rated', movie_filter=mgenres, country=None, min=20),
+        "Trending TV Shows": getWatchCategoryFiltered('/tv/', 'popular', tv_filter=tgenres, country=None, min=20) if category == 'popular' and tgenres != '' else getMoreWatchCategory('/tv/', 'popular', country=None, min=20),
+        "Trending Movies": getWatchCategoryFiltered('/movie/', 'popular', movie_filter=mgenres, country=None, min=20) if category == 'popular' and mgenres != '' else getMoreWatchCategory('/movie/', 'popular', country=None, min=20),
+        "Top Rated TV Shows": getWatchCategoryFiltered('/tv/', 'top_rated', tv_filter=tgenres, country=None, min=20) if category == 'top_rated' else getMoreWatchCategory('/tv/', 'top_rated', country=None, min=20),
+        "Top Rated Movies": getWatchCategoryFiltered('/movie/', 'top_rated', movie_filter=mgenres, country=None, min=20) if category == 'top_rated' and mgenres != '' else getMoreWatchCategory('/movie/', 'top_rated', country=None, min=20),
+        "On Air TV Shows": getWatchCategoryFiltered('/tv/', 'on_the_air', tv_filter=tgenres, country=None, min=20) if category == 'now_showing' and tgenres != '' else getMoreWatchCategory('/tv/', 'on_the_air', country=None, min=20),
+        "On Air Movies": ''
     }
     return JsonResponse(obj)
 
@@ -46,7 +49,8 @@ def home_listen(request):
     playlists = featuredPlaylists(20)
 
     obj = {
-        "New Releases": newReleases,
+        "New Albums": newReleases["Albums"],
+        "New Singles": newReleases["Singles"],
         "Featured Playlists": playlists
     }
     return JsonResponse(obj)

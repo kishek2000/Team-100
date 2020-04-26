@@ -370,26 +370,25 @@ export const LISTENCATEGORIES = {
 
 export const LISTEN_LOGOS = {
   Spotify: "https://img.icons8.com/color/96/000000/spotify--v1.png",
-  Itunes: "https://img.icons8.com/metro/104/000000/mac-os.png",
+  Itunes:
+    "https://www.exchangewire.com/wp-content/uploads/2016/04/Apple-Logo.png",
   "Apple Music": "https://img.icons8.com/color/96/000000/itunes.png",
   Youtube:
-    "https://346034.smushcdn.com/236617/wp-content/uploads/2018/09/youtube-logo-01-862x391.png?lossy=0&strip=1&webp=1",
+    "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/395_Youtube_logo-512.png",
   "Youtube Music":
-    "https://1401700980.rsc.cdn77.org/data/images/full/94629/youtube-music-logo.jpg",
+    "https://cdn.jim-nielsen.com/ios/512/youtube-music-2016-09-28.png",
   Google:
-    "https://www.soundguys.com/wp-content/uploads/2019/08/play-music-icon.jpg",
+    "https://cdn.vox-cdn.com/thumbor/vaqtNgUD3EV1eWlWneqMzH9NEjc=/124x0:891x511/1400x1050/filters:focal(124x0:891x511):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/49341943/Google_Play_Music.0.0.jpg",
   "Google Store":
     "https://i.pinimg.com/originals/1a/49/22/1a49226d155846acb790eeb919f63c8e.jpg",
   Pandora:
     "https://www.underconsideration.com/brandnew/archives/pandora_2016_logo_P.png",
-  Deezer:
-    "https://cdn.vox-cdn.com/thumbor/-Wh1t55YLvEobbumloEGu-BzsSE=/0x0:1000x667/1200x800/filters:focal(0x0:1000x667)/cdn.vox-cdn.com/assets/1081565/deezerlogo.jpg",
-  Tidal:
-    "https://music.mxdwn.com/wp-content/uploads/2015/04/Tidal-streaming.jpg",
+  Deezer: "https://cdns-files.dzcdn.net/img/common/opengraph-logo.png",
+  Tidal: "https://www.pngkey.com/png/detail/138-1383070_tidal-logo.png",
   "Amazon Store":
     "https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5326_-_Amazon-512.png",
   "Amazon Music":
-    "https://djmag.com/sites/default/files/article/image/Amazon-Music-Logo-1476279710-640x400.png",
+    "https://seeklogo.com/images/A/amazon-music-logo-5C165B06C9-seeklogo.com.png",
   Soundcloud:
     "https://i.pcmag.com/imagery/reviews/00RphstxTwTQ48coaU83lPT-7.fit_scale.size_1028x578.v_1569482503.jpg",
   Napster:
@@ -398,4 +397,10 @@ export const LISTEN_LOGOS = {
     "https://avatars.mds.yandex.net/get-bunker/128809/2242b0f7baf7f84a7d0d6cd6020acd311fba9df8/orig",
   Spinrilla:
     "https://www.logolynx.com/images/logolynx/24/24e16814eb4ac17a2261e111f274047c.jpeg",
+};
+
+export const WATCH_CATEGORIES = {
+  Trending: "popular",
+  "On Air": "now_showing",
+  "Top Rated": "top_rated",
 };

@@ -74,3 +74,8 @@
 #color-mode-text {
   font-size: calc(2px + 0.6vw);
 }
+
+.dark-mode .filters-header {
+  background-color: rgb(36, 36, 36);
+  color: white;
+}

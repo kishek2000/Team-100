@@ -30,16 +30,44 @@ else:
 
 def getWatchCategoryFiltered(media, category, movie_filter='', tv_filter='', min=None, country=None):
     data = getWatchCategory(media, category, movie_filter,
-                            tv_filter, country=country, min=min)
+                            tv_filter, country=country)
+    if data == []:
+        if tv_filter != '':
+            data = getWatchCategoryFiltered(media, category, tv_filter=str(
+                list(map(int, tv_filter.split('&')))[0]), min=min)
+            return data
+        elif movie_filter != '':
+            data = getWatchCategoryFiltered(media, category, movie_filter=str(
+                list(map(int, movie_filter.split('&')))[0]), min=min)
+            return data
     page = 2
     while (len(data) < min):
-        data = data + getWatchCategory(media, category,
-                                       movie_filter, tv_filter, country=country, min=min, page=page)
+        append = getWatchCategory(media, category,
+                                  movie_filter, tv_filter, country=country, page=page)
+        if page > 20:
+            break
+        data = data + append
         page += 1
     return data
 
 
-def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU", min=0, page=1):
+def getMoreWatchCategory(
+    media, category, movie_filter='', tv_filter='', country="AU", page=1, min=None
+):
+    page = 2
+    data = getWatchCategory(media, category, movie_filter,
+                            tv_filter, country=country, page=page)
+    while (len(data) < min):
+        append = getWatchCategory(media, category,
+                                  movie_filter, tv_filter, country=country, page=page)
+        if page > 20:
+            break
+        data = data + append
+        page += 1
+    return data
+
+
+def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU", page=1):
     '''
     Based on media type and category name returns a list of media in that category
     '''
@@ -50,40 +78,44 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
     if country != None:
         parameters["region"] = country
     res = requests.get(TMDB_URL + media + category, params=parameters)
-    json = res.json()["results"]
     mediaObjects = []
-    if movie_filter != '':
-        mgids = list(map(int, movie_filter.split('&')))
-    if tv_filter != '':
-        tgids = list(map(int, tv_filter.split('&')))
-    for result in json:
-        if media == '/tv/':
-            if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
-                mediaObjects.append({
-                    "name": result["name"],
-                    "imgURL": craftPosterURL(result["poster_path"]),
-                    "first_air_date": result["first_air_date"][0:4],
-                    "id": result["id"],
-                    "score": round(result["vote_average"]/10, 2),
-                    "genre": getTVGenre(result["genre_ids"]),
-                    "lang": result["original_language"].upper(),
-                    "type": "tv",
-                    "popularity": result["popularity"]
-                })
-        elif media == '/movie/':
-            if movie_filter == '' or len(set(mgids).intersection(set(result["genre_ids"]))) == len(mgids):
-                mediaObjects.append({
-                    "name": result["title"],
-                    "imgURL": craftPosterURL(result["poster_path"]),
-                    "first_air_date": result["release_date"][0:4],
-                    "id": result["id"],
-                    "score": round(result["vote_average"]/10, 2),
-                    "genre": getMovieGenre(result["genre_ids"]),
-                    "lang": result["original_language"].upper(),
-                    "type": "movie",
-                    "popularity": result["popularity"]
-                })
-    return mediaObjects
+    if 'results' in res.json():
+        json = res.json()["results"]
+        if movie_filter != '':
+            mgids = list(map(int, movie_filter.split('&')))
+        if tv_filter != '':
+            tgids = list(map(int, tv_filter.split('&')))
+        for result in json:
+            img = craftPosterURL(result["poster_path"])
+            if media == '/tv/' and img:
+                if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
+                    mediaObjects.append({
+                        "name": result["name"],
+                        "imgURL": img,
+                        "first_air_date": result["first_air_date"][0:4],
+                        "id": result["id"],
+                        "score": round(result["vote_average"]/10, 2),
+                        "genre": getTVGenre(result["genre_ids"]),
+                        "lang": result["original_language"].upper(),
+                        "type": "tv",
+                        "popularity": result["popularity"]
+                    })
+            elif media == '/movie/':
+                if movie_filter == '' or len(set(mgids).intersection(set(result["genre_ids"]))) == len(mgids):
+                    mediaObjects.append({
+                        "name": result["title"],
+                        "imgURL": img,
+                        "first_air_date": result["release_date"][0:4],
+                        "id": result["id"],
+                        "score": round(result["vote_average"]/10, 2),
+                        "genre": getMovieGenre(result["genre_ids"]),
+                        "lang": result["original_language"].upper(),
+                        "type": "movie",
+                        "popularity": result["popularity"]
+                    })
+        popularSort = sorted(mediaObjects, key=lambda i: -i['score'])
+        return popularSort
+    return []
 
 
 def getWatchTrending(tv_filter='', movie_filter=''):
@@ -140,14 +172,25 @@ def newMusicReleases(nItems, country="AU"):
     }
     parameters = {
         "limit": nItems,
-        "market": country
+        "market": country,
+        "offset": 0
     }
-    res = requests.get("https://api.spotify.com/v1/browse/new-releases",
-                       headers=header, params=parameters)
-    json = res.json()
-    mediaObjects = []
+    res1 = requests.get("https://api.spotify.com/v1/browse/new-releases",
+                        headers=header, params=parameters)
+    parameters["offset"] = 52
+    res2 = requests.get("https://api.spotify.com/v1/browse/new-releases",
+                        headers=header, params=parameters)
+    json = res1.json()
+    json2 = res2.json()
+    mediaObjects = {"Albums": [], "Singles": []}
+    parseReleases(json, mediaObjects)
+    parseReleases(json2, mediaObjects)
+    return mediaObjects
+
+
+def parseReleases(json, mediaObjects):
     for result in json["albums"]["items"]:
-        mediaObjects.append({
+        data = {
             "listen_name": result["name"],
             "artist_name": result["artists"][0]["name"],
             "artist_link": result["artists"][0]["external_urls"]["spotify"],
@@ -155,7 +198,11 @@ def newMusicReleases(nItems, country="AU"):
             "id": result["id"],
             "imgURL": result["images"][0]["url"],
             "listen_link": result["external_urls"]["spotify"]
-        })
+        }
+        if result["album_type"] == 'album':
+            mediaObjects["Albums"].append(data)
+        elif result["album_type"] == 'single':
+            mediaObjects["Singles"].append(data)
     return mediaObjects
 
 

@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('api/home/watch', views.home_watch),
-    path('api/home/watch/filtered/<str:mgenres>/<str:tgenres>',
+    path('api/home/watch/filtered/<str:mgenres>/<str:tgenres>/<str:category>',
          views.home_watch_filtered),
     path('api/home/listen', views.home_listen),
     path('api/search/watch/unfiltered/<str:query>', views.search_watch),

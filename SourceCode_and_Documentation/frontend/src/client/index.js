@@ -24,7 +24,7 @@ export class Client {
     return data;
   }
 
-  async getFilteredWatchData(movieGenres, tvGenres) {
+  async getFilteredWatchData(movieGenres, tvGenres, watchCategory) {
     if (movieGenres === undefined) {
       movieGenres = "";
     }
@@ -32,19 +32,21 @@ export class Client {
       tvGenres = "";
     }
     if (String(movieGenres).length === 0 && String(tvGenres).length > 0) {
-      const data = await this.api(`/api/home/watch/filtered/none/${tvGenres}`);
+      const data = await this.api(
+        `/api/home/watch/filtered/none/${tvGenres}/${watchCategory}`
+      );
       return data;
     } else if (
       String(tvGenres).length === 0 &&
       String(movieGenres).length > 0
     ) {
       const data = await this.api(
-        `/api/home/watch/filtered/${movieGenres}/none`
+        `/api/home/watch/filtered/${movieGenres}/none/${watchCategory}`
       );
       return data;
     } else {
       const data = await this.api(
-        `/api/home/watch/filtered/${movieGenres}/${tvGenres}`
+        `/api/home/watch/filtered/${movieGenres}/${tvGenres}/${watchCategory}`
       );
       return data;
     }

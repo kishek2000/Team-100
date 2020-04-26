@@ -9,7 +9,7 @@ export function ListenMediaNav({ num }) {
         onClick={() => {
           document.getElementsByClassName("listen-category-media")[
             num
-          ].scrollLeft += 0.6 * window.innerWidth;
+          ].scrollLeft += 0.78 * window.innerWidth;
         }}
       />
       <img
@@ -19,7 +19,7 @@ export function ListenMediaNav({ num }) {
         onClick={() => {
           document.getElementsByClassName("listen-category-media")[
             num
-          ].scrollLeft -= 0.6 * window.innerWidth;
+          ].scrollLeft -= window.innerWidth;
         }}
       />
     </div>

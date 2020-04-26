@@ -18,6 +18,14 @@ export function Experience({
   selectedCat,
   setSelectedCat,
   setSearchQuery,
+  setMovGenresSelected,
+  setTVGenresSelected,
+  getWatchData,
+  getWatchFilteredData,
+  tvGenreOptions,
+  tvGenresSelected,
+  movGenresSelected,
+  movieGenreOptions,
 }) {
   if (currentExperience === "WATCH") {
     return (
@@ -29,6 +37,14 @@ export function Experience({
         getWatchScore={getWatchScore}
         getTVEpScores={getTVEpScores}
         setSearchQuery={setSearchQuery}
+        setMovGenresSelected={setMovGenresSelected}
+        setTVGenresSelected={setTVGenresSelected}
+        getWatchData={getWatchData}
+        getWatchFilteredData={getWatchFilteredData}
+        movieGenreOptions={movieGenreOptions}
+        tvGenreOptions={tvGenreOptions}
+        tvGenresSelected={tvGenresSelected}
+        movGenresSelected={movGenresSelected}
       />
     );
   } else {

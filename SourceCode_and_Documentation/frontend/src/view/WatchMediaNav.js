@@ -8,7 +8,7 @@ export function WatchMediaNav({ num }) {
         className="next"
         onClick={() => {
           document.getElementsByClassName("category-media")[num].scrollLeft +=
-            0.6 * window.innerWidth;
+            0.78 * window.innerWidth;
         }}
       />
       <img
@@ -17,7 +17,7 @@ export function WatchMediaNav({ num }) {
         className="prev"
         onClick={() => {
           document.getElementsByClassName("category-media")[num].scrollLeft -=
-            0.6 * window.innerWidth;
+            window.innerWidth;
         }}
       />
     </div>
