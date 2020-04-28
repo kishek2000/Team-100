@@ -1,3 +1,9 @@
+'''
+Contains static dictionaries containing TV and Movie genres, as well as functions to interact with them.
+
+getTVGenre(ids)
+getMovieGenre(ids)
+'''
 tv_genres = [
     {
         "id": 10759,
@@ -146,6 +152,9 @@ movie_genres = [
 
 
 def getTVGenre(ids):
+    '''
+    Converts a given list of genre ids into strings
+    '''
     genres = []
     for num in ids:
         for item in tv_genres:
@@ -157,6 +166,9 @@ def getTVGenre(ids):
 
 
 def getMovieGenre(ids):
+    '''
+    Converts a given list of genre ids into strings
+    '''
     genres = []
     for num in ids:
         for item in movie_genres:

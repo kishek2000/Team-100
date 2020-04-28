@@ -2,8 +2,10 @@
 A set of functions that will provide main page icons
 E.G. I want to WATCH and I want to LISTEN  categories
 
-getWatchCategory(media, category, keyname, country="AU")
-getWatchTrending()
+getWatchCategoryFiltered(media, category, movie_filter='', tv_filter='', min=None, country=None)
+getMoreWatchCategory(media, category, movie_filter='', tv_filter='', country="AU", page=1, min=None)
+getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU", page=1)
+getWatchTrending(tv_filter='', movie_filter='')
 newMusicReleases(nItems, country="AU")
 featuredPlaylists(nItems, country="AU")
 getTVData(id, region="AU, US")
@@ -11,7 +13,8 @@ getMovieData(id, region="AU, US")
 getAlbumSingleData(id, media="album", country="AU")
 getPodcastData(id, media="podcast", country="AU")
 getTrackData(id, country="AU")
-getListenLinks(url)
+getListenLinks(id, listen_type)
+categoryPlaylists(id, country="AU")
 '''
 
 import requests
@@ -83,46 +86,6 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
     res = requests.get(TMDB_URL + media + category, params=parameters)
     mediaObjects = []
 
-
-<< << << < HEAD
-   if 'results' in res.json():
-        json = res.json()["results"]
-        if movie_filter != '':
-            mgids = list(map(int, movie_filter.split('&')))
-        if tv_filter != '':
-            tgids = list(map(int, tv_filter.split('&')))
-        for result in json:
-            img = craftPosterURL(result["poster_path"])
-            if media == '/tv/' and img:
-                if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
-                    mediaObjects.append({
-                        "name": result["name"],
-                        "imgURL": img,
-                        "first_air_date": result["first_air_date"][0:4],
-                        "id": result["id"],
-                        "score": round(result["vote_average"]/10, 2),
-                        "genre": getTVGenre(result["genre_ids"]),
-                        "lang": result["original_language"].upper(),
-                        "type": "tv",
-                        "popularity": result["popularity"]
-                    })
-            elif media == '/movie/':
-                if movie_filter == '' or len(set(mgids).intersection(set(result["genre_ids"]))) == len(mgids):
-                    mediaObjects.append({
-                        "name": result["title"],
-                        "imgURL": img,
-                        "first_air_date": result["release_date"][0:4],
-                        "id": result["id"],
-                        "score": round(result["vote_average"]/10, 2),
-                        "genre": getMovieGenre(result["genre_ids"]),
-                        "lang": result["original_language"].upper(),
-                        "type": "movie",
-                        "popularity": result["popularity"]
-                    })
-        popularSort = sorted(mediaObjects, key=lambda i: -i['score'])
-        return popularSort
-    return []
-== =====
    # movie_filter and tv_filter will be in the format
    # "genreid&genreid&genreid" eg. "35&64&10823"
    # Here we extract the data and put it into a list
@@ -158,7 +121,6 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
                     "popularity": result["popularity"]
                 })
     return mediaObjects
->>>>>> > a61e74eecec4c130be029b837d2ff5ecd1afbf8d
 
 
 def getWatchTrending(tv_filter='', movie_filter=''):
