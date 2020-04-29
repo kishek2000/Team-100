@@ -7,7 +7,7 @@ import { Dropdown } from "./Dropdown";
 
 // This is the search bar component. Provide it specified class names for one
 // of the two main styles. Either menu, or normal.
-export class SearchBar extends React.Component {
+export class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: "", serviceOptions: [] };

@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 
 import { Experience } from "./Experience";
-import { SearchBar } from "./SearchBar";
+import { Search } from "./Search";
 import { MediaSelector } from "./MediaSelector";
 import { OPTIONS, SEARCHTEXT, TV_GENRES, MOVIE_GENRES } from "../../constants";
 import BackToTop from "react-back-to-top-button";
@@ -85,7 +85,7 @@ export const AppBody = ({
           ))}
         </div>
         {/* <div className="region-selector">Region: AU</div> */}
-        <SearchBar
+        <Search
           name="searchbar"
           inputname="searchinput"
           imagename="searchbutton"
