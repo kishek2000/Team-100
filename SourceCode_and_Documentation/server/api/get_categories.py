@@ -89,11 +89,12 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
    # movie_filter and tv_filter will be in the format
    # "genreid&genreid&genreid" eg. "35&64&10823"
    # Here we extract the data and put it into a list
-   if movie_filter != '':
+    if movie_filter != '':
         mgids = list(map(int, movie_filter.split('&')))
     if tv_filter != '':
         tgids = list(map(int, tv_filter.split('&')))
-    for result in json:
+    #print(res.json())
+    for result in res.json()['results']:
         if media == '/tv/':
             if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
                 mediaObjects.append({
