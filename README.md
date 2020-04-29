@@ -8,3 +8,10 @@
 * Liam Staples (z5254570)
 
 UPDATE - we are now creating an app which allows you to choose between multiple online entertainment options called "myLounge"!
+
+## DEMO
+If you'd like to view a demo of our app, visit:
+https://www.youtube.com/watch?v=znZc0CzMUmQ
+
+## LIVE?
+Currently, this is not live but come back soon to check again!
