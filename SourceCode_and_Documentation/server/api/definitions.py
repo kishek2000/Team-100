@@ -6,7 +6,7 @@ File contains sensitive data (API keys, Spotify Client Secret) which aren't real
 
 clientSpotifyAuthorise()
 getSpotifyToken()
-findServices(tmdb_id, tmdb_title, tmdb_popularity, tmdb_score, region='AU')
+findServices(tmdb_id, tmdb_title, date, media_type, region='AU')
 getTVContentRating(mediaID, region="AU, US")
 getMovieContentRating(mediaID, region="AU, US")
 genreIdsToString(genreIDs, mediaType)
