@@ -1,3 +1,7 @@
+/* 
+  This file covers the media rendering of one particular list of items in the watch lists.
+*/
+
 import React from "react";
 import { WatchMediaNav } from "./WatchMediaNav";
 import { FilterWatchBar } from "./FilterWatchBar";

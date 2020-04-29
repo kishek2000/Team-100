@@ -1,3 +1,8 @@
+/*
+  This file is the component of our main header at the top, that contains the time, a comforting
+  lounge image, and also the main title and subtitle slogan.
+*/
+
 import React from "react";
 
 import Clock from "react-live-clock";

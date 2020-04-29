@@ -1,3 +1,7 @@
+/*
+  This file covers the navigation of the watch media
+*/
+
 import React from "react";
 export function WatchMediaNav({ num }) {
   return (

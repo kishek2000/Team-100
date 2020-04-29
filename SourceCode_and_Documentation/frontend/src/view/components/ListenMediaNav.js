@@ -1,4 +1,9 @@
+/*
+  This is the navigation component for the listen media lists. The difference is it has a stronger scroll effect.
+*/
+
 import React from "react";
+
 export function ListenMediaNav({ num }) {
   return (
     <div>

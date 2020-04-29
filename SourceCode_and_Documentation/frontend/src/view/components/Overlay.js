@@ -1,3 +1,7 @@
+/*
+  This component has a conditional render of the listen or watch overlay for a specified item.
+*/
+
 import React from "react";
 import { WatchOverlay } from "./WatchOverlay";
 import { ListenOverlay } from "./ListenOverlay";

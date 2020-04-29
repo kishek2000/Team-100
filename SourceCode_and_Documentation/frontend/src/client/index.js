@@ -1,3 +1,7 @@
+/*
+  This file is our client class, where the requests to all our endpoints we have designed are declared as methods. A new client is declared each time the app is rendered and new useState hooks are declared.
+*/
+
 export class Client {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;

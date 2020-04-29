@@ -1,3 +1,9 @@
+/* 
+  This file looks at the main components of the body of the app. It has a conditional render based 
+  on the selected experience, for what lists to show. The fixed header with the watch/listen /
+  selection, and the search bar with conditional display of the filters is also in here.
+*/
+
 import React, { useState } from "react";
 
 import { Experience } from "./Experience";

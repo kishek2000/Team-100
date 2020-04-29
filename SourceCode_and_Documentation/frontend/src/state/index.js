@@ -1,3 +1,10 @@
+/*
+  This is our index state file, where we declare all the global states and functions that are used 
+  with the client requests to the backend server, to retrieve data. All of these useState hooks are 
+  used within the app and changed based on certain conditions within the different components and 
+  actions a user chooses to take.
+*/
+
 import { useState, useEffect, useCallback } from "react";
 import { Client } from "../client";
 import { AUSTREAMS } from "../constants/index";

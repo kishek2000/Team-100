@@ -1,3 +1,9 @@
+/*
+  This file is the main view container where we pass in our global states and functions as usestate 
+  hooks, and further pass these into either the conditional display of the Overlay component, the 
+  AppBody, or the AppHeader.
+*/
+
 import React from "react";
 
 import "../static/AppMediaStyle.css";

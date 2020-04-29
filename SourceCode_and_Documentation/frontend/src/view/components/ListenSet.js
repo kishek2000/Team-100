@@ -1,4 +1,9 @@
+/*
+  This is the main component for each single item of music - specifically albums or songs.
+*/
+
 import React from "react";
+
 export function ListenSet(props) {
   return (
     <div className="listen-set">

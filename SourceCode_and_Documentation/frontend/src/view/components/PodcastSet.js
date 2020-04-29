@@ -1,3 +1,7 @@
+/*
+  This file is a special set of listen media - it provides the component for each single podcast or playlist item in a list.
+*/
+
 import React from "react";
 export function PodcastSet(props) {
   return (

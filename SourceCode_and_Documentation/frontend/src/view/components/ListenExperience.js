@@ -1,10 +1,13 @@
+/* 
+  This function provides us the complete Listen experience! 
+*/
+
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
 import LoadingSpinner from "../../images/tail-spin.svg";
 import { Dropdown } from "./Dropdown";
 import { LISTENCATEGORIES } from "../../constants/index";
 
-// This function will give us the complete Listen experience!
 export function ListenExperience({
   listen,
   searchQuery,

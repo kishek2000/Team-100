@@ -1,3 +1,9 @@
+/*
+  This is the file of the class for Dropdown that uses react-select but the selection processes and 
+  what it executes on selection based on where it is rendered in parts of the app, is where it 
+  differs from the default Select component.
+*/
+
 import React from "react";
 import Select from "react-select";
 

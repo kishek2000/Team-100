@@ -1,3 +1,7 @@
+/*
+  This file provides the component that covers all of the search logic in the fixed header.
+*/
+
 import React from "react";
 import { Dropdown } from "./Dropdown";
 

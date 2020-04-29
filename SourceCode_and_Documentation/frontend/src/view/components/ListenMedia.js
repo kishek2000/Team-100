@@ -1,3 +1,7 @@
+/*
+  This is the component that gives us all of the media in a listen list, using ListenSets or PodcastSets
+*/
+
 import React from "react";
 import { ListenSet } from "./ListenSet";
 import { PodcastSet } from "./PodcastSet";

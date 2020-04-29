@@ -1,8 +1,10 @@
+/* 
+  This is the dropdown that is in every watch list, to filter the list by genre. The filter capability could slowly be expanded. 
+*/
+
 import React from "react";
 import { Dropdown } from "./Dropdown";
 
-// This is the search bar component. Provide it specified class names for one
-// of the two main styles. Either menu, or normal.
 export class FilterWatchBar extends React.Component {
   constructor(props) {
     super(props);

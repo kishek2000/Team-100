@@ -1,3 +1,8 @@
+/*
+  This file is the component for the whole listen overlay display, containing information about all 
+  items from the listen page and shows it when they are clicked.
+*/
+
 import React from "react";
 import { LISTEN_LOGOS } from "../../constants/index";
 import LoadingSpinner from "../../images/tail-spin.svg";

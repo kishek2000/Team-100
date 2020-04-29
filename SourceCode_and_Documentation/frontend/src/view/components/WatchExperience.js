@@ -1,9 +1,13 @@
+/*
+  This file provides the component that covers the full watch experience, and holds the necessary 
+  states as well for this to be successful.
+*/
+
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
 import LoadingSpinner from "../../images/tail-spin.svg";
 import { WATCH_CATEGORIES } from "../../constants/index";
 
-// This function will give us the complete watch experience!
 export function WatchExperience({
   watch,
   searchQuery,

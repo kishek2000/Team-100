@@ -1,3 +1,7 @@
+/*
+  This file is the component of the main app experience as a whole. It conditionally renders Watch or Listen experience based on the selection in the fixed header. 
+*/
+
 import React from "react";
 import { WatchExperience } from "./WatchExperience";
 import { ListenExperience } from "./ListenExperience";

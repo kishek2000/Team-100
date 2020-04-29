@@ -1,3 +1,7 @@
+/*
+  This file simply contains constants that are used all over the frontend.
+*/
+
 export const OPTIONS = ["WATCH", "LISTEN"];
 export const CURRDATESTR = [
   `${new Date().getMonth() + 1}`,
