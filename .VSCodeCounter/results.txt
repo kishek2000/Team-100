@@ -1,0 +1,124 @@
+Date : 2020-04-27 15:21:50
+Directory : /Users/adikishore/Documents/University/Team-100
+Total : 76 files,  21665 codes, 272 comments, 602 blanks, all 22539 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          8 |     15,847 |          0 |          8 |     15,855 |
+| JavaScript |         28 |      2,603 |         78 |        123 |      2,804 |
+| Python     |         25 |      2,059 |        142 |        284 |      2,485 |
+| CSS        |          9 |      1,062 |         28 |        170 |      1,260 |
+| XML        |          1 |         31 |          1 |          1 |         33 |
+| HTML       |          2 |         29 |         23 |          2 |         54 |
+| Markdown   |          2 |         22 |          0 |         10 |         32 |
+| toml       |          1 |         12 |          0 |          4 |         16 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                   |         76 |     21,665 |        272 |        602 |     22,539 |
+| SourceCode_and_Documentation                                                                                        |         74 |     21,641 |        272 |        598 |     22,511 |
+| SourceCode_and_Documentation/frontend                                                                               |         42 |     19,444 |        130 |        298 |     19,872 |
+| SourceCode_and_Documentation/frontend/public                                                                        |          2 |         44 |         23 |          2 |         69 |
+| SourceCode_and_Documentation/frontend/src                                                                           |         38 |      3,696 |        107 |        294 |      4,097 |
+| SourceCode_and_Documentation/frontend/src/client                                                                    |          1 |         97 |          0 |         14 |        111 |
+| SourceCode_and_Documentation/frontend/src/constants                                                                 |          1 |        399 |          0 |          8 |        407 |
+| SourceCode_and_Documentation/frontend/src/images                                                                    |          1 |         31 |          1 |          1 |         33 |
+| SourceCode_and_Documentation/frontend/src/state                                                                     |          1 |        168 |          2 |         16 |        186 |
+| SourceCode_and_Documentation/frontend/src/static                                                                    |          9 |      1,062 |         28 |        170 |      1,260 |
+| SourceCode_and_Documentation/frontend/src/view                                                                      |         21 |      1,820 |         38 |         65 |      1,923 |
+| SourceCode_and_Documentation/server                                                                                 |         31 |      2,183 |        142 |        293 |      2,618 |
+| SourceCode_and_Documentation/server/api                                                                             |         23 |      1,964 |         84 |        237 |      2,285 |
+| SourceCode_and_Documentation/server/api/data                                                                        |          3 |          0 |          0 |          3 |          3 |
+| SourceCode_and_Documentation/server/api/migrations                                                                  |          2 |         17 |          1 |          8 |         26 |
+| SourceCode_and_Documentation/server/api/templates                                                                   |          1 |         10 |          0 |          1 |         11 |
+| SourceCode_and_Documentation/server/api/templates/api                                                               |          1 |         10 |          0 |          1 |         11 |
+| SourceCode_and_Documentation/server/core                                                                            |          5 |         90 |         56 |         46 |        192 |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                            | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/adikishore/Documents/University/Team-100/README.md                                                           | Markdown   |          8 |          0 |          3 |         11 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/package-lock.json             | JSON       |     15,667 |          0 |          1 |     15,668 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/package.json                  | JSON       |         37 |          0 |          1 |         38 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/public/index.html             | HTML       |         19 |         23 |          1 |         43 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/public/manifest.json          | JSON       |         25 |          0 |          1 |         26 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/App.test.js               | JavaScript |          8 |          0 |          2 |         10 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/client/index.js           | JavaScript |         97 |          0 |         14 |        111 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/constants/index.js        | JavaScript |        399 |          0 |          8 |        407 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/images/tail-spin.svg      | XML        |         31 |          1 |          1 |         33 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/index.js                  | JavaScript |         12 |          3 |          4 |         19 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/serviceWorker.js          | JavaScript |         98 |         31 |         13 |        142 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/setupTests.js             | JavaScript |          1 |          4 |          1 |          6 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/state/index.js            | JavaScript |        168 |          2 |         16 |        186 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/AppMediaStyle.css  | CSS        |        427 |         14 |         64 |        505 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/Header.css         | CSS        |         66 |          1 |         11 |         78 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/LoadingScreen.css  | CSS        |         21 |          0 |          3 |         24 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/Overlay.css        | CSS        |        315 |          8 |         54 |        377 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/Search.css         | CSS        |        115 |          0 |         17 |        132 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/StarRating.css     | CSS        |         18 |          0 |          3 |         21 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/Theme.css          | CSS        |         64 |          5 |         13 |         82 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/Transitions.css    | CSS        |         24 |          0 |          3 |         27 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/static/index.css          | CSS        |         12 |          0 |          2 |         14 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/AppBody.js           | JavaScript |        142 |          0 |          4 |        146 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/AppHeader.js         | JavaScript |         24 |          0 |          4 |         28 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/Dropdown.js          | JavaScript |         86 |          0 |          4 |         90 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/Experience.js        | JavaScript |         65 |          0 |          2 |         67 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/FilterWatchBar.js    | JavaScript |         67 |          2 |          5 |         74 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/ListenExperience.js  | JavaScript |        179 |          2 |          3 |        184 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/ListenMedia.js       | JavaScript |         75 |          0 |          2 |         77 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/ListenMediaNav.js    | JavaScript |         27 |          0 |          1 |         28 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/ListenOverlay.js     | JavaScript |        214 |          6 |          5 |        225 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/ListenSet.js         | JavaScript |         46 |          0 |          1 |         47 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/MediaCategoryList.js | JavaScript |         40 |          1 |          2 |         43 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/MediaGenreList.js    | JavaScript |         40 |          1 |          2 |         43 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/MediaSelector.js     | JavaScript |         13 |          1 |          2 |         16 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/Overlay.js           | JavaScript |         51 |          1 |          2 |         54 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/PodcastSet.js        | JavaScript |         28 |          0 |          1 |         29 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/SearchBar.js         | JavaScript |        109 |         18 |          8 |        135 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/WatchExperience.js   | JavaScript |        129 |          2 |          2 |        133 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/WatchMedia.js        | JavaScript |        101 |          0 |          3 |        104 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/WatchMediaNav.js     | JavaScript |         25 |          0 |          1 |         26 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/WatchOverlay.js      | JavaScript |        233 |          4 |          6 |        243 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/frontend/src/view/index.js             | JavaScript |        126 |          0 |          5 |        131 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/how_to.md                              | Markdown   |         14 |          0 |          7 |         21 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/Pipfile                         | toml       |         12 |          0 |          4 |         16 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/Pipfile.lock                    | JSON       |        102 |          0 |          1 |        103 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/__init__.py                 | Python     |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/admin.py                    | Python     |          1 |          1 |          2 |          4 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/apps.py                     | Python     |          3 |          0 |          3 |          6 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/authorisation.py            | Python     |         49 |          5 |          4 |         58 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/constants.py                | Python     |        162 |          0 |          6 |        168 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/data/featuredPlaylists.json | JSON       |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/data/newMusic.json          | JSON       |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/data/watchTrending.json     | JSON       |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/definitions.py              | Python     |        185 |          5 |         29 |        219 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/get_categories.py           | Python     |        501 |          9 |         41 |        551 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/just_watch.py               | Python     |         17 |          7 |          9 |         33 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/migrations/0001_initial.py  | Python     |         17 |          1 |          7 |         25 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/migrations/__init__.py      | Python     |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/models.py                   | Python     |          6 |          1 |          4 |         11 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/reviews.py                  | Python     |        136 |         48 |         48 |        232 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/search_data.py              | Python     |        221 |          2 |         16 |        239 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/serializers.py              | Python     |          6 |          0 |          1 |          7 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/spotify.py                  | Python     |        467 |          0 |          5 |        472 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/stats.py                    | Python     |         10 |          1 |          6 |         17 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/templates/api/index.html    | HTML       |         10 |          0 |          1 |         11 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/tests.py                    | Python     |          1 |          1 |          2 |          4 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/urls.py                     | Python     |         32 |          1 |          2 |         35 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/api/views.py                    | Python     |        140 |          2 |         46 |        188 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/core/__init__.py                | Python     |          0 |          0 |          1 |          1 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/core/asgi.py                    | Python     |          4 |          8 |          5 |         17 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/core/settings.py                | Python     |         76 |         25 |         32 |        133 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/core/urls.py                    | Python     |          6 |         15 |          3 |         24 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/core/wsgi.py                    | Python     |          4 |          8 |          5 |         17 |
+| /Users/adikishore/Documents/University/Team-100/SourceCode_and_Documentation/server/manage.py                       | Python     |         15 |          2 |          5 |         22 |
+| /Users/adikishore/Documents/University/Team-100/package-lock.json                                                   | JSON       |         16 |          0 |          1 |         17 |
+| Total                                                                                                               |            |     21,665 |        272 |        602 |     22,539 |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

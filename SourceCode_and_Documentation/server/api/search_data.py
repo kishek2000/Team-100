@@ -12,13 +12,13 @@ import requests
 if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
-    from .constants import getMovieGenre, getTVGenre
+    from .definitions import getMovieGenre, getTVGenre
     from urllib.parse import quote
     import json
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL, craftAlbumURL
-    from .constants import getMovieGenre, getTVGenre
+    from .definitions import getMovieGenre, getTVGenre
     from urllib.parse import quote
     import json
 

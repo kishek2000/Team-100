@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingSpinner from "../images/tail-spin.svg";
+import LoadingSpinner from "../../images/tail-spin.svg";
 
 export function WatchOverlayMeta({ airDate, language, rating, genre }) {
   return [airDate, language, rating, genre, " "]

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Clock from "react-live-clock";
-import { TIME } from "../constants/index";
+import { TIME } from "../../constants/index";
 
 function nth(n) {
   return ["st", "nd", "rd"][((((n + 90) % 100) - 10) % 10) - 1] || "th";

@@ -1,7 +1,7 @@
 import React from "react";
 import { MediaCategoryList } from "./MediaCategoryList";
-import LoadingSpinner from "../images/tail-spin.svg";
-import { WATCH_CATEGORIES } from "../constants/index";
+import LoadingSpinner from "../../images/tail-spin.svg";
+import { WATCH_CATEGORIES } from "../../constants/index";
 
 // This function will give us the complete watch experience!
 export function WatchExperience({

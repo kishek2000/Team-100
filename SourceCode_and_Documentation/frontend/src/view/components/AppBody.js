@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Experience } from "./Experience";
 import { SearchBar } from "./SearchBar";
 import { MediaSelector } from "./MediaSelector";
-import { OPTIONS, SEARCHTEXT, TV_GENRES, MOVIE_GENRES } from "../constants";
+import { OPTIONS, SEARCHTEXT, TV_GENRES, MOVIE_GENRES } from "../../constants";
 import BackToTop from "react-back-to-top-button";
 
 var isDark = false;

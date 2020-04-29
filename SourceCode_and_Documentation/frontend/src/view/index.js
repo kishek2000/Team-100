@@ -9,10 +9,10 @@ import "../static/Theme.css";
 import "../static/Transitions.css";
 import "../static/StarRating.css";
 
-import { AppHeader } from "./AppHeader";
-import { AppBody } from "./AppBody";
+import { AppHeader } from "./components/AppHeader";
+import { AppBody } from "./components/AppBody";
 import { AppContainer } from "../state";
-import { Overlay } from "./Overlay";
+import { Overlay } from "./components/Overlay";
 
 function App() {
   return (

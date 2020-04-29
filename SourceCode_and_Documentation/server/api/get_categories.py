@@ -20,12 +20,12 @@ if __name__ == "__main__":
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
-    from .constants import getTVGenre, getMovieGenre
+    from .definitions import getTVGenre, getMovieGenre
 else:
     from .definitions import TMDB_API_KEY, TMDB_URL, getSpotifyToken
     from .definitions import genreIdsToString, craftPosterURL
     from .definitions import getMovieContentRating, getTVContentRating, craftPlaylistDesc
-    from .constants import getTVGenre, getMovieGenre
+    from .definitions import getTVGenre, getMovieGenre
 
 
 def getWatchCategoryFiltered(media, category, movie_filter='', tv_filter='', min=None, country=None):
@@ -83,9 +83,7 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
     res = requests.get(TMDB_URL + media + category, params=parameters)
     mediaObjects = []
 
-
-<< << << < HEAD
-   if 'results' in res.json():
+    if 'results' in res.json():
         json = res.json()["results"]
         if movie_filter != '':
             mgids = list(map(int, movie_filter.split('&')))
@@ -122,43 +120,6 @@ def getWatchCategory(media, category, movie_filter='', tv_filter='', country="AU
         popularSort = sorted(mediaObjects, key=lambda i: -i['score'])
         return popularSort
     return []
-== =====
-   # movie_filter and tv_filter will be in the format
-   # "genreid&genreid&genreid" eg. "35&64&10823"
-   # Here we extract the data and put it into a list
-   if movie_filter != '':
-        mgids = list(map(int, movie_filter.split('&')))
-    if tv_filter != '':
-        tgids = list(map(int, tv_filter.split('&')))
-    for result in json:
-        if media == '/tv/':
-            if tv_filter == '' or len(set(tgids).intersection(set(result["genre_ids"]))) == len(tgids):
-                mediaObjects.append({
-                    "name": result["name"],
-                    "imgURL": craftPosterURL(result["poster_path"]),
-                    "first_air_date": result["first_air_date"][0:4],
-                    "id": result["id"],
-                    "score": round(result["vote_average"]/10, 2),
-                    "genre": getTVGenre(result["genre_ids"]),
-                    "lang": result["original_language"].upper(),
-                    "type": "tv",
-                    "popularity": result["popularity"]
-                })
-        elif media == '/movie/':
-            if movie_filter == '' or len(set(mgids).intersection(set(result["genre_ids"]))) == len(mgids):
-                mediaObjects.append({
-                    "name": result["title"],
-                    "imgURL": craftPosterURL(result["poster_path"]),
-                    "first_air_date": result["release_date"][0:4],
-                    "id": result["id"],
-                    "score": round(result["vote_average"]/10, 2),
-                    "genre": getMovieGenre(result["genre_ids"]),
-                    "lang": result["original_language"].upper(),
-                    "type": "movie",
-                    "popularity": result["popularity"]
-                })
-    return mediaObjects
->>>>>> > a61e74eecec4c130be029b837d2ff5ecd1afbf8d
 
 
 def getWatchTrending(tv_filter='', movie_filter=''):

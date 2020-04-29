@@ -1,6 +1,6 @@
 import React from "react";
-import { LISTEN_LOGOS } from "../constants/index";
-import LoadingSpinner from "../images/tail-spin.svg";
+import { LISTEN_LOGOS } from "../../constants/index";
+import LoadingSpinner from "../../images/tail-spin.svg";
 
 function ListenOverlayMeta({
   releaseDate,
